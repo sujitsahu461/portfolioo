@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>Sujit Sahu — Cybersecurity Specialist & CSE Student</title>
+  <meta name="description" content="Sujit Sahu — B.Tech CSE student at GIET University, aspiring Cybersecurity Specialist with passion for AI and security systems." />
+  <meta name="keywords" content="Sujit Sahu, Cybersecurity, Portfolio, CSE, GIET University, Web Developer, AI" />
+  <meta name="author" content="Sujit Sahu" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sujit Sahu — Cybersecurity Specialist" />
+  <meta property="og:description" content="B.Tech CSE Student | Aspiring Cybersecurity Specialist" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ░░ LOADING SCREEN ░░ -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-bar"></div>
+      <span class="loader-text">INITIALIZING<span class="dots">...</span></span>
+    </div>
+  </div>
+
+  <!-- ░░ SCROLL PROGRESS BAR ░░ -->
+  <div id="scroll-progress"></div>
+
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">SS<span class="accent">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Certs</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#skills" class="mobile-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-link">Projects</a></li>
+        <li><a href="#achievements" class="mobile-link">Certifications</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ░░ HERO SECTION ░░ -->
+  <section id="hero">
+    <!-- Animated grid background -->
+    <div class="hero-grid"></div>
+    <div class="hero-veil hero-veil-1"></div>
+    <div class="hero-veil hero-veil-2"></div>
+    <div class="hero-shard hero-shard-1"></div>
+    <div class="hero-shard hero-shard-2"></div>
+    <div class="hero-noise"></div>
+    <!-- Glowing orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        Available for Internships & Collaborations
+      </div>
+      <h1 class="hero-name reveal-up">
+        Sujit<br /><span class="accent-text">Sahu</span>
+      </h1>
+      <div class="hero-title reveal-up">
+        <span class="title-prefix">&gt;_ </span>
+        <span id="typed-text"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-tagline reveal-up">
+        Breaking barriers, not systems — building defenses that matter<br />
+        in a world where <span class="highlight">security is survival</span>.
+      </p>
+      <div class="hero-actions reveal-up">
+        <a href="#contact" class="btn btn-primary">
+          <i class='bx bx-send'></i> Hire Me
+        </a>
+        <a href="#projects" class="btn btn-outline">
+          <i class='bx bx-code-alt'></i> View Projects
+        </a>
+      </div>
+      <div class="hero-scroll-hint reveal-up">
+        <span>Scroll to explore</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Floating code snippets -->
+    <div class="code-float code-float-1">
+      <pre><span class="cf-k">import</span> security<span class="cf-p">;</span><br/><span class="cf-k">const</span> <span class="cf-v">safe</span> <span class="cf-p">=</span> <span class="cf-fn">encrypt</span><span class="cf-p">(</span>data<span class="cf-p">);</span></pre>
+    </div>
+    <div class="code-float code-float-2">
+      <pre><span class="cf-c">// Vulnerability scan</span><br/><span class="cf-fn">nmap</span> <span class="cf-v">-sV</span> target</pre>
+    </div>
+  </section>
+
+  <!-- ░░ ABOUT SECTION ░░ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">01 / About</span>
+        <h2 class="section-title">Who I Am</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-img-frame">
+            <div class="profile-photo">
+              <img
+                src="profile-photo.jpg"
+                alt="Portrait of Sujit Sahu"
+                class="profile-photo-image"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="profile-photo-fallback" style="display:none;">
+                <span>SS</span>
+              </div>
+              <div class="profile-photo-badge">
+                <span class="profile-photo-name">Sujit Sahu</span>
+                <span class="profile-photo-role">Cybersecurity & Full Stack Student</span>
+              </div>
+              <div class="profile-photo-glow"></div>
+              <div class="avatar-ring ring-1"></div>
+              <div class="avatar-ring ring-2"></div>
+              <div class="avatar-ring ring-3"></div>
+            </div>
+            <!-- Stats cards -->
+            <div class="stat-card card-1 glass-card">
+              <i class='bx bx-shield-quarter'></i>
+              <div>
+                <strong>Cybersecurity</strong>
+                <span>Focused</span>
+              </div>
+            </div>
+            <div class="stat-card card-2 glass-card">
+              <i class='bx bx-brain'></i>
+              <div>
+                <strong>AI Enthusiast</strong>
+                <span>Explorer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text reveal-right">
+          <p class="about-intro">
+            I'm a <span class="accent">B.Tech Computer Science</span> student at GIET University, passionate about <span class="accent">full stack development, cybersecurity, and artificial intelligence</span>.
+          </p>
+          <p>
+            In a world saturated with digital threats, I chose to be part of the solution. I study how systems break so I can help build ones that don't. From understanding network vulnerabilities to exploring AI-driven security tools, my learning is driven by curiosity and a desire to make the digital world safer.
+          </p>
+          <p>
+            I'm a self-taught developer and self-learner — I don't wait for a classroom to teach me what the internet already knows. Whether it's deep-diving into Cisco networking concepts, hacking together a stock tracker app, or completing cybersecurity bootcamps at midnight, my journey is defined by initiative.
+          </p>
+          <div class="about-details">
+            <div class="detail-item">
+              <i class='bx bx-graduation'></i>
+              <span>B.Tech CSE — GIET University</span>
+            </div>
+            <div class="detail-item">
+              <i class='bx bx-map-pin'></i>
+              <span>Odisha, India</span>
+            </div>
+            <div class="detail-item">
+              <i class='bx bx-target-lock'></i>
+              <span>Goal: Cybersecurity Specialist</span>
+            </div>
+            <div class="detail-item">
+              <i class='bx bx-book-open'></i>
+              <span>Self-learner | Open-source contributor</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary about-cta">
+            <i class='bx bx-chat'></i> Let's Talk
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ SKILLS SECTION ░░ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">02 / Skills</span>
+        <h2 class="section-title">my skills</h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Programming Languages -->
+        <div class="skill-category reveal-up glass-card">
+          <div class="skill-cat-header">
+            <i class='bx bx-code-curly'></i>
+            <h3>Programming</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon si-python">
+                <i class='bx bxl-python'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">Python</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="80"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-js">
+                <i class='bx bxl-javascript'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-c">
+                <i class='bx bxs-chip'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">C / C++</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="65"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-html">
+                <i class='bx bxl-html5'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">HTML / CSS</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="85"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-category reveal-up glass-card" style="--delay:0.1s">
+          <div class="skill-cat-header">
+            <i class='bx bx-wrench'></i>
+            <h3>Tools</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon si-git">
+                <i class='bx bxl-git'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">Git / GitHub</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="75"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-vscode">
+                <i class='bx bx-code-alt'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">VS Code</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="90"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-linux">
+                <i class='bx bxl-tux'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">Linux / Bash</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="65"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-nmap">
+                <i class='bx bx-radar'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">Nmap / Wireshark</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="60"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technologies -->
+        <div class="skill-category reveal-up glass-card" style="--delay:0.2s">
+          <div class="skill-cat-header">
+            <i class='bx bx-layer'></i>
+            <h3>Technologies</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon si-net">
+                <i class='bx bx-network-chart'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">Networking (TCP/IP)</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-ai">
+                <i class='bx bx-brain'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">AI / ML Basics</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="60"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-api">
+                <i class='bx bx-transfer'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">REST APIs</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="72"></div></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon si-sec">
+                <i class='bx bx-shield-quarter'></i>
+              </div>
+              <div class="skill-info">
+                <span class="skill-name">Cybersecurity Concepts</span>
+                <div class="skill-bar"><div class="skill-fill" data-w="68"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ PROJECTS SECTION ░░ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">03 / Projects</span>
+        <h2 class="section-title">What I've Built</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card glass-card reveal-up">
+          <div class="project-glow"></div>
+          <div class="project-header">
+            <div class="project-num">01</div>
+            <div class="project-links">
+              <a href="#" class="proj-link" title="GitHub" aria-label="GitHub Repo">
+                <i class='bx bxl-github'></i>
+              </a>
+              <a href="#" class="proj-link" title="Live Demo" aria-label="Live Demo">
+                <i class='bx bx-link-external'></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">
+              <i class='bx bx-cloud'></i> Weather Web App
+            </h3>
+            <p class="project-desc">
+              A sleek, real-time weather application that fetches live weather data using the OpenWeather API. Displays temperature, humidity, wind speed, and a 5-day forecast with dynamic backgrounds that change based on weather conditions.
+            </p>
+            <div class="project-features">
+              <span>Real-time Data</span>
+              <span>5-Day Forecast</span>
+              <span>Dynamic UI</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="tech-stack">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">OpenWeather API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card reveal-up featured" style="--delay:0.15s">
+          <div class="project-badge">Featured</div>
+          <div class="project-glow glow-gold"></div>
+          <div class="project-header">
+            <div class="project-num">02</div>
+            <div class="project-links">
+              <a href="#" class="proj-link" title="GitHub" aria-label="GitHub Repo">
+                <i class='bx bxl-github'></i>
+              </a>
+              <a href="#" class="proj-link" title="Live Demo" aria-label="Live Demo">
+                <i class='bx bx-link-external'></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">
+              <i class='bx bx-trending-up'></i> BullLens
+            </h3>
+            <p class="project-desc">
+              A smart stock market tracker that gives investors a clear lens into market trends. Tracks real-time stock prices, visualizes portfolio performance with charts, and provides sentiment-based insights — helping both beginner and experienced investors make smarter decisions.
+            </p>
+            <div class="project-features">
+              <span>Live Stock Data</span>
+              <span>Portfolio Tracking</span>
+              <span>Market Insights</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="tech-stack">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Chart.js</span>
+              <span class="tech-tag">Stock API</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ ACHIEVEMENTS / CERTIFICATIONS ░░ -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">04 / Achievements</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+
+      <div class="certs-grid">
+
+        <div class="cert-card glass-card reveal-up">
+          <div class="cert-icon">
+            <i class='bx bxl-meta'></i>
+          </div>
+          <div class="cert-content">
+            <span class="cert-issuer">Cisco</span>
+            <h3 class="cert-title">Cisco Certification</h3>
+            <p class="cert-desc">Verified expertise in networking fundamentals, routing protocols, and network security essentials from the world's leading networking authority.</p>
+          </div>
+          <div class="cert-badge">
+            <i class='bx bx-check-shield'></i> Verified
+          </div>
+        </div>
+
+        <div class="cert-card glass-card reveal-up" style="--delay:0.1s">
+          <div class="cert-icon ci-hp">
+            <i class='bx bx-shield-alt-2'></i>
+          </div>
+          <div class="cert-content">
+            <span class="cert-issuer">HP LIFE</span>
+            <h3 class="cert-title">Cybersecurity Awareness</h3>
+            <p class="cert-desc">Completed HP LIFE's cybersecurity awareness program covering digital threats, data protection, phishing prevention, and best practices for secure computing.</p>
+          </div>
+          <div class="cert-badge">
+            <i class='bx bx-check-shield'></i> Verified
+          </div>
+        </div>
+
+        <div class="cert-card glass-card reveal-up" style="--delay:0.2s">
+          <div class="cert-icon ci-ai">
+            <i class='bx bx-bot'></i>
+          </div>
+          <div class="cert-content">
+            <span class="cert-issuer">Let's Upgrade</span>
+            <h3 class="cert-title">ChatGPT Bootcamp</h3>
+            <p class="cert-desc">Intensive training on leveraging large language models, prompt engineering, and AI-powered productivity tools to build smarter workflows and applications.</p>
+          </div>
+          <div class="cert-badge">
+            <i class='bx bx-check-shield'></i> Verified
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CONTACT SECTION ░░ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">05 / Contact</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Have a project in mind or want to connect? I'm just a message away.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-info reveal-left">
+          <h3>Let's build something<br /><span class="accent">extraordinary</span> together.</h3>
+          <p>Whether it's a cybersecurity consultation, a web development project, or just a tech chat — I'm open to it all. Drop a message or reach me through any of the channels below.</p>
+
+          <div class="contact-links">
+            <a href="mailto:smartsujit7334@gmail.com" class="contact-link glass-card">
+              <i class='bx bx-envelope'></i>
+              <div>
+                <span class="cl-label">Email</span>
+                <span class="cl-value">smartsujit7334@gmail.com</span>
+              </div>
+              <i class='bx bx-right-arrow-alt cl-arrow'></i>
+            </a>
+            <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener" class="contact-link glass-card">
+              <i class='bx bxl-github'></i>
+              <div>
+                <span class="cl-label">GitHub</span>
+                <span class="cl-value">github.com/sujitsahu461</span>
+              </div>
+              <i class='bx bx-right-arrow-alt cl-arrow'></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" class="contact-link glass-card">
+              <i class='bx bxl-linkedin'></i>
+              <div>
+                <span class="cl-label">LinkedIn</span>
+                <span class="cl-value">linkedin.com/in/sujit-kumar-sahu-60b80531a</span>
+              </div>
+              <i class='bx bx-right-arrow-alt cl-arrow'></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form glass-card" id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Project Collaboration" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class='bx bx-send'></i> Send Message
+            </button>
+            <div class="form-msg" id="formMsg"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer>
+    <div class="container footer-inner">
+      <a href="#hero" class="footer-logo">SS<span class="accent">.</span></a>
+      <p class="footer-copy">
+        Crafted with <i class='bx bxs-heart' style="color:#ff4d6d"></i> by Sujit Sahu &copy; <span id="year"></span>
+      </p>
+      <div class="footer-socials">
+        <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+        <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        <a href="mailto:smartsujit7334@gmail.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ░░ BACK TO TOP ░░ -->
+  <button id="backToTop" aria-label="Back to Top">
+    <i class='bx bx-chevron-up'></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
