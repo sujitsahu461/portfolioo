@@ -27,6 +27,8 @@
 </head>
 <body>
 
+  <div id="progress-bar"></div>
+
   <!-- ░░ LOADING SCREEN ░░ -->
   <div id="loader">
     <div class="loader-inner">
@@ -34,9 +36,6 @@
       <span class="loader-text">INITIALIZING<span class="dots">...</span></span>
     </div>
   </div>
-
-  <!-- ░░ SCROLL PROGRESS BAR ░░ -->
-  <div id="scroll-progress"></div>
 
   <!-- ░░ NAVIGATION ░░ -->
   <nav id="navbar">
@@ -66,7 +65,7 @@
   </nav>
 
   <!-- ░░ HERO SECTION ░░ -->
-  <section id="hero">
+  <section id="hero" class="reveal">
     <!-- Animated grid background -->
     <div class="hero-grid"></div>
     <div class="hero-veil hero-veil-1"></div>
@@ -86,11 +85,7 @@
       <h1 class="hero-name reveal-up">
         Sujit<br /><span class="accent-text">Sahu</span>
       </h1>
-      <div class="hero-title reveal-up">
-        <span class="title-prefix">&gt;_ </span>
-        <span id="typed-text"></span>
-        <span class="cursor-blink">|</span>
-      </div>
+      <h2 class="hero-title reveal-up"><span id="typing"></span></h2>
       <p class="hero-tagline reveal-up">
         Breaking barriers, not systems — building defenses that matter<br />
         in a world where <span class="highlight">security is survival</span>.
@@ -119,7 +114,7 @@
   </section>
 
   <!-- ░░ ABOUT SECTION ░░ -->
-  <section id="about">
+  <section id="about" class="reveal">
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">01 / About</span>
@@ -201,7 +196,7 @@
   </section>
 
   <!-- ░░ SKILLS SECTION ░░ -->
-  <section id="skills">
+  <section id="skills" class="reveal">
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">02 / Skills</span>
@@ -353,7 +348,7 @@
   </section>
 
   <!-- ░░ PROJECTS SECTION ░░ -->
-  <section id="projects">
+  <section id="projects" class="reveal">
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">03 / Projects</span>
@@ -442,7 +437,7 @@
   </section>
 
   <!-- ░░ ACHIEVEMENTS / CERTIFICATIONS ░░ -->
-  <section id="achievements">
+  <section id="achievements" class="reveal">
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">04 / Achievements</span>
@@ -498,7 +493,7 @@
   </section>
 
   <!-- ░░ CONTACT SECTION ░░ -->
-  <section id="contact">
+  <section id="contact" class="reveal">
     <div class="container">
       <div class="section-header reveal-up">
         <span class="section-tag">05 / Contact</span>
@@ -585,9 +580,7 @@
   </footer>
 
   <!-- ░░ BACK TO TOP ░░ -->
-  <button id="backToTop" aria-label="Back to Top">
-    <i class='bx bx-chevron-up'></i>
-  </button>
+  <button id="topBtn" aria-label="Back to Top">↑</button>
 
   <script src="script.js"></script>
 </body>

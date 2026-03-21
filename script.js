@@ -23,53 +23,47 @@ window.addEventListener('load', () => {
 });
 
 /* 2. TYPING ANIMATION */
-const typedEl = document.getElementById('typed-text');
-const phrases = [
-  'B.Tech CSE Student',
-  'Cybersecurity Enthusiast',
-  'Full Stack Explorer',
-  'Aspiring Security Specialist',
-  'AI Explorer',
-  'Self-Taught Developer',
+const roles = [
+  'Aspiring Cybersecurity Specialist',
+  'Full Stack Developer',
+  'Problem Solver'
 ];
-let phraseIdx = 0;
-let charIdx = 0;
+
+let i = 0;
+let j = 0;
+let currentText = '';
 let isDeleting = false;
-let typingTimer = null;
 
 function type() {
-  if (!typedEl) return;
+  const typingEl = document.getElementById('typing');
+  if (!typingEl) return;
 
-  const current = phrases[phraseIdx];
+  currentText = roles[i];
 
-  if (isDeleting) {
-    typedEl.textContent = current.substring(0, charIdx - 1);
-    charIdx--;
+  if (!isDeleting) {
+    typingEl.textContent = currentText.substring(0, j++);
   } else {
-    typedEl.textContent = current.substring(0, charIdx + 1);
-    charIdx++;
+    typingEl.textContent = currentText.substring(0, j--);
   }
 
-  let delay = isDeleting ? 50 : 90;
-
-  if (!isDeleting && charIdx === current.length) {
-    delay = 1800;
+  if (j === currentText.length + 1) {
     isDeleting = true;
-  } else if (isDeleting && charIdx === 0) {
-    isDeleting = false;
-    phraseIdx = (phraseIdx + 1) % phrases.length;
-    delay = 350;
+    setTimeout(type, 1000);
+    return;
   }
 
-  typingTimer = setTimeout(type, delay);
+  if (j === 0) {
+    isDeleting = false;
+    i = (i + 1) % roles.length;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 100);
 }
 
-setTimeout(() => {
-  if (typedEl) type();
-}, 1800);
+type();
 
 /* 3. SCROLL PROGRESS BAR */
-const progressBar = document.getElementById('scroll-progress');
+const progressBar = document.getElementById('progress-bar');
 
 function updateScrollProgress() {
   if (!progressBar) return;
@@ -94,32 +88,35 @@ function updateNavbar() {
 }
 
 /* 5. BACK TO TOP BUTTON */
-const backToTopBtn = document.getElementById('backToTop');
+const topBtn = document.getElementById('topBtn');
 
 function updateBackToTop() {
-  if (!backToTopBtn) return;
-
-  if (window.scrollY > 400) {
-    backToTopBtn.classList.add('visible');
-  } else {
-    backToTopBtn.classList.remove('visible');
-  }
+  if (!topBtn) return;
+  topBtn.style.display = document.documentElement.scrollTop > 200 ? 'block' : 'none';
 }
 
-if (backToTopBtn) {
-  backToTopBtn.addEventListener('click', () => {
+if (topBtn) {
+  topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
 /* 6. SINGLE SCROLL EVENT HANDLER */
-window.addEventListener('scroll', () => {
+window.onscroll = () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+
+  if (progressBar) {
+    progressBar.style.width = `${scrolled}%`;
+  }
+
   updateScrollProgress();
   updateNavbar();
   updateBackToTop();
   revealElements();
   animateSkillBars();
-}, { passive: true });
+};
 
 /* 7. SCROLL REVEAL */
 const revealObserver = new IntersectionObserver(
@@ -134,7 +131,16 @@ const revealObserver = new IntersectionObserver(
 );
 
 function revealElements() {
-  // Observer handles reveals. This is kept as a fallback hook.
+  const reveals = document.querySelectorAll('.reveal');
+
+  reveals.forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add('active');
+    }
+  });
 }
 
 function initReveal() {
@@ -379,6 +385,7 @@ function initMysteryMotion() {
 /* 15. INIT */
 document.addEventListener('DOMContentLoaded', () => {
   initReveal();
+  revealElements();
   animateSkillBars();
   updateScrollProgress();
   updateNavbar();
