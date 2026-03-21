@@ -3,585 +3,945 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO Meta Tags -->
-  <title>Sujit Sahu — Cybersecurity Specialist & CSE Student</title>
-  <meta name="description" content="Sujit Sahu — B.Tech CSE student at GIET University, aspiring Cybersecurity Specialist with passion for AI and security systems." />
-  <meta name="keywords" content="Sujit Sahu, Cybersecurity, Portfolio, CSE, GIET University, Web Developer, AI" />
-  <meta name="author" content="Sujit Sahu" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Sujit Sahu — Cybersecurity Specialist" />
-  <meta property="og:description" content="B.Tech CSE Student | Aspiring Cybersecurity Specialist" />
-  <meta property="og:type" content="website" />
-
-  <!-- Google Fonts -->
+  <title>Sujit Sahu | Warm Modern Portfolio</title>
+  <meta
+    name="description"
+    content="Elegant and responsive portfolio website for Sujit Sahu with a warm premium aesthetic."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --primary: #3a4660;
+      --secondary: #c9af98;
+      --accent: #ed8a63;
+      --dark-accent: #845007;
+      --text-main: #1a1a1a;
+      --text-inverse: #ffffff;
+      --surface: var(--text-inverse);
+      --card-surface: var(--secondary);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --shadow: 0 14px 24px var(--secondary);
+      --divider: 1px solid var(--dark-accent);
+      --max-width: 1160px;
+      --nav-height: 84px;
+    }
 
-  <!-- Boxicons -->
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <link rel="stylesheet" href="style.css" />
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      background: var(--surface);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-soft {
+      background: var(--secondary);
+    }
+
+    .section-header {
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 0.9rem;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      color: var(--primary);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.06;
+      margin-bottom: 1rem;
+    }
+
+    .section-copy {
+      max-width: 58ch;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--primary);
+      border-bottom: var(--divider);
+    }
+
+    .nav-shell {
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      color: var(--text-inverse);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: var(--text-inverse);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-inverse);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      min-width: 48px;
+      min-height: 48px;
+      border: var(--divider);
+      border-radius: var(--radius-sm);
+      background: var(--primary);
+      color: var(--text-inverse);
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 96px 0;
+      background: var(--secondary);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      color: var(--primary);
+      font-size: clamp(2.9rem, 6vw, 5.3rem);
+      line-height: 0.98;
+      margin-bottom: 1.3rem;
+      max-width: 11ch;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-text {
+      max-width: 58ch;
+      margin-bottom: 2rem;
+      font-size: 1.06rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0.95rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--primary);
+      font-weight: 700;
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--text-inverse);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--text-inverse);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--text-inverse);
+    }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .note-card,
+    .panel,
+    .card,
+    .contact-form,
+    .contact-panel {
+      border-radius: var(--radius-lg);
+      border: var(--divider);
+      box-shadow: var(--shadow);
+    }
+
+    .note-card {
+      background: var(--surface);
+      padding: 1.15rem;
+    }
+
+    .note-card strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .panel {
+      background: var(--surface);
+      padding: 1.4rem;
+    }
+
+    .panel-photo {
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: var(--divider);
+      margin-bottom: 1rem;
+    }
+
+    .panel-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .panel-list {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .panel-list li {
+      padding: 0.95rem 1rem;
+      border: var(--divider);
+      border-radius: var(--radius-md);
+      background: var(--secondary);
+    }
+
+    .panel-list strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      color: var(--primary);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .story-card {
+      padding: 2rem;
+      background: var(--surface);
+      border: var(--divider);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .story-card p + p {
+      margin-top: 1rem;
+    }
+
+    .story-points {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .story-points li {
+      padding: 1.2rem;
+      background: var(--surface);
+      border: var(--divider);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+    }
+
+    .story-points strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--accent);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      padding: 1.6rem;
+      background: var(--card-surface);
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+
+    .icon-box {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--primary);
+      color: var(--text-inverse);
+      font-weight: 800;
+    }
+
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+    }
+
+    .tag-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .tag-list li {
+      padding: 0.45rem 0.8rem;
+      border: var(--divider);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--dark-accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .project-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-index {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .contact-panel {
+      background: var(--secondary);
+      padding: 2rem;
+    }
+
+    .contact-panel h3 {
+      color: var(--primary);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+
+    .contact-panel p {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-links {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .contact-links a {
+      display: block;
+      padding: 1rem;
+      border: var(--divider);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      color: var(--primary);
+    }
+
+    .contact-links a:hover {
+      color: var(--accent);
+    }
+
+    .contact-links span {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--dark-accent);
+      word-break: break-word;
+    }
+
+    .contact-form {
+      background: var(--surface);
+      padding: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border: var(--divider);
+      border-radius: var(--radius-sm);
+      background: var(--text-inverse);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .footer {
+      background: var(--primary);
+      color: var(--text-inverse);
+      border-top: var(--divider);
+      padding: 1.5rem 0 2rem;
+    }
+
+    .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-inverse);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 1rem;
+        left: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+        padding: 1rem;
+        background: var(--primary);
+        border: var(--divider);
+        border-radius: var(--radius-md);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 0.8rem 0.9rem;
+        border-radius: var(--radius-sm);
+      }
+
+      .panel {
+        max-width: 560px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section,
+      .hero {
+        padding: 72px 0;
+      }
+
+      .hero-notes,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .panel,
+      .story-card,
+      .card,
+      .contact-panel,
+      .contact-form {
+        padding: 1.4rem;
+      }
+
+      .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#home" aria-label="Homepage">
+        <span class="brand-mark">SS</span>
+        <span>Sujit Sahu</span>
+      </a>
 
-  <div id="progress-bar"></div>
-
-  <!-- ░░ LOADING SCREEN ░░ -->
-  <div id="loader">
-    <div class="loader-inner">
-      <div class="loader-bar"></div>
-      <span class="loader-text">INITIALIZING<span class="dots">...</span></span>
-    </div>
-  </div>
-
-  <!-- ░░ NAVIGATION ░░ -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">SS<span class="accent">.</span></a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#achievements">Certs</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
-        <span></span><span></span><span></span>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
       </button>
-    </div>
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <ul>
-        <li><a href="#about" class="mobile-link">About</a></li>
-        <li><a href="#skills" class="mobile-link">Skills</a></li>
-        <li><a href="#projects" class="mobile-link">Projects</a></li>
-        <li><a href="#achievements" class="mobile-link">Certifications</a></li>
-        <li><a href="#contact" class="mobile-link">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <!-- ░░ HERO SECTION ░░ -->
-  <section id="hero" class="reveal">
-    <!-- Animated grid background -->
-    <div class="hero-grid"></div>
-    <div class="hero-veil hero-veil-1"></div>
-    <div class="hero-veil hero-veil-2"></div>
-    <div class="hero-shard hero-shard-1"></div>
-    <div class="hero-shard hero-shard-2"></div>
-    <div class="hero-noise"></div>
-    <!-- Glowing orbs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-
-    <div class="hero-content">
-      <div class="hero-badge reveal-up">
-        <span class="badge-dot"></span>
-        Available for Internships & Collaborations
-      </div>
-      <h1 class="hero-name reveal-up">
-        Sujit<br /><span class="accent-text">Sahu</span>
-      </h1>
-      <h2 class="hero-title reveal-up"><span id="typing"></span></h2>
-      <p class="hero-tagline reveal-up">
-        Breaking barriers, not systems — building defenses that matter<br />
-        in a world where <span class="highlight">security is survival</span>.
-      </p>
-      <div class="hero-actions reveal-up">
-        <a href="#contact" class="btn btn-primary">
-          <i class='bx bx-send'></i> Hire Me
-        </a>
-        <a href="#projects" class="btn btn-outline">
-          <i class='bx bx-code-alt'></i> View Projects
-        </a>
-      </div>
-      <div class="hero-scroll-hint reveal-up">
-        <span>Scroll to explore</span>
-        <div class="scroll-line"></div>
-      </div>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <!-- Floating code snippets -->
-    <div class="code-float code-float-1">
-      <pre><span class="cf-k">import</span> security<span class="cf-p">;</span><br/><span class="cf-k">const</span> <span class="cf-v">safe</span> <span class="cf-p">=</span> <span class="cf-fn">encrypt</span><span class="cf-p">(</span>data<span class="cf-p">);</span></pre>
-    </div>
-    <div class="code-float code-float-2">
-      <pre><span class="cf-c">// Vulnerability scan</span><br/><span class="cf-fn">nmap</span> <span class="cf-v">-sV</span> target</pre>
-    </div>
-  </section>
-
-  <!-- ░░ ABOUT SECTION ░░ -->
-  <section id="about" class="reveal">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">01 / About</span>
-        <h2 class="section-title">Who I Am</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-visual reveal-left">
-          <div class="about-img-frame">
-            <div class="profile-photo">
-              <img
-                src="profile-photo.jpg"
-                alt="Portrait of Sujit Sahu"
-                class="profile-photo-image"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="profile-photo-fallback" style="display:none;">
-                <span>SS</span>
-              </div>
-              <div class="profile-photo-badge">
-                <span class="profile-photo-name">Sujit Sahu</span>
-                <span class="profile-photo-role">Cybersecurity & Full Stack Student</span>
-              </div>
-              <div class="profile-photo-glow"></div>
-              <div class="avatar-ring ring-1"></div>
-              <div class="avatar-ring ring-2"></div>
-              <div class="avatar-ring ring-3"></div>
-            </div>
-            <!-- Stats cards -->
-            <div class="stat-card card-1 glass-card">
-              <i class='bx bx-shield-quarter'></i>
-              <div>
-                <strong>Cybersecurity</strong>
-                <span>Focused</span>
-              </div>
-            </div>
-            <div class="stat-card card-2 glass-card">
-              <i class='bx bx-brain'></i>
-              <div>
-                <strong>AI Enthusiast</strong>
-                <span>Explorer</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="about-text reveal-right">
-          <p class="about-intro">
-            I'm a <span class="accent">B.Tech Computer Science</span> student at GIET University, passionate about <span class="accent">full stack development, cybersecurity, and artificial intelligence</span>.
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Warm Modern Portfolio</span>
+          <h1 class="hero-title">Designing <span>thoughtful</span> digital spaces with warmth and clarity.</h1>
+          <p class="hero-text">
+            I build elegant web experiences that balance professional structure with a more human, story-led visual presence.
           </p>
-          <p>
-            In a world saturated with digital threats, I chose to be part of the solution. I study how systems break so I can help build ones that don't. From understanding network vulnerabilities to exploring AI-driven security tools, my learning is driven by curiosity and a desire to make the digital world safer.
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Work With Me</a>
+            <a class="btn btn-secondary" href="#projects">Explore Projects</a>
+          </div>
+          <div class="hero-notes">
+            <article class="note-card">
+              <strong>Elegant Layouts</strong>
+              <span>Soft composition with clear visual rhythm.</span>
+            </article>
+            <article class="note-card">
+              <strong>Modern Frontend</strong>
+              <span>Responsive builds with clean structure.</span>
+            </article>
+            <article class="note-card">
+              <strong>Warm Identity</strong>
+              <span>Premium tone without losing usability.</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="panel-photo">
+            <img src="profile-photo.jpg" alt="Portrait of Sujit Sahu" />
+          </div>
+          <ul class="panel-list">
+            <li>
+              <strong>Approach</strong>
+              Thoughtful interfaces shaped by calm, readable design systems.
+            </li>
+            <li>
+              <strong>Focus</strong>
+              Frontend experiences that feel polished and easy to trust.
+            </li>
+            <li>
+              <strong>Intent</strong>
+              Blending professional presentation with a warmer creative edge.
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">About</span>
+          <h2 class="section-title">A story-focused approach to clean and modern web design.</h2>
+          <p class="section-copy">
+            I like websites that feel composed, refined, and welcoming. My work leans on clarity first, then adds warmth through spacing, typography, and restrained visual personality.
           </p>
-          <p>
-            I'm a self-taught developer and self-learner — I don't wait for a classroom to teach me what the internet already knows. Whether it's deep-diving into Cisco networking concepts, hacking together a stock tracker app, or completing cybersecurity bootcamps at midnight, my journey is defined by initiative.
-          </p>
-          <div class="about-details">
-            <div class="detail-item">
-              <i class='bx bx-graduation'></i>
-              <span>B.Tech CSE — GIET University</span>
-            </div>
-            <div class="detail-item">
-              <i class='bx bx-map-pin'></i>
-              <span>Odisha, India</span>
-            </div>
-            <div class="detail-item">
-              <i class='bx bx-target-lock'></i>
-              <span>Goal: Cybersecurity Specialist</span>
-            </div>
-            <div class="detail-item">
-              <i class='bx bx-book-open'></i>
-              <span>Self-learner | Open-source contributor</span>
-            </div>
-          </div>
-          <a href="#contact" class="btn btn-primary about-cta">
-            <i class='bx bx-chat'></i> Let's Talk
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ SKILLS SECTION ░░ -->
-  <section id="skills" class="reveal">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">02 / Skills</span>
-        <h2 class="section-title">my skills</h2>
-      </div>
-
-      <div class="skills-grid">
-
-        <!-- Programming Languages -->
-        <div class="skill-category reveal-up glass-card">
-          <div class="skill-cat-header">
-            <i class='bx bx-code-curly'></i>
-            <h3>Programming</h3>
-          </div>
-          <div class="skill-items">
-            <div class="skill-item">
-              <div class="skill-icon si-python">
-                <i class='bx bxl-python'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">Python</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="80"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-js">
-                <i class='bx bxl-javascript'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">JavaScript</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-c">
-                <i class='bx bxs-chip'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">C / C++</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="65"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-html">
-                <i class='bx bxl-html5'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">HTML / CSS</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="85"></div></div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <!-- Tools -->
-        <div class="skill-category reveal-up glass-card" style="--delay:0.1s">
-          <div class="skill-cat-header">
-            <i class='bx bx-wrench'></i>
-            <h3>Tools</h3>
-          </div>
-          <div class="skill-items">
-            <div class="skill-item">
-              <div class="skill-icon si-git">
-                <i class='bx bxl-git'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">Git / GitHub</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="75"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-vscode">
-                <i class='bx bx-code-alt'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">VS Code</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="90"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-linux">
-                <i class='bx bxl-tux'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">Linux / Bash</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="65"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-nmap">
-                <i class='bx bx-radar'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">Nmap / Wireshark</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="60"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technologies -->
-        <div class="skill-category reveal-up glass-card" style="--delay:0.2s">
-          <div class="skill-cat-header">
-            <i class='bx bx-layer'></i>
-            <h3>Technologies</h3>
-          </div>
-          <div class="skill-items">
-            <div class="skill-item">
-              <div class="skill-icon si-net">
-                <i class='bx bx-network-chart'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">Networking (TCP/IP)</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-ai">
-                <i class='bx bx-brain'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">AI / ML Basics</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="60"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-api">
-                <i class='bx bx-transfer'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">REST APIs</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="72"></div></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon si-sec">
-                <i class='bx bx-shield-quarter'></i>
-              </div>
-              <div class="skill-info">
-                <span class="skill-name">Cybersecurity Concepts</span>
-                <div class="skill-bar"><div class="skill-fill" data-w="68"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ PROJECTS SECTION ░░ -->
-  <section id="projects" class="reveal">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">03 / Projects</span>
-        <h2 class="section-title">What I've Built</h2>
-      </div>
-
-      <div class="projects-grid">
-
-        <!-- Project 1 -->
-        <div class="project-card glass-card reveal-up">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-num">01</div>
-            <div class="project-links">
-              <a href="#" class="proj-link" title="GitHub" aria-label="GitHub Repo">
-                <i class='bx bxl-github'></i>
-              </a>
-              <a href="#" class="proj-link" title="Live Demo" aria-label="Live Demo">
-                <i class='bx bx-link-external'></i>
-              </a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">
-              <i class='bx bx-cloud'></i> Weather Web App
-            </h3>
-            <p class="project-desc">
-              A sleek, real-time weather application that fetches live weather data using the OpenWeather API. Displays temperature, humidity, wind speed, and a 5-day forecast with dynamic backgrounds that change based on weather conditions.
+        <div class="about-grid">
+          <article class="story-card">
+            <p>
+              I build interfaces that help ideas feel more complete. That means designing with structure, keeping content easy to follow, and shaping pages that feel intentional from the first section to the last.
             </p>
-            <div class="project-features">
-              <span>Real-time Data</span>
-              <span>5-Day Forecast</span>
-              <span>Dynamic UI</span>
-            </div>
-          </div>
-          <div class="project-footer">
-            <div class="tech-stack">
-              <span class="tech-tag">HTML</span>
-              <span class="tech-tag">CSS</span>
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">OpenWeather API</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card glass-card reveal-up featured" style="--delay:0.15s">
-          <div class="project-badge">Featured</div>
-          <div class="project-glow glow-gold"></div>
-          <div class="project-header">
-            <div class="project-num">02</div>
-            <div class="project-links">
-              <a href="#" class="proj-link" title="GitHub" aria-label="GitHub Repo">
-                <i class='bx bxl-github'></i>
-              </a>
-              <a href="#" class="proj-link" title="Live Demo" aria-label="Live Demo">
-                <i class='bx bx-link-external'></i>
-              </a>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3 class="project-title">
-              <i class='bx bx-trending-up'></i> BullLens
-            </h3>
-            <p class="project-desc">
-              A smart stock market tracker that gives investors a clear lens into market trends. Tracks real-time stock prices, visualizes portfolio performance with charts, and provides sentiment-based insights — helping both beginner and experienced investors make smarter decisions.
+            <p>
+              Rather than pushing for a loud visual style, I prefer a quieter elegance: balanced blocks, gentle contrast, rounded forms, and details that make the experience feel premium without feeling heavy.
             </p>
-            <div class="project-features">
-              <span>Live Stock Data</span>
-              <span>Portfolio Tracking</span>
-              <span>Market Insights</span>
+          </article>
+
+          <ul class="story-points">
+            <li>
+              <strong>Creative Direction</strong>
+              Warm tones, soft surfaces, and a more editorial sense of rhythm.
+            </li>
+            <li>
+              <strong>Build Quality</strong>
+              Responsive HTML and CSS with clean alignment and reliable structure.
+            </li>
+            <li>
+              <strong>Outcome</strong>
+              A polished website that feels modern, human, and easy to navigate.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Skills</span>
+          <h2 class="section-title">Capabilities shaped for premium, clean, and responsive web experiences.</h2>
+          <p class="section-copy">
+            These focus areas support design quality, front-end execution, and a consistently refined user experience.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="icon-box">01</div>
+            <h3>Interface Design</h3>
+            <p>Layouts with balanced spacing, clear typography, and calm visual hierarchy.</p>
+            <ul class="tag-list">
+              <li>Visual Hierarchy</li>
+              <li>Responsive Layout</li>
+              <li>Section Flow</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">02</div>
+            <h3>Frontend Development</h3>
+            <p>Modern HTML and CSS structures that keep the experience clean and dependable.</p>
+            <ul class="tag-list">
+              <li>Semantic HTML</li>
+              <li>Modern CSS</li>
+              <li>Mobile Ready</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">03</div>
+            <h3>Brand Presentation</h3>
+            <p>Pages designed to communicate confidence, personality, and polished storytelling.</p>
+            <ul class="tag-list">
+              <li>Portfolio Framing</li>
+              <li>Content Styling</li>
+              <li>Premium Feel</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Projects</span>
+          <h2 class="section-title">Selected work presented with a clean, warm, and elegant visual frame.</h2>
+          <p class="section-copy">
+            Each project is showcased with readability and tone in mind, so the work feels approachable and polished.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="project-head">
+              <span class="project-index">01</span>
+              <a href="#contact">Discuss Project</a>
             </div>
-          </div>
-          <div class="project-footer">
-            <div class="tech-stack">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">Chart.js</span>
-              <span class="tech-tag">Stock API</span>
+            <div class="icon-box">WW</div>
+            <h3>Weather Web App</h3>
+            <p>A clear weather interface designed around friendly information blocks and a smooth cross-device experience.</p>
+            <ul class="tag-list">
+              <li>Forecast UI</li>
+              <li>Readable Cards</li>
+              <li>Responsive Design</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="project-head">
+              <span class="project-index">02</span>
+              <a href="#contact">Request Details</a>
             </div>
-          </div>
+            <div class="icon-box">BL</div>
+            <h3>BullLens</h3>
+            <p>A market-focused concept with structured dashboards and a more composed presentation of financial information.</p>
+            <ul class="tag-list">
+              <li>Dashboard Layout</li>
+              <li>Data Clarity</li>
+              <li>Product Framing</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="project-head">
+              <span class="project-index">03</span>
+              <a href="#contact">Start a Brief</a>
+            </div>
+            <div class="icon-box">SK</div>
+            <h3>Skills Profile</h3>
+            <p>A compact presentation of design and development strengths shaped for personal branding and project trust.</p>
+            <ul class="tag-list">
+              <li>HTML/CSS</li>
+              <li>UI Systems</li>
+              <li>Presentation Design</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Contact</span>
+          <h2 class="section-title">Let's create something refined, modern, and genuinely inviting.</h2>
+          <p class="section-copy">
+            If you want a website with a premium feel and strong visual clarity, this is a good place to begin.
+          </p>
         </div>
 
-      </div>
-    </div>
-  </section>
+        <div class="contact-grid">
+          <aside class="contact-panel">
+            <h3>Open to thoughtful collaborations and elegant digital work.</h3>
+            <p>
+              I'm available for portfolio design, polished frontend builds, and websites that need a warmer visual identity without losing professionalism.
+            </p>
+            <ul class="contact-links">
+              <li>
+                <a href="mailto:smartsujit7334@gmail.com">
+                  Email
+                  <span>smartsujit7334@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener noreferrer">
+                  GitHub
+                  <span>github.com/sujitsahu461</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                  <span>linkedin.com/in/sujit-kumar-sahu-60b80531a</span>
+                </a>
+              </li>
+            </ul>
+          </aside>
 
-  <!-- ░░ ACHIEVEMENTS / CERTIFICATIONS ░░ -->
-  <section id="achievements" class="reveal">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">04 / Achievements</span>
-        <h2 class="section-title">Certifications</h2>
-      </div>
-
-      <div class="certs-grid">
-
-        <div class="cert-card glass-card reveal-up">
-          <div class="cert-icon">
-            <i class='bx bxl-meta'></i>
-          </div>
-          <div class="cert-content">
-            <span class="cert-issuer">Cisco</span>
-            <h3 class="cert-title">Cisco Certification</h3>
-            <p class="cert-desc">Verified expertise in networking fundamentals, routing protocols, and network security essentials from the world's leading networking authority.</p>
-          </div>
-          <div class="cert-badge">
-            <i class='bx bx-check-shield'></i> Verified
-          </div>
-        </div>
-
-        <div class="cert-card glass-card reveal-up" style="--delay:0.1s">
-          <div class="cert-icon ci-hp">
-            <i class='bx bx-shield-alt-2'></i>
-          </div>
-          <div class="cert-content">
-            <span class="cert-issuer">HP LIFE</span>
-            <h3 class="cert-title">Cybersecurity Awareness</h3>
-            <p class="cert-desc">Completed HP LIFE's cybersecurity awareness program covering digital threats, data protection, phishing prevention, and best practices for secure computing.</p>
-          </div>
-          <div class="cert-badge">
-            <i class='bx bx-check-shield'></i> Verified
-          </div>
-        </div>
-
-        <div class="cert-card glass-card reveal-up" style="--delay:0.2s">
-          <div class="cert-icon ci-ai">
-            <i class='bx bx-bot'></i>
-          </div>
-          <div class="cert-content">
-            <span class="cert-issuer">Let's Upgrade</span>
-            <h3 class="cert-title">ChatGPT Bootcamp</h3>
-            <p class="cert-desc">Intensive training on leveraging large language models, prompt engineering, and AI-powered productivity tools to build smarter workflows and applications.</p>
-          </div>
-          <div class="cert-badge">
-            <i class='bx bx-check-shield'></i> Verified
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ CONTACT SECTION ░░ -->
-  <section id="contact" class="reveal">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">05 / Contact</span>
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Have a project in mind or want to connect? I'm just a message away.</p>
-      </div>
-
-      <div class="contact-grid">
-
-        <div class="contact-info reveal-left">
-          <h3>Let's build something<br /><span class="accent">extraordinary</span> together.</h3>
-          <p>Whether it's a cybersecurity consultation, a web development project, or just a tech chat — I'm open to it all. Drop a message or reach me through any of the channels below.</p>
-
-          <div class="contact-links">
-            <a href="mailto:smartsujit7334@gmail.com" class="contact-link glass-card">
-              <i class='bx bx-envelope'></i>
-              <div>
-                <span class="cl-label">Email</span>
-                <span class="cl-value">smartsujit7334@gmail.com</span>
+          <form class="contact-form">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" />
               </div>
-              <i class='bx bx-right-arrow-alt cl-arrow'></i>
-            </a>
-            <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener" class="contact-link glass-card">
-              <i class='bx bxl-github'></i>
-              <div>
-                <span class="cl-label">GitHub</span>
-                <span class="cl-value">github.com/sujitsahu461</span>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" />
               </div>
-              <i class='bx bx-right-arrow-alt cl-arrow'></i>
-            </a>
-            <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" class="contact-link glass-card">
-              <i class='bx bxl-linkedin'></i>
-              <div>
-                <span class="cl-label">LinkedIn</span>
-                <span class="cl-value">linkedin.com/in/sujit-kumar-sahu-60b80531a</span>
+              <div class="field field-full">
+                <label for="subject">Subject</label>
+                <input id="subject" name="subject" type="text" placeholder="Project or collaboration" />
               </div>
-              <i class='bx bx-right-arrow-alt cl-arrow'></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-form-wrap reveal-right">
-          <form class="contact-form glass-card" id="contactForm" novalidate>
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="John Doe" required autocomplete="off" />
+              <div class="field field-full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me about what you want to build."></textarea>
+              </div>
+              <div class="field field-full">
+                <button class="btn btn-primary" type="submit">Send Message</button>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="off" />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="Project Collaboration" autocomplete="off" />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or idea..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <i class='bx bx-send'></i> Send Message
-            </button>
-            <div class="form-msg" id="formMsg"></div>
           </form>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ░░ FOOTER ░░ -->
-  <footer>
-    <div class="container footer-inner">
-      <a href="#hero" class="footer-logo">SS<span class="accent">.</span></a>
-      <p class="footer-copy">
-        Crafted with <i class='bx bxs-heart' style="color:#ff4d6d"></i> by Sujit Sahu &copy; <span id="year"></span>
-      </p>
-      <div class="footer-socials">
-        <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener" aria-label="GitHub"><i class='bx bxl-github'></i></a>
-        <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-        <a href="mailto:smartsujit7334@gmail.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+  <footer class="footer">
+    <div class="container footer-shell">
+      <p>Warm modern portfolio built with a locked palette system. <span id="year"></span></p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
   </footer>
 
-  <!-- ░░ BACK TO TOP ░░ -->
-  <button id="topBtn" aria-label="Back to Top">↑</button>
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.getElementById("navLinks");
+    const navAnchors = navLinks.querySelectorAll("a");
+    const year = document.getElementById("year");
 
-  <script src="script.js"></script>
+    year.textContent = new Date().getFullYear();
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navAnchors.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
 </body>
 </html>
