@@ -358,8 +358,12 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.4rem;
+    }
+
+    #projects .cards-grid {
+      grid-template-columns: repeat(2, minmax(320px, 1fr));
     }
 
     .card {
@@ -428,6 +432,382 @@
       color: var(--accent);
       font-weight: 800;
       letter-spacing: 0.08em;
+    }
+
+    /* PROJECT CARD ENHANCEMENTS */
+    .card {
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.02) 50%,
+        rgba(0,0,0,0.08) 100%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(237,138,99,0.15) 0%, transparent 70%);
+      opacity: 0;
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover::after {
+      top: -25%;
+      right: -25%;
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(237,138,99,0.15),
+                  inset 0 1px 0 rgba(255,255,255,0.2);
+      border-color: var(--accent);
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-head a,
+    .card h3 {
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .project-head a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card:hover h3 {
+      color: var(--accent);
+      text-shadow: 0 0 20px rgba(237,138,99,0.2);
+    }
+
+    /* VIEW PROJECT BUTTON */
+    .btn-view-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: var(--text-inverse);
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn-view-project:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--text-inverse);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(237,138,99,0.25);
+    }
+
+    /* PROJECT MODAL */
+    .project-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26,26,26,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .project-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-content {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: var(--divider);
+      padding: 3rem;
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      animation: slideUp 0.4s ease;
+      position: relative;
+    }
+
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: var(--card-surface);
+      border-radius: var(--radius-md);
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--divider);
+      background: transparent;
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: var(--accent);
+      color: var(--text-inverse);
+      border-color: var(--accent);
+    }
+
+    .modal-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: var(--divider);
+    }
+
+    .modal-header h2 {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-tag {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .modal-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .modal-section h3 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-features {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .modal-features li {
+      padding: 0.8rem 1rem;
+      background: var(--card-surface);
+      border: var(--divider);
+      border-radius: var(--radius-md);
+      padding-left: 2rem;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .modal-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 1rem;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .modal-features li:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal-tag-item {
+      padding: 0.5rem 1rem;
+      background: var(--card-surface);
+      border: var(--divider);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark-accent);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: var(--divider);
+    }
+
+    .modal-actions .btn {
+      flex: 1;
+    }
+
+    /* ICON BOX ANIMATIONS */
+    @keyframes iconGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(237,138,99,0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(237,138,99,0.1);
+      }
+    }
+
+    .card:hover .icon-box {
+      animation: iconGlow 1.5s ease-in-out infinite;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+
+    .icon-box {
+      transition: all 0.3s ease;
+    }
+
+    /* ENHANCED PROJECT CARD STYLING */
+    .card {
+      box-shadow: 0 4px 15px rgba(237,138,99,0.08),
+                  inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    /* TAG ANIMATIONS */
+    .tag-list li {
+      transition: all 0.25s ease;
+    }
+
+    .tag-list li:hover {
+      background: var(--primary);
+      color: var(--text-inverse);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(58,70,96,0.15);
+    }
+
+    /* SMOOTH SCROLL REVEAL */
+    @keyframes revealUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: revealUp 0.6s ease-out backwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+
+    /* BUTTON RIPPLE EFFECT */
+    .btn-view-project::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-view-project:active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-view-project {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* SKILLS SECTION GRID FIX */
+    .section:not(#projects) .cards-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* TABLET RESPONSIVE */
+    @media (max-width: 1024px) {
+      #projects .cards-grid {
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+      }
     }
 
     .contact-grid {
@@ -563,6 +943,10 @@
         grid-template-columns: 1fr;
       }
 
+      #projects .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
       .nav-toggle {
         display: inline-grid;
         place-items: center;
@@ -620,9 +1004,25 @@
         padding: 1.4rem;
       }
 
+      #projects .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
       .footer-shell {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .modal-content {
+        width: 95%;
+        padding: 2rem;
+      }
+
+      .modal-close {
+        top: 1rem;
+        right: 1rem;
+        width: 36px;
+        height: 36px;
       }
     }
   </style>
@@ -841,6 +1241,24 @@
               <li>UI Systems</li>
               <li>Presentation Design</li>
             </ul>
+            <button class="btn-view-project" data-project="skills-profile">View Project</button>
+          </article>
+
+          <article class="card">
+            <div class="project-head">
+              <span class="project-index">04</span>
+              <a href="#">Explore More</a>
+            </div>
+            <div class="icon-box">AI</div>
+            <h3>AI Technology Education Keynote</h3>
+            <p>A minimalist, modern presentation template for showcasing artificial intelligence advancements and educational applications with futuristic design.</p>
+            <ul class="tag-list">
+              <li>AI</li>
+              <li>Education</li>
+              <li>Presentation Design</li>
+              <li>UI/UX</li>
+            </ul>
+            <button class="btn-view-project" data-project="ai-keynote">View Project</button>
           </article>
         </div>
       </div>
@@ -912,6 +1330,119 @@
     </section>
   </main>
 
+  <!-- PROJECT MODALS -->
+  <div id="aiKeynoteModal" class="project-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeProjectModal('aiKeynoteModal')">✕</button>
+      <div class="modal-header">
+        <span class="modal-tag">Featured Project</span>
+        <h2>Interactive AI Technology Education Keynote Template</h2>
+      </div>
+
+      <div class="modal-section">
+        <h3>Overview</h3>
+        <p>A sophisticated presentation framework designed for modern educators, researchers, and organizations seeking to communicate complex artificial intelligence concepts with visual clarity and professional elegance. This template combines minimalist design principles with futuristic aesthetics to create an accessible yet premium presentation experience.</p>
+      </div>
+
+      <div class="modal-section">
+        <h3>Ideal For</h3>
+        <ul class="modal-features">
+          <li>Academic lectures and university seminars</li>
+          <li>Corporate training and professional development</li>
+          <li>Advanced workshops and certification programs</li>
+          <li>International conferences and keynotes</li>
+          <li>Online learning platforms and e-learning integration</li>
+          <li>Industry research presentations and tech talks</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>Key Features</h3>
+        <ul class="modal-features">
+          <li>Minimalist slide layouts with industrial aesthetic</li>
+          <li>Futuristic animations and micro-interactions</li>
+          <li>Data visualization components for complex AI concepts</li>
+          <li>Sleek dark/light theme toggles</li>
+          <li>Advanced typography for technical content</li>
+          <li>Responsive design for hybrid presentations</li>
+          <li>Accessibility-first markup and navigation</li>
+          <li>Custom icon library for technology topics</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>Design Highlights</h3>
+        <ul class="modal-features">
+          <li>Glassmorphism and modern UI patterns</li>
+          <li>Gradient overlays with subtle depth</li>
+          <li>Smooth transitions and scroll-triggered reveals</li>
+          <li>Professional color palette system</li>
+          <li>Premium typography pairing</li>
+          <li>Attention to whitespace and visual breathing</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>Technologies</h3>
+        <div class="modal-tags">
+          <span class="modal-tag-item">HTML5</span>
+          <span class="modal-tag-item">CSS3</span>
+          <span class="modal-tag-item">JavaScript</span>
+          <span class="modal-tag-item">Presentation Design</span>
+          <span class="modal-tag-item">UI/UX</span>
+          <span class="modal-tag-item">Animation</span>
+          <span class="modal-tag-item">Accessibility</span>
+          <span class="modal-tag-item">Responsive Design</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <a class="btn btn-secondary" href="#projects" onclick="closeProjectModal('aiKeynoteModal')">Back to Projects</a>
+        <a class="btn btn-primary" href="https://github.com" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="skillsProfileModal" class="project-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeProjectModal('skillsProfileModal')">✕</button>
+      <div class="modal-header">
+        <span class="modal-tag">Portfolio Project</span>
+        <h2>Skills Profile</h2>
+      </div>
+
+      <div class="modal-section">
+        <h3>Overview</h3>
+        <p>A compact and elegant presentation of design and development capabilities, crafted specifically for personal branding and establishing immediate professional trust with potential collaborators.</p>
+      </div>
+
+      <div class="modal-section">
+        <h3>Key Features</h3>
+        <ul class="modal-features">
+          <li>Responsive grid-based layout system</li>
+          <li>Clean semantic HTML structure</li>
+          <li>Custom CSS animations and transitions</li>
+          <li>Organized skill categories</li>
+          <li>Visual hierarchy optimization</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h3>Technologies</h3>
+        <div class="modal-tags">
+          <span class="modal-tag-item">HTML/CSS</span>
+          <span class="modal-tag-item">UI Systems</span>
+          <span class="modal-tag-item">Presentation Design</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <a class="btn btn-secondary" href="#projects" onclick="closeProjectModal('skillsProfileModal')">Back to Projects</a>
+        <a class="btn btn-primary" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="container footer-shell">
       <p>Warm modern portfolio built with a locked palette system. <span id="year"></span></p>
@@ -941,6 +1472,58 @@
         navLinks.classList.remove("open");
         navToggle.setAttribute("aria-expanded", "false");
       });
+    });
+
+    // Project Modal Functionality
+    const projectButtons = document.querySelectorAll('.btn-view-project');
+    
+    projectButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectId = button.getAttribute('data-project');
+        
+        if (projectId === 'ai-keynote') {
+          openProjectModal('aiKeynoteModal');
+        } else if (projectId === 'skills-profile') {
+          openProjectModal('skillsProfileModal');
+        }
+      });
+    });
+
+    function openProjectModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeProjectModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Close modal when clicking outside
+    document.querySelectorAll('.project-modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.project-modal.active').forEach(modal => {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      }
     });
   </script>
 </body>
