@@ -3,1528 +3,253 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sujit Sahu | Warm Modern Portfolio</title>
+  <title>Sujit Sahu | Creative Developer & Cybersecurity Specialist</title>
   <meta
     name="description"
-    content="Elegant and responsive portfolio website for Sujit Sahu with a warm premium aesthetic."
+    content="High-end interactive portfolio showcasing digital experiences, projects, and creative excellence."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <style>
-    :root {
-      --primary: #3a4660;
-      --secondary: #c9af98;
-      --accent: #ed8a63;
-      --dark-accent: #845007;
-      --text-main: #1a1a1a;
-      --text-inverse: #ffffff;
-      --surface: var(--text-inverse);
-      --card-surface: var(--secondary);
-      --radius-lg: 28px;
-      --radius-md: 20px;
-      --radius-sm: 14px;
-      --shadow: 0 14px 24px var(--secondary);
-      --divider: 1px solid var(--dark-accent);
-      --max-width: 1160px;
-      --nav-height: 84px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Manrope", sans-serif;
-      background: var(--surface);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.25s ease;
-    }
-
-    a:hover {
-      color: var(--primary);
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button,
-    input,
-    textarea {
-      font: inherit;
-    }
-
-    .container {
-      width: min(calc(100% - 2rem), var(--max-width));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 92px 0;
-    }
-
-    .section-soft {
-      background: var(--secondary);
-    }
-
-    .section-header {
-      max-width: 700px;
-      margin-bottom: 2.5rem;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 0.9rem;
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      color: var(--primary);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1.06;
-      margin-bottom: 1rem;
-    }
-
-    .section-copy {
-      max-width: 58ch;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: var(--primary);
-      border-bottom: var(--divider);
-    }
-
-    .nav-shell {
-      min-height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.85rem;
-      color: var(--text-inverse);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: var(--radius-sm);
-      background: var(--accent);
-      color: var(--text-inverse);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-inverse);
-      font-weight: 600;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-toggle {
-      display: none;
-      min-width: 48px;
-      min-height: 48px;
-      border: var(--divider);
-      border-radius: var(--radius-sm);
-      background: var(--primary);
-      color: var(--text-inverse);
-      cursor: pointer;
-    }
-
-    .hero {
-      padding: 96px 0;
-      background: var(--secondary);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .hero-title {
-      color: var(--primary);
-      font-size: clamp(2.9rem, 6vw, 5.3rem);
-      line-height: 0.98;
-      margin-bottom: 1.3rem;
-      max-width: 11ch;
-    }
-
-    .hero-title span {
-      color: var(--accent);
-    }
-
-    .hero-text {
-      max-width: 58ch;
-      margin-bottom: 2rem;
-      font-size: 1.06rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0.95rem 1.5rem;
-      border-radius: 999px;
-      border: 1px solid var(--primary);
-      font-weight: 700;
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: var(--text-inverse);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--text-inverse);
-    }
-
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--text-inverse);
-    }
-
-    .hero-notes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .note-card,
-    .panel,
-    .card,
-    .contact-form,
-    .contact-panel {
-      border-radius: var(--radius-lg);
-      border: var(--divider);
-      box-shadow: var(--shadow);
-    }
-
-    .note-card {
-      background: var(--surface);
-      padding: 1.15rem;
-    }
-
-    .note-card strong {
-      display: block;
-      margin-bottom: 0.2rem;
-      color: var(--primary);
-      font-size: 1.1rem;
-    }
-
-    .panel {
-      background: var(--surface);
-      padding: 1.4rem;
-    }
-
-    .panel-photo {
-      overflow: hidden;
-      border-radius: var(--radius-md);
-      border: var(--divider);
-      margin-bottom: 1rem;
-    }
-
-    .panel-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .panel-list {
-      list-style: none;
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .panel-list li {
-      padding: 0.95rem 1rem;
-      border: var(--divider);
-      border-radius: var(--radius-md);
-      background: var(--secondary);
-    }
-
-    .panel-list strong {
-      display: block;
-      margin-bottom: 0.15rem;
-      color: var(--primary);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .story-card {
-      padding: 2rem;
-      background: var(--surface);
-      border: var(--divider);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-    }
-
-    .story-card p + p {
-      margin-top: 1rem;
-    }
-
-    .story-points {
-      list-style: none;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .story-points li {
-      padding: 1.2rem;
-      background: var(--surface);
-      border: var(--divider);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow);
-    }
-
-    .story-points strong {
-      display: block;
-      margin-bottom: 0.35rem;
-      color: var(--accent);
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.4rem;
-    }
-
-    #projects .cards-grid {
-      grid-template-columns: repeat(2, minmax(320px, 1fr));
-    }
-
-    .card {
-      padding: 1.6rem;
-      background: var(--card-surface);
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      background: var(--surface);
-    }
-
-    .icon-box {
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 1rem;
-      border-radius: var(--radius-sm);
-      background: var(--primary);
-      color: var(--text-inverse);
-      font-weight: 800;
-    }
-
-    .card h3 {
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin-bottom: 1rem;
-    }
-
-    .tag-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    .tag-list li {
-      padding: 0.45rem 0.8rem;
-      border: var(--divider);
-      border-radius: 999px;
-      background: var(--surface);
-      color: var(--dark-accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .project-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-index {
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-    }
-
-    /* PROJECT CARD ENHANCEMENTS */
-    .card {
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg,
-        rgba(255,255,255,0.1) 0%,
-        rgba(255,255,255,0.02) 50%,
-        rgba(0,0,0,0.08) 100%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      pointer-events: none;
-    }
-
-    .card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(237,138,99,0.15) 0%, transparent 70%);
-      opacity: 0;
-      transition: all 0.5s ease;
-      pointer-events: none;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card:hover::after {
-      top: -25%;
-      right: -25%;
-      opacity: 1;
-    }
-
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(237,138,99,0.15),
-                  inset 0 1px 0 rgba(255,255,255,0.2);
-      border-color: var(--accent);
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .project-head a,
-    .card h3 {
-      transition: all 0.3s ease;
-    }
-
-    .card:hover .project-head a {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .card:hover h3 {
-      color: var(--accent);
-      text-shadow: 0 0 20px rgba(237,138,99,0.2);
-    }
-
-    /* VIEW PROJECT BUTTON */
-    .btn-view-project {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--primary);
-      color: var(--text-inverse);
-      padding: 0.8rem 1.4rem;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border: 1px solid var(--primary);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-    }
-
-    .btn-view-project:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--text-inverse);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(237,138,99,0.25);
-    }
-
-    /* PROJECT MODAL */
-    .project-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(26,26,26,0.85);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-      overflow-y: auto;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .project-modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .modal-content {
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-      border: var(--divider);
-      padding: 3rem;
-      max-width: 900px;
-      width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-      animation: slideUp 0.4s ease;
-      position: relative;
-    }
-
-    .modal-content::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .modal-content::-webkit-scrollbar-track {
-      background: var(--card-surface);
-      border-radius: var(--radius-md);
-    }
-
-    .modal-content::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 4px;
-    }
-
-    .modal-content::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--divider);
-      background: transparent;
-      border-radius: var(--radius-sm);
-      color: var(--primary);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-close:hover {
-      background: var(--accent);
-      color: var(--text-inverse);
-      border-color: var(--accent);
-    }
-
-    .modal-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: var(--divider);
-    }
-
-    .modal-header h2 {
-      color: var(--primary);
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-tag {
-      display: inline-block;
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .modal-section {
-      margin-bottom: 2.5rem;
-    }
-
-    .modal-section h3 {
-      color: var(--primary);
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .modal-features {
-      list-style: none;
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .modal-features li {
-      padding: 0.8rem 1rem;
-      background: var(--card-surface);
-      border: var(--divider);
-      border-radius: var(--radius-md);
-      padding-left: 2rem;
-      position: relative;
-      transition: all 0.25s ease;
-    }
-
-    .modal-features li::before {
-      content: '✓';
-      position: absolute;
-      left: 1rem;
-      color: var(--accent);
-      font-weight: 800;
-    }
-
-    .modal-features li:hover {
-      background: var(--surface);
-      border-color: var(--accent);
-    }
-
-    .modal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-    }
-
-    .modal-tag-item {
-      padding: 0.5rem 1rem;
-      background: var(--card-surface);
-      border: var(--divider);
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--dark-accent);
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: var(--divider);
-    }
-
-    .modal-actions .btn {
-      flex: 1;
-    }
-
-    /* ICON BOX ANIMATIONS */
-    @keyframes iconGlow {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(237,138,99,0.4);
-      }
-      50% {
-        box-shadow: 0 0 0 8px rgba(237,138,99,0.1);
-      }
-    }
-
-    .card:hover .icon-box {
-      animation: iconGlow 1.5s ease-in-out infinite;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-    }
-
-    .icon-box {
-      transition: all 0.3s ease;
-    }
-
-    /* ENHANCED PROJECT CARD STYLING */
-    .card {
-      box-shadow: 0 4px 15px rgba(237,138,99,0.08),
-                  inset 0 1px 0 rgba(255,255,255,0.3);
-    }
-
-    /* TAG ANIMATIONS */
-    .tag-list li {
-      transition: all 0.25s ease;
-    }
-
-    .tag-list li:hover {
-      background: var(--primary);
-      color: var(--text-inverse);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(58,70,96,0.15);
-    }
-
-    /* SMOOTH SCROLL REVEAL */
-    @keyframes revealUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card {
-      animation: revealUp 0.6s ease-out backwards;
-    }
-
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
-
-    /* BUTTON RIPPLE EFFECT */
-    .btn-view-project::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .btn-view-project:active::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .btn-view-project {
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* SKILLS SECTION GRID FIX */
-    .section:not(#projects) .cards-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    /* TABLET RESPONSIVE */
-    @media (max-width: 1024px) {
-      #projects .cards-grid {
-        grid-template-columns: repeat(2, minmax(320px, 1fr));
-      }
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .contact-panel {
-      background: var(--secondary);
-      padding: 2rem;
-    }
-
-    .contact-panel h3 {
-      color: var(--primary);
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      line-height: 1.08;
-      margin-bottom: 1rem;
-    }
-
-    .contact-panel p {
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-links {
-      list-style: none;
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .contact-links a {
-      display: block;
-      padding: 1rem;
-      border: var(--divider);
-      border-radius: var(--radius-md);
-      background: var(--surface);
-      color: var(--primary);
-    }
-
-    .contact-links a:hover {
-      color: var(--accent);
-    }
-
-    .contact-links span {
-      display: block;
-      margin-top: 0.2rem;
-      color: var(--dark-accent);
-      word-break: break-word;
-    }
-
-    .contact-form {
-      background: var(--surface);
-      padding: 2rem;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .field {
-      display: grid;
-      gap: 0.55rem;
-    }
-
-    .field-full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.95rem 1rem;
-      border: var(--divider);
-      border-radius: var(--radius-sm);
-      background: var(--text-inverse);
-      color: var(--text-main);
-      outline: none;
-      transition: border-color 0.25s ease;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: var(--accent);
-    }
-
-    textarea {
-      min-height: 160px;
-      resize: vertical;
-    }
-
-    .footer {
-      background: var(--primary);
-      color: var(--text-inverse);
-      border-top: var(--divider);
-      padding: 1.5rem 0 2rem;
-    }
-
-    .footer-shell {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--text-inverse);
-      font-weight: 600;
-    }
-
-    .footer-links a:hover {
-      color: var(--accent);
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .about-grid,
-      .contact-grid,
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      #projects .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-toggle {
-        display: inline-grid;
-        place-items: center;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: calc(100% + 1px);
-        right: 1rem;
-        left: 1rem;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.35rem;
-        padding: 1rem;
-        background: var(--primary);
-        border: var(--divider);
-        border-radius: var(--radius-md);
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 0.8rem 0.9rem;
-        border-radius: var(--radius-sm);
-      }
-
-      .panel {
-        max-width: 560px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .section,
-      .hero {
-        padding: 72px 0;
-      }
-
-      .hero-notes,
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .panel,
-      .story-card,
-      .card,
-      .contact-panel,
-      .contact-form {
-        padding: 1.4rem;
-      }
-
-      #projects .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-shell {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .modal-content {
-        width: 95%;
-        padding: 2rem;
-      }
-
-      .modal-close {
-        top: 1rem;
-        right: 1rem;
-        width: 36px;
-        height: 36px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-shell">
-      <a class="brand" href="#home" aria-label="Homepage">
-        <span class="brand-mark">SS</span>
-        <span>Sujit Sahu</span>
-      </a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-      </button>
-
-      <nav>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-text">Initializing experience</div>
+      <div class="loader-bar">
+        <div class="loader-bar-fill"></div>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Warm Modern Portfolio</span>
-          <h1 class="hero-title">Designing <span>thoughtful</span> digital spaces with warmth and clarity.</h1>
-          <p class="hero-text">
-            I build elegant web experiences that balance professional structure with a more human, story-led visual presence.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Work With Me</a>
-            <a class="btn btn-secondary" href="#projects">Explore Projects</a>
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Entry Screen -->
+  <section class="entry-screen" id="entryScreen">
+    <div class="entry-content">
+      <div class="entry-text">
+        <h1 class="entry-title">
+          <span class="word">I</span>
+          <span class="word">build</span>
+          <span class="word">digital</span>
+          <span class="word">experiences</span>
+        </h1>
+        <p class="entry-subtitle">That tell stories</p>
+      </div>
+      <button class="entry-btn" id="enterBtn">Enter</button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-background">
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="line"><span class="word">Sujit Sahu</span></span>
+          </h1>
+          <p class="hero-subtitle">Software Engineer & Creative Developer</p>
+        </div>
+        <div class="hero-cta">
+          <span class="cta-label">Scroll to explore</span>
+          <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
           </div>
-          <div class="hero-notes">
-            <article class="note-card">
-              <strong>Elegant Layouts</strong>
-              <span>Soft composition with clear visual rhythm.</span>
-            </article>
-            <article class="note-card">
-              <strong>Modern Frontend</strong>
-              <span>Responsive builds with clean structure.</span>
-            </article>
-            <article class="note-card">
-              <strong>Warm Identity</strong>
-              <span>Premium tone without losing usability.</span>
-            </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="about-container">
+        <div class="about-header">
+          <h2 class="section-title">About</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <p class="about-intro">
+              I craft immersive digital experiences that blend cutting-edge technology with thoughtful design. My focus is on building products that not only look exceptional but feel purposeful.
+            </p>
+            <p class="about-desc">
+              With expertise in full-stack development, cybersecurity, and creative coding, I transform complex ideas into elegant, interactive solutions. Every project is an opportunity to push boundaries and explore what's possible.
+            </p>
+          </div>
+          <div class="about-skills-preview">
+            <div class="skill-item">
+              <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">React</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Security</span>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <aside class="panel">
-          <div class="panel-photo">
-            <img src="profile-photo.jpg" alt="Portrait of Sujit Sahu" />
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+      <div class="projects-container">
+        <div class="projects-header">
+          <h2 class="section-title">Featured Projects</h2>
+        </div>
+        
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card" data-project="1">
+            <div class="project-image" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);"></div>
+            <div class="project-content">
+              <h3 class="project-title">Quantum Interface</h3>
+              <p class="project-desc">An interactive dashboard with real-time data visualization and machine learning predictions.</p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">D3.js</span>
+                <span class="tag">Node.js</span>
+              </div>
+            </div>
           </div>
-          <ul class="panel-list">
-            <li>
-              <strong>Approach</strong>
-              Thoughtful interfaces shaped by calm, readable design systems.
-            </li>
-            <li>
-              <strong>Focus</strong>
-              Frontend experiences that feel polished and easy to trust.
-            </li>
-            <li>
-              <strong>Intent</strong>
-              Blending professional presentation with a warmer creative edge.
-            </li>
-          </ul>
-        </aside>
-      </div>
-    </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">About</span>
-          <h2 class="section-title">A story-focused approach to clean and modern web design.</h2>
-          <p class="section-copy">
-            I like websites that feel composed, refined, and welcoming. My work leans on clarity first, then adds warmth through spacing, typography, and restrained visual personality.
-          </p>
-        </div>
+          <!-- Project 2 -->
+          <div class="project-card" data-project="2">
+            <div class="project-image" style="background: linear-gradient(135deg, #2d004d 0%, #3d0066 100%);"></div>
+            <div class="project-content">
+              <h3 class="project-title">Secure Vault</h3>
+              <p class="project-desc">An encryption-focused application for managing sensitive data with military-grade security protocols.</p>
+              <div class="project-tags">
+                <span class="tag">Security</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Crypto</span>
+              </div>
+            </div>
+          </div>
 
-        <div class="about-grid">
-          <article class="story-card">
-            <p>
-              I build interfaces that help ideas feel more complete. That means designing with structure, keeping content easy to follow, and shaping pages that feel intentional from the first section to the last.
-            </p>
-            <p>
-              Rather than pushing for a loud visual style, I prefer a quieter elegance: balanced blocks, gentle contrast, rounded forms, and details that make the experience feel premium without feeling heavy.
-            </p>
-          </article>
-
-          <ul class="story-points">
-            <li>
-              <strong>Creative Direction</strong>
-              Warm tones, soft surfaces, and a more editorial sense of rhythm.
-            </li>
-            <li>
-              <strong>Build Quality</strong>
-              Responsive HTML and CSS with clean alignment and reliable structure.
-            </li>
-            <li>
-              <strong>Outcome</strong>
-              A polished website that feels modern, human, and easy to navigate.
-            </li>
-          </ul>
+          <!-- Project 3 -->
+          <div class="project-card" data-project="3">
+            <div class="project-image" style="background: linear-gradient(135deg, #003f2d 0%, #004d3d 100%);"></div>
+            <div class="project-content">
+              <h3 class="project-title">Neural Network Explorer</h3>
+              <p class="project-desc">An educational platform for visualizing AI algorithms with interactive Three.js graphics.</p>
+              <div class="project-tags">
+                <span class="tag">Three.js</span>
+                <span class="tag">Python</span>
+                <span class="tag">WebGL</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="skills">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Skills</span>
-          <h2 class="section-title">Capabilities shaped for premium, clean, and responsive web experiences.</h2>
-          <p class="section-copy">
-            These focus areas support design quality, front-end execution, and a consistently refined user experience.
-          </p>
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+      <div class="skills-container">
+        <div class="skills-header">
+          <h2 class="section-title">Skills & Expertise</h2>
         </div>
+        
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3 class="skill-category-title">Frontend</h3>
+            <div class="skill-list">
+              <div class="skill" data-skill="React">React</div>
+              <div class="skill" data-skill="JavaScript">JavaScript</div>
+              <div class="skill" data-skill="CSS3">CSS3 & Animation</div>
+              <div class="skill" data-skill="WebGL">WebGL</div>
+            </div>
+          </div>
 
-        <div class="cards-grid">
-          <article class="card">
-            <div class="icon-box">01</div>
-            <h3>Interface Design</h3>
-            <p>Layouts with balanced spacing, clear typography, and calm visual hierarchy.</p>
-            <ul class="tag-list">
-              <li>Visual Hierarchy</li>
-              <li>Responsive Layout</li>
-              <li>Section Flow</li>
-            </ul>
-          </article>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Backend</h3>
+            <div class="skill-list">
+              <div class="skill" data-skill="Node.js">Node.js</div>
+              <div class="skill" data-skill="Python">Python</div>
+              <div class="skill" data-skill="SQL">SQL & Databases</div>
+              <div class="skill" data-skill="APIs">RESTful APIs</div>
+            </div>
+          </div>
 
-          <article class="card">
-            <div class="icon-box">02</div>
-            <h3>Frontend Development</h3>
-            <p>Modern HTML and CSS structures that keep the experience clean and dependable.</p>
-            <ul class="tag-list">
-              <li>Semantic HTML</li>
-              <li>Modern CSS</li>
-              <li>Mobile Ready</li>
-            </ul>
-          </article>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Security</h3>
+            <div class="skill-list">
+              <div class="skill" data-skill="Cryptography">Cryptography</div>
+              <div class="skill" data-skill="Network Security">Network Security</div>
+              <div class="skill" data-skill="Penetration Testing">Penetration Testing</div>
+              <div class="skill" data-skill="Ethical Hacking">Ethical Hacking</div>
+            </div>
+          </div>
 
-          <article class="card">
-            <div class="icon-box">03</div>
-            <h3>Brand Presentation</h3>
-            <p>Pages designed to communicate confidence, personality, and polished storytelling.</p>
-            <ul class="tag-list">
-              <li>Portfolio Framing</li>
-              <li>Content Styling</li>
-              <li>Premium Feel</li>
-            </ul>
-          </article>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Tools</h3>
+            <div class="skill-list">
+              <div class="skill" data-skill="GitHub">GitHub</div>
+              <div class="skill" data-skill="Docker">Docker</div>
+              <div class="skill" data-skill="AWS">AWS</div>
+              <div class="skill" data-skill="Git">Git</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Projects</span>
-          <h2 class="section-title">Selected work presented with a clean, warm, and elegant visual frame.</h2>
-          <p class="section-copy">
-            Each project is showcased with readability and tone in mind, so the work feels approachable and polished.
-          </p>
-        </div>
-
-        <div class="cards-grid">
-          <article class="card">
-            <div class="project-head">
-              <span class="project-index">01</span>
-              <a href="#contact">Discuss Project</a>
-            </div>
-            <div class="icon-box">WW</div>
-            <h3>Weather Web App</h3>
-            <p>A clear weather interface designed around friendly information blocks and a smooth cross-device experience.</p>
-            <ul class="tag-list">
-              <li>Forecast UI</li>
-              <li>Readable Cards</li>
-              <li>Responsive Design</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <div class="project-head">
-              <span class="project-index">02</span>
-              <a href="#contact">Request Details</a>
-            </div>
-            <div class="icon-box">BL</div>
-            <h3>BullLens</h3>
-            <p>A market-focused concept with structured dashboards and a more composed presentation of financial information.</p>
-            <ul class="tag-list">
-              <li>Dashboard Layout</li>
-              <li>Data Clarity</li>
-              <li>Product Framing</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <div class="project-head">
-              <span class="project-index">03</span>
-              <a href="#contact">Start a Brief</a>
-            </div>
-            <div class="icon-box">SK</div>
-            <h3>Skills Profile</h3>
-            <p>A compact presentation of design and development strengths shaped for personal branding and project trust.</p>
-            <ul class="tag-list">
-              <li>HTML/CSS</li>
-              <li>UI Systems</li>
-              <li>Presentation Design</li>
-            </ul>
-            <button class="btn-view-project" data-project="skills-profile">View Project</button>
-          </article>
-
-          <article class="card">
-            <div class="project-head">
-              <span class="project-index">04</span>
-              <a href="#">Explore More</a>
-            </div>
-            <div class="icon-box">AI</div>
-            <h3>AI Technology Education Keynote</h3>
-            <p>A minimalist, modern presentation template for showcasing artificial intelligence advancements and educational applications with futuristic design.</p>
-            <ul class="tag-list">
-              <li>AI</li>
-              <li>Education</li>
-              <li>Presentation Design</li>
-              <li>UI/UX</li>
-            </ul>
-            <button class="btn-view-project" data-project="ai-keynote">View Project</button>
-          </article>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="contact-container">
+        <div class="contact-content">
+          <h2 class="section-title">Let's Create Something Extraordinary</h2>
+          <p class="contact-subtitle">Got an idea? Let's talk about it.</p>
+          
+          <div class="contact-links">
+            <a href="mailto:contact@sujitsahu.com" class="contact-link">
+              <span class="link-text">Send Email</span>
+              <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#" class="contact-link">
+              <span class="link-text">GitHub</span>
+              <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#" class="contact-link">
+              <span class="link-text">LinkedIn</span>
+              <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Contact</span>
-          <h2 class="section-title">Let's create something refined, modern, and genuinely inviting.</h2>
-          <p class="section-copy">
-            If you want a website with a premium feel and strong visual clarity, this is a good place to begin.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <aside class="contact-panel">
-            <h3>Open to thoughtful collaborations and elegant digital work.</h3>
-            <p>
-              I'm available for portfolio design, polished frontend builds, and websites that need a warmer visual identity without losing professionalism.
-            </p>
-            <ul class="contact-links">
-              <li>
-                <a href="mailto:smartsujit7334@gmail.com">
-                  Email
-                  <span>smartsujit7334@gmail.com</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener noreferrer">
-                  GitHub
-                  <span>github.com/sujitsahu461</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                  <span>linkedin.com/in/sujit-kumar-sahu-60b80531a</span>
-                </a>
-              </li>
-            </ul>
-          </aside>
-
-          <form class="contact-form">
-            <div class="form-grid">
-              <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your name" />
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" />
-              </div>
-              <div class="field field-full">
-                <label for="subject">Subject</label>
-                <input id="subject" name="subject" type="text" placeholder="Project or collaboration" />
-              </div>
-              <div class="field field-full">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell me about what you want to build."></textarea>
-              </div>
-              <div class="field field-full">
-                <button class="btn btn-primary" type="submit">Send Message</button>
-              </div>
-            </div>
-          </form>
-        </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>Crafted with intention and care</p>
+        <p>&copy; 2026 Sujit Sahu. All rights reserved.</p>
       </div>
-    </section>
+    </footer>
   </main>
 
-  <!-- PROJECT MODALS -->
-  <div id="aiKeynoteModal" class="project-modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeProjectModal('aiKeynoteModal')">✕</button>
-      <div class="modal-header">
-        <span class="modal-tag">Featured Project</span>
-        <h2>Interactive AI Technology Education Keynote Template</h2>
-      </div>
-
-      <div class="modal-section">
-        <h3>Overview</h3>
-        <p>A sophisticated presentation framework designed for modern educators, researchers, and organizations seeking to communicate complex artificial intelligence concepts with visual clarity and professional elegance. This template combines minimalist design principles with futuristic aesthetics to create an accessible yet premium presentation experience.</p>
-      </div>
-
-      <div class="modal-section">
-        <h3>Ideal For</h3>
-        <ul class="modal-features">
-          <li>Academic lectures and university seminars</li>
-          <li>Corporate training and professional development</li>
-          <li>Advanced workshops and certification programs</li>
-          <li>International conferences and keynotes</li>
-          <li>Online learning platforms and e-learning integration</li>
-          <li>Industry research presentations and tech talks</li>
-        </ul>
-      </div>
-
-      <div class="modal-section">
-        <h3>Key Features</h3>
-        <ul class="modal-features">
-          <li>Minimalist slide layouts with industrial aesthetic</li>
-          <li>Futuristic animations and micro-interactions</li>
-          <li>Data visualization components for complex AI concepts</li>
-          <li>Sleek dark/light theme toggles</li>
-          <li>Advanced typography for technical content</li>
-          <li>Responsive design for hybrid presentations</li>
-          <li>Accessibility-first markup and navigation</li>
-          <li>Custom icon library for technology topics</li>
-        </ul>
-      </div>
-
-      <div class="modal-section">
-        <h3>Design Highlights</h3>
-        <ul class="modal-features">
-          <li>Glassmorphism and modern UI patterns</li>
-          <li>Gradient overlays with subtle depth</li>
-          <li>Smooth transitions and scroll-triggered reveals</li>
-          <li>Professional color palette system</li>
-          <li>Premium typography pairing</li>
-          <li>Attention to whitespace and visual breathing</li>
-        </ul>
-      </div>
-
-      <div class="modal-section">
-        <h3>Technologies</h3>
-        <div class="modal-tags">
-          <span class="modal-tag-item">HTML5</span>
-          <span class="modal-tag-item">CSS3</span>
-          <span class="modal-tag-item">JavaScript</span>
-          <span class="modal-tag-item">Presentation Design</span>
-          <span class="modal-tag-item">UI/UX</span>
-          <span class="modal-tag-item">Animation</span>
-          <span class="modal-tag-item">Accessibility</span>
-          <span class="modal-tag-item">Responsive Design</span>
-        </div>
-      </div>
-
-      <div class="modal-actions">
-        <a class="btn btn-secondary" href="#projects" onclick="closeProjectModal('aiKeynoteModal')">Back to Projects</a>
-        <a class="btn btn-primary" href="https://github.com" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <div id="skillsProfileModal" class="project-modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeProjectModal('skillsProfileModal')">✕</button>
-      <div class="modal-header">
-        <span class="modal-tag">Portfolio Project</span>
-        <h2>Skills Profile</h2>
-      </div>
-
-      <div class="modal-section">
-        <h3>Overview</h3>
-        <p>A compact and elegant presentation of design and development capabilities, crafted specifically for personal branding and establishing immediate professional trust with potential collaborators.</p>
-      </div>
-
-      <div class="modal-section">
-        <h3>Key Features</h3>
-        <ul class="modal-features">
-          <li>Responsive grid-based layout system</li>
-          <li>Clean semantic HTML structure</li>
-          <li>Custom CSS animations and transitions</li>
-          <li>Organized skill categories</li>
-          <li>Visual hierarchy optimization</li>
-        </ul>
-      </div>
-
-      <div class="modal-section">
-        <h3>Technologies</h3>
-        <div class="modal-tags">
-          <span class="modal-tag-item">HTML/CSS</span>
-          <span class="modal-tag-item">UI Systems</span>
-          <span class="modal-tag-item">Presentation Design</span>
-        </div>
-      </div>
-
-      <div class="modal-actions">
-        <a class="btn btn-secondary" href="#projects" onclick="closeProjectModal('skillsProfileModal')">Back to Projects</a>
-        <a class="btn btn-primary" href="#contact">Get in Touch</a>
-      </div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container footer-shell">
-      <p>Warm modern portfolio built with a locked palette system. <span id="year"></span></p>
-      <div class="footer-links">
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const navToggle = document.querySelector(".nav-toggle");
-    const navLinks = document.getElementById("navLinks");
-    const navAnchors = navLinks.querySelectorAll("a");
-    const year = document.getElementById("year");
-
-    year.textContent = new Date().getFullYear();
-
-    navToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      navToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    navAnchors.forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        navToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    // Project Modal Functionality
-    const projectButtons = document.querySelectorAll('.btn-view-project');
-    
-    projectButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const projectId = button.getAttribute('data-project');
-        
-        if (projectId === 'ai-keynote') {
-          openProjectModal('aiKeynoteModal');
-        } else if (projectId === 'skills-profile') {
-          openProjectModal('skillsProfileModal');
-        }
-      });
-    });
-
-    function openProjectModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeProjectModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    }
-
-    // Close modal when clicking outside
-    document.querySelectorAll('.project-modal').forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        }
-      });
-    });
-
-    // Close modal on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.project-modal.active').forEach(modal => {
-          modal.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        });
-      }
-    });
-  </script>
+  <!-- GSAP and ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

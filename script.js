@@ -1,53 +1,460 @@
 /* ============================================================
-   SUJIT SAHU PORTFOLIO SCRIPTS
-   Features: Loader, Typing, Scroll Reveal, Skill Bars,
-             Scroll Progress, Navbar, Back-To-Top, Contact Form,
-             Mystery Theme Parallax and 3D Tilt
+   PREMIUM INTERACTIVE PORTFOLIO - JAVASCRIPT
+   Animation Engine: GSAP + ScrollTrigger
+   Features: Smooth scroll, fade animations, hover effects,
+             cursor tracking, entry transitions
    ============================================================ */
 
-'use strict';
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
+// ── CONFIGURATION ── 
+const config = {
+  loaderDuration: 2.5,
+  entryScreenDuration: 0.8,
+  animationDelay: 0.05,
+};
+
+// ── PREFERS REDUCED MOTION ──
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* 1. LOADING SCREEN */
-window.addEventListener('load', () => {
+// ──── LOADING SCREEN ────
+function initLoader() {
   const loader = document.getElementById('loader');
   if (!loader) return;
 
+  gsap.to('.loader-bar-fill', {
+    width: '100%',
+    duration: config.loaderDuration,
+    ease: 'power2.inOut',
+  });
+
   setTimeout(() => {
-    loader.classList.add('hidden');
-    document.querySelectorAll('#hero .reveal-up').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), i * 120);
+    gsap.to(loader, {
+      opacity: 0,
+      visibility: 'hidden',
+      duration: 0.6,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        loader.classList.add('hidden');
+      },
     });
-  }, 1600);
+  }, config.loaderDuration * 1000 - 600);
+}
+
+// ──── CUSTOM CURSOR ────
+function initCustomCursor() {
+  const cursor = document.getElementById('cursor');
+  const cursorFollower = document.getElementById('cursorFollower');
+
+  if (!cursor || !cursorFollower) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  // Update cursor position on mouse move
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Move cursor dot with delay
+    gsap.to(cursor, {
+      left: mouseX,
+      top: mouseY,
+      duration: 0,
+    });
+
+    // Animate follower with ease
+    gsap.to(cursorFollower, {
+      left: mouseX - 20,
+      top: mouseY - 20,
+      duration: 0.3,
+    });
+  });
+
+  // Highlight cursor on interactive elements
+  const interactiveElements = document.querySelectorAll(
+    'a, button, .project-card, .skill-item, .contact-link'
+  );
+
+  interactiveElements.forEach((el) => {
+    el.addEventListener('mouseenter', () => {
+      gsap.to(cursorFollower, { scale: 1.5, opacity: 1, duration: 0.3 });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      gsap.to(cursorFollower, { scale: 1, opacity: 0.7, duration: 0.3 });
+    });
+  });
+
+  // Hide cursor when leaving window
+  document.addEventListener('mouseleave', () => {
+    gsap.to([cursor, cursorFollower], { opacity: 0, duration: 0.3 });
+  });
+
+  document.addEventListener('mouseenter', () => {
+    gsap.to([cursor, cursorFollower], { opacity: 1, duration: 0.3 });
+  });
+}
+
+// ──── ENTRY SCREEN ANIMATION ────
+function initEntryScreen() {
+  const entryScreen = document.getElementById('entryScreen');
+  const enterBtn = document.getElementById('enterBtn');
+
+  if (!entryScreen) return;
+
+  enterBtn?.addEventListener('click', () => {
+    gsap.to(entryScreen, {
+      opacity: 0,
+      visibility: 'hidden',
+      duration: 0.8,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        entryScreen.classList.add('hidden');
+      },
+    });
+
+    // Trigger hero animations
+    animateHero();
+  });
+
+  // Optional: Auto-transition after delay
+  // setTimeout(() => enterBtn?.click(), 8000);
+}
+
+// ──── HERO SECTION ────
+function animateHero() {
+  const heroSection = document.getElementById('hero');
+  if (!heroSection) return;
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: heroSection,
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+    },
+  });
+
+  // Parallax background
+  tl.to(
+    '.hero-grid',
+    {
+      opacity: 0.3,
+      y: 100,
+    },
+    0
+  );
+}
+
+// ──── SCROLL REVEAL ANIMATIONS ────
+function initScrollRevealAnimations() {
+  // About section
+  gsap.to('.about-header', {
+    scrollTrigger: {
+      trigger: '.about-header',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+    opacity: 1,
+    duration: 0.8,
+    ease: 'power2.out',
+  });
+
+  gsap.utils.toArray('.about-text').forEach((element) => {
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+    });
+  });
+
+  gsap.utils.toArray('.about-skills-preview').forEach((element) => {
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: 0.2,
+    });
+  });
+
+  // Projects section
+  gsap.to('.projects-header', {
+    scrollTrigger: {
+      trigger: '.projects-header',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+    opacity: 1,
+    duration: 0.8,
+    ease: 'power2.out',
+  });
+
+  gsap.utils.toArray('.project-card').forEach((card, index) => {
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: index * config.animationDelay,
+    });
+  });
+
+  // Skills section
+  gsap.to('.skills-header', {
+    scrollTrigger: {
+      trigger: '.skills-header',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+    opacity: 1,
+    duration: 0.8,
+    ease: 'power2.out',
+  });
+
+  gsap.utils.toArray('.skill-category').forEach((category, index) => {
+    gsap.to(category, {
+      scrollTrigger: {
+        trigger: category,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: index * config.animationDelay,
+    });
+  });
+
+  // Contact section
+  gsap.to('.contact-content', {
+    scrollTrigger: {
+      trigger: '.contact',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: 'power2.out',
+  });
+
+  gsap.utils.toArray('.contact-link').forEach((link, index) => {
+    gsap.to(link, {
+      scrollTrigger: {
+        trigger: link,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      delay: index * 0.1,
+    });
+  });
+
+  // Footer
+  gsap.to('.footer', {
+    scrollTrigger: {
+      trigger: '.footer',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+    opacity: 1,
+    duration: 0.8,
+    ease: 'power2.out',
+  });
+}
+
+// ──── INTERACTIVE HOVER EFFECTS ────
+function initHoverEffects() {
+  // Project cards
+  gsap.utils.toArray('.project-card').forEach((card) => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        scale: 1.02,
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        scale: 1,
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+    });
+  });
+
+  // Skill categories
+  gsap.utils.toArray('.skill-category').forEach((category) => {
+    category.addEventListener('mouseenter', () => {
+      gsap.to(category, {
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    });
+  });
+
+  // Contact links
+  gsap.utils.toArray('.contact-link').forEach((link) => {
+    link.addEventListener('mouseenter', () => {
+      gsap.to(link, {
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    });
+  });
+}
+
+// ──── SMOOTH SCROLL BEHAVIOR ────
+function initSmoothScroll() {
+  // This keeps native smooth scrolling from HTML behavior,
+  // but we can enhance it with GSAP if needed
+  document.addEventListener('DOMContentLoaded', () => {
+    ScrollTrigger.refresh();
+  });
+
+  // Refresh ScrollTrigger when window resizes
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  });
+}
+
+// ──── PARALLAX EFFECTS ON SECTIONS ────
+function initParallaxEffects() {
+  // Hero section parallax
+  gsap.to('.hero-grid', {
+    y: 100,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      markers: false,
+    },
+    duration: 1,
+  });
+
+  // About section fade
+  gsap.to('.about', {
+    scrollTrigger: {
+      trigger: '.about',
+      start: 'top center',
+      end: 'center center',
+      scrub: 2,
+    },
+  });
+}
+
+// ──── TEXT SPLIT ANIMATION (Optional) ────
+function setupTextAnimations() {
+  // Animate section titles
+  gsap.utils.toArray('.section-title').forEach((title) => {
+    gsap.from(title, {
+      scrollTrigger: {
+        trigger: title,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+      opacity: 0,
+      x: -30,
+      duration: 0.8,
+      ease: 'power2.out',
+    });
+  });
+}
+
+// ──── PAGINATION / SCROLL PROGRESS ────
+function initScrollProgress() {
+  const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / totalHeight) * 100;
+    // You can use this value to update a progress bar if needed
+  });
+}
+
+// ──── INITIALIZATION ────
+function init() {
+  // Start with loader
+  initLoader();
+
+  // Initialize custom cursor
+  initCustomCursor();
+
+  // Setup entry screen
+  initEntryScreen();
+
+  // Wait for entry screen to complete before other animations
+  setTimeout(() => {
+    // Initialize scroll animations
+    initScrollRevealAnimations();
+    initParallaxEffects();
+    setupTextAnimations();
+    initHoverEffects();
+    initSmoothScroll();
+    initScrollProgress();
+
+    // Refresh ScrollTrigger
+    ScrollTrigger.refresh();
+  }, config.loaderDuration * 1000);
+}
+
+// ──── START ────
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+// ──── KEYBOARD NAVIGATION ────
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    // Close any modals or overlays if needed
+  }
 });
 
-/* 2. TYPING ANIMATION */
-const roles = [
-  'Aspiring Cybersecurity Specialist',
-  'Full Stack Developer',
-  'Problem Solver'
-];
-
-let i = 0;
-let j = 0;
-let currentText = '';
-let isDeleting = false;
-
-function type() {
-  const typingEl = document.getElementById('typing');
-  if (!typingEl) return;
-
-  currentText = roles[i];
-
-  if (!isDeleting) {
-    typingEl.textContent = currentText.substring(0, j++);
-  } else {
-    typingEl.textContent = currentText.substring(0, j--);
+// ──── PERFORMANCE OPTIMIZATION ────
+// Throttle scroll events
+let scrollTimeout;
+document.addEventListener('scroll', () => {
+  if (!scrollTimeout) {
+    scrollTimeout = setTimeout(() => {
+      // Your scroll event code here
+      scrollTimeout = null;
+    }, 16); // ~60fps
   }
+});
 
-  if (j === currentText.length + 1) {
-    isDeleting = true;
+// ──── MOBILE OPTIMIZATIONS ────
+if (window.matchMedia('(max-width: 768px)').matches) {
+  // Reduce animation complexity on mobile
+  gsap.globalTimeline.timeScale(0.95);
+}
+
     setTimeout(type, 1000);
     return;
   }
