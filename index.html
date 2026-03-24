@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sujit Sahu | Creative Developer & Cybersecurity Specialist</title>
+  <title>Sujit Sahu | Cybersecurity Specialist & Full Stack Developer</title>
   <meta
     name="description"
-    content="High-end interactive portfolio showcasing digital experiences, projects, and creative excellence."
+    content="Premium portfolio of Sujit Sahu - Cybersecurity Specialist and Full Stack Developer. Explore projects, skills, and achievements."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="style.css" />
@@ -25,54 +25,64 @@
   </noscript>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-logo">S.S</a>
+      <div class="navbar-menu">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Loading Screen -->
   <div class="loader" id="loader">
     <div class="loader-content">
-      <div class="loader-text">Initializing experience</div>
+      <div class="loader-text">Loading portfolio</div>
       <div class="loader-bar">
         <div class="loader-bar-fill"></div>
       </div>
     </div>
   </div>
 
-  <!-- Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <!-- Entry Screen -->
-  <section class="entry-screen" id="entryScreen">
-    <div class="entry-content">
-      <div class="entry-text">
-        <h1 class="entry-title">
-          <span class="word">I</span>
-          <span class="word">build</span>
-          <span class="word">digital</span>
-          <span class="word">experiences</span>
-        </h1>
-        <p class="entry-subtitle">That tell stories</p>
-      </div>
-      <button class="entry-btn" id="enterBtn">Enter</button>
-    </div>
-  </section>
-
   <!-- Main Content -->
   <main class="main-content">
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero-background">
-        <div class="hero-grid"></div>
+        <div class="gradient-1"></div>
+        <div class="gradient-2"></div>
+        <div class="gradient-3"></div>
       </div>
       <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="hero-title">
-            <span class="line"><span class="word">Sujit Sahu</span></span>
-          </h1>
-          <p class="hero-subtitle">Software Engineer & Creative Developer</p>
+        <div class="hero-intro">
+          <span class="hero-label">Welcome to my portfolio</span>
         </div>
-        <div class="hero-cta">
-          <span class="cta-label">Scroll to explore</span>
-          <div class="scroll-indicator">
-            <div class="scroll-dot"></div>
+        <div class="hero-title-wrapper">
+          <h1 class="hero-title">Sujit Sahu</h1>
+        </div>
+        <div class="hero-roles">
+          <p class="hero-role">Aspiring <span class="role-highlight">Cybersecurity Specialist</span> | <span class="role-highlight">Full Stack Developer</span></p>
+        </div>
+        <p class="hero-subtitle">Building secure, scalable digital solutions with passion for cybersecurity and innovative problem-solving.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+        <div class="hero-scroll">
+          <span>Scroll to explore</span>
+          <div class="scroll-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12l7 7 7-7"></path>
+            </svg>
           </div>
         </div>
       </div>
@@ -80,28 +90,43 @@
 
     <!-- About Section -->
     <section class="about" id="about">
-      <div class="about-container">
-        <div class="about-header">
-          <h2 class="section-title">About</h2>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About Me</h2>
+          <div class="title-underline"></div>
         </div>
         <div class="about-content">
           <div class="about-text">
             <p class="about-intro">
-              I craft immersive digital experiences that blend cutting-edge technology with thoughtful design. My focus is on building products that not only look exceptional but feel purposeful.
+              I'm a B.Tech CSE student at GIET University with a strong passion for cybersecurity and full-stack development. I combine technical expertise with creative problem-solving to build secure and user-friendly applications.
             </p>
-            <p class="about-desc">
-              With expertise in full-stack development, cybersecurity, and creative coding, I transform complex ideas into elegant, interactive solutions. Every project is an opportunity to push boundaries and explore what's possible.
-            </p>
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <h4>Cybersecurity Focus</h4>
+                <p>Dedicated to understanding security protocols, ethical hacking, and building secure systems.</p>
+              </div>
+              <div class="highlight-item">
+                <h4>Full Stack Development</h4>
+                <p>Proficient in frontend and backend technologies to create complete web solutions.</p>
+              </div>
+              <div class="highlight-item">
+                <h4>Problem Solver</h4>
+                <p>Driven by challenges that require innovative thinking and technical depth.</p>
+              </div>
+            </div>
           </div>
-          <div class="about-skills-preview">
-            <div class="skill-item">
-              <span class="skill-name">JavaScript</span>
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">Projects</div>
             </div>
-            <div class="skill-item">
-              <span class="skill-name">React</span>
+            <div class="stat-card">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Certifications</div>
             </div>
-            <div class="skill-item">
-              <span class="skill-name">Security</span>
+            <div class="stat-card">
+              <div class="stat-number">2nd</div>
+              <div class="stat-label">Year B.Tech</div>
             </div>
           </div>
         </div>
@@ -110,50 +135,65 @@
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
-      <div class="projects-container">
-        <div class="projects-header">
+      <div class="container">
+        <div class="section-header">
           <h2 class="section-title">Featured Projects</h2>
+          <div class="title-underline"></div>
         </div>
-        
         <div class="projects-grid">
-          <!-- Project 1 -->
-          <div class="project-card" data-project="1">
-            <div class="project-image" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);"></div>
+          <!-- Project 1: Weather App -->
+          <div class="project-card">
+            <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+            <div class="project-overlay"></div>
             <div class="project-content">
-              <h3 class="project-title">Quantum Interface</h3>
-              <p class="project-desc">An interactive dashboard with real-time data visualization and machine learning predictions.</p>
-              <div class="project-tags">
-                <span class="tag">React</span>
-                <span class="tag">D3.js</span>
-                <span class="tag">Node.js</span>
+              <h3 class="project-title">Weather App</h3>
+              <p class="project-desc">Real-time weather application with location-based forecasts, interactive UI, and data visualization.</p>
+              <div class="project-tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">API Integration</span>
+                <span class="tech-tag">Responsive Design</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">Live Demo →</a>
+                <a href="#" class="project-link">GitHub →</a>
               </div>
             </div>
           </div>
 
-          <!-- Project 2 -->
-          <div class="project-card" data-project="2">
-            <div class="project-image" style="background: linear-gradient(135deg, #2d004d 0%, #3d0066 100%);"></div>
+          <!-- Project 2: BullLens -->
+          <div class="project-card">
+            <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+            <div class="project-overlay"></div>
             <div class="project-content">
-              <h3 class="project-title">Secure Vault</h3>
-              <p class="project-desc">An encryption-focused application for managing sensitive data with military-grade security protocols.</p>
-              <div class="project-tags">
-                <span class="tag">Security</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Crypto</span>
+              <h3 class="project-title">BullLens</h3>
+              <p class="project-desc">Smart stock tracker providing real-time market analysis, portfolio insights, and AI-powered predictions.</p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Charts.js</span>
+                <span class="tech-tag">Stock API</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">Live Demo →</a>
+                <a href="#" class="project-link">GitHub →</a>
               </div>
             </div>
           </div>
 
-          <!-- Project 3 -->
-          <div class="project-card" data-project="3">
-            <div class="project-image" style="background: linear-gradient(135deg, #003f2d 0%, #004d3d 100%);"></div>
+          <!-- Project 3: AI Technology Education -->
+          <div class="project-card">
+            <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+            <div class="project-overlay"></div>
             <div class="project-content">
-              <h3 class="project-title">Neural Network Explorer</h3>
-              <p class="project-desc">An educational platform for visualizing AI algorithms with interactive Three.js graphics.</p>
-              <div class="project-tags">
-                <span class="tag">Three.js</span>
-                <span class="tag">Python</span>
-                <span class="tag">WebGL</span>
+              <h3 class="project-title">AI Technology Keynote</h3>
+              <p class="project-desc">Interactive presentation template for AI and technology education with dynamic slides and animations.</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">Live Demo →</a>
+                <a href="#" class="project-link">GitHub →</a>
               </div>
             </div>
           </div>
@@ -161,51 +201,95 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Tech Stack Section -->
     <section class="skills" id="skills">
-      <div class="skills-container">
-        <div class="skills-header">
-          <h2 class="section-title">Skills & Expertise</h2>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Technical Arsenal</h2>
+          <div class="title-underline"></div>
         </div>
-        
         <div class="skills-grid">
           <div class="skill-category">
             <h3 class="skill-category-title">Frontend</h3>
-            <div class="skill-list">
-              <div class="skill" data-skill="React">React</div>
-              <div class="skill" data-skill="JavaScript">JavaScript</div>
-              <div class="skill" data-skill="CSS3">CSS3 & Animation</div>
-              <div class="skill" data-skill="WebGL">WebGL</div>
+            <div class="skills-list">
+              <div class="skill-badge">HTML5</div>
+              <div class="skill-badge">CSS3</div>
+              <div class="skill-badge">JavaScript</div>
+              <div class="skill-badge">React</div>
+              <div class="skill-badge">Responsive Design</div>
+              <div class="skill-badge">Animation</div>
             </div>
           </div>
-
           <div class="skill-category">
-            <h3 class="skill-category-title">Backend</h3>
-            <div class="skill-list">
-              <div class="skill" data-skill="Node.js">Node.js</div>
-              <div class="skill" data-skill="Python">Python</div>
-              <div class="skill" data-skill="SQL">SQL & Databases</div>
-              <div class="skill" data-skill="APIs">RESTful APIs</div>
+            <h3 class="skill-category-title">Backend & Database</h3>
+            <div class="skills-list">
+              <div class="skill-badge">Node.js</div>
+              <div class="skill-badge">Python</div>
+              <div class="skill-badge">SQL</div>
+              <div class="skill-badge">MongoDB</div>
+              <div class="skill-badge">RESTful APIs</div>
+              <div class="skill-badge">Express.js</div>
             </div>
           </div>
-
           <div class="skill-category">
-            <h3 class="skill-category-title">Security</h3>
-            <div class="skill-list">
-              <div class="skill" data-skill="Cryptography">Cryptography</div>
-              <div class="skill" data-skill="Network Security">Network Security</div>
-              <div class="skill" data-skill="Penetration Testing">Penetration Testing</div>
-              <div class="skill" data-skill="Ethical Hacking">Ethical Hacking</div>
+            <h3 class="skill-category-title">Cybersecurity</h3>
+            <div class="skills-list">
+              <div class="skill-badge">Network Security</div>
+              <div class="skill-badge">Cryptography</div>
+              <div class="skill-badge">Ethical Hacking</div>
+              <div class="skill-badge">Penetration Testing</div>
+              <div class="skill-badge">Security Protocols</div>
+              <div class="skill-badge">Threat Analysis</div>
             </div>
           </div>
-
           <div class="skill-category">
-            <h3 class="skill-category-title">Tools</h3>
-            <div class="skill-list">
-              <div class="skill" data-skill="GitHub">GitHub</div>
-              <div class="skill" data-skill="Docker">Docker</div>
-              <div class="skill" data-skill="AWS">AWS</div>
-              <div class="skill" data-skill="Git">Git</div>
+            <h3 class="skill-category-title">Tools & Platforms</h3>
+            <div class="skills-list">
+              <div class="skill-badge">Git & GitHub</div>
+              <div class="skill-badge">Docker</div>
+              <div class="skill-badge">AWS</div>
+              <div class="skill-badge">VS Code</div>
+              <div class="skill-badge">Postman</div>
+              <div class="skill-badge">Linux</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Certifications & Achievements</h2>
+          <div class="title-underline"></div>
+        </div>
+        <div class="experience-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-marker">Certification</div>
+              <h3 class="timeline-title">Cisco Certified Network Associate</h3>
+              <p class="timeline-desc">Advanced networking and security protocols certification from Cisco Networking Academy.</p>
+              <span class="timeline-date">2024</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-marker">Achievement</div>
+              <h3 class="timeline-title">HP LIFE Cybersecurity Awareness</h3>
+              <p class="timeline-desc">Comprehensive cybersecurity awareness training covering threats, vulnerabilities, and prevention strategies.</p>
+              <span class="timeline-date">2023</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-marker">Training</div>
+              <h3 class="timeline-title">ChatGPT Bootcamp</h3>
+              <p class="timeline-desc">Intensive bootcamp on AI tools and large language models for productivity and development.</p>
+              <span class="timeline-date">2023</span>
             </div>
           </div>
         </div>
@@ -214,33 +298,44 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-      <div class="contact-container">
-        <div class="contact-content">
-          <h2 class="section-title">Let's Create Something Extraordinary</h2>
-          <p class="contact-subtitle">Got an idea? Let's talk about it.</p>
-          
-          <div class="contact-links">
-            <a href="mailto:contact@sujitsahu.com" class="contact-link">
-              <span class="link-text">Send Email</span>
-              <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-            <a href="#" class="contact-link">
-              <span class="link-text">GitHub</span>
-              <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-            <a href="#" class="contact-link">
-              <span class="link-text">LinkedIn</span>
-              <svg class="link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Let's Connect</h2>
+          <div class="title-underline"></div>
+        </div>
+        <p class="contact-subtitle">Have an interesting project or opportunity? I'd love to hear from you!</p>
+        <div class="contact-wrapper">
+          <div class="contact-form">
+            <form id="contactForm" class="form">
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" required class="form-input">
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Your Email" required class="form-input">
+              </div>
+              <div class="form-group">
+                <textarea placeholder="Your Message" rows="5" required class="form-input"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <h4>Email</h4>
+              <a href="mailto:sujit@example.com">sujit@example.com</a>
+            </div>
+            <div class="contact-item">
+              <h4>Location</h4>
+              <p>India</p>
+            </div>
+            <div class="contact-item">
+              <h4>Connect</h4>
+              <div class="social-links">
+                <a href="#" class="social-link" title="GitHub">GitHub</a>
+                <a href="#" class="social-link" title="LinkedIn">LinkedIn</a>
+                <a href="#" class="social-link" title="Twitter">Twitter</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -248,66 +343,20 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="footer-content">
-        <p>Crafted with intention and care</p>
+      <div class="container">
         <p>&copy; 2026 Sujit Sahu. All rights reserved.</p>
       </div>
     </footer>
   </main>
 
-  <script>
-    (function bootstrapPortfolio() {
-      const BOOT_HIDE_DELAY = 2200;
-      let loaderHidden = false;
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" title="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 19V5M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
 
-      function hideLoader() {
-        const loader = document.getElementById('loader');
-        if (!loader || loaderHidden) {
-          return;
-        }
 
-        loaderHidden = true;
-        loader.classList.add('hidden');
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-        loader.style.pointerEvents = 'none';
-      }
-
-      function bindEntryButton() {
-        const entryScreen = document.getElementById('entryScreen');
-        const enterBtn = document.getElementById('enterBtn');
-
-        if (!entryScreen || !enterBtn || enterBtn.dataset.bootstrapBound === 'true') {
-          return;
-        }
-
-        enterBtn.dataset.bootstrapBound = 'true';
-        enterBtn.addEventListener('click', () => {
-          entryScreen.classList.add('hidden');
-          entryScreen.style.opacity = '0';
-          entryScreen.style.visibility = 'hidden';
-          entryScreen.style.pointerEvents = 'none';
-        });
-      }
-
-      function start() {
-        bindEntryButton();
-        window.setTimeout(hideLoader, BOOT_HIDE_DELAY);
-        window.addEventListener('load', hideLoader, { once: true });
-      }
-
-      start();
-
-      window.__portfolioBootstrap = {
-        hideLoader: hideLoader,
-        bindEntryButton: bindEntryButton
-      };
-    })();
-  </script>
-
-  <script defer src="script.js?v=20260323-loaderfix"></script>
-  <!-- GSAP and ScrollTrigger -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
