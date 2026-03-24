@@ -129,24 +129,38 @@ function setupProjectCards() {
   const projectData = {
     1: {
       title: 'Weather App',
-      desc: 'Real-time weather forecasting application with interactive visualizations, location-based updates, and a sleek user interface.',
-      tech: ['JavaScript', 'OpenWeather API', 'HTML5', 'CSS3', 'Canvas'],
-      users: '10K+',
+      desc: 'Web-based weather application with real-time temperature, humidity, wind, visibility, rain chance, and AQI data. Features city search, geolocation support, °C/°F toggle, and responsive design.',
+      tech: ['JavaScript', 'OpenWeather API', 'HTML5', 'CSS3', 'Geolocation'],
+      users: '500+',
       status: 'Active'
     },
     2: {
-      title: 'BullLens',
-      desc: 'Professional stock tracking platform with AI-powered insights, real-time market data, portfolio management, and predictive analytics.',
-      tech: ['React', 'D3.js', 'Financial APIs', 'Node.js', 'MongoDB'],
-      users: '5K+',
+      title: 'Bank Management System',
+      desc: 'Full-featured banking system with account management, transaction processing, and customer operations. Built with Java for robust backend processing and data security.',
+      tech: ['Java', 'Database', 'OOP', 'Backend Development'],
+      users: 'Educational',
       status: 'Active'
     },
     3: {
-      title: 'AI Technology Keynote',
-      desc: 'Interactive presentation template for tech education with smooth animations, embedded code demos, and engaging transitions.',
-      tech: ['HTML5', 'CSS3', 'JavaScript ES6+', 'Animation Library'],
-      users: '50+ Schools',
-      status: 'Completed'
+      title: 'Bandwidth-Agnostic PWA',
+      desc: 'Lightweight Progressive Web App optimized for low-bandwidth university environments. Provides portal access with minimal data usage and offline capabilities.',
+      tech: ['PWA', 'Service Workers', 'Offline First', 'Low Bandwidth Optimization'],
+      users: 'University',
+      status: 'Active'
+    },
+    4: {
+      title: 'Hotel Management System',
+      desc: 'Comprehensive hotel management platform with booking system, customer management, and administrative operations. Built with Java for enterprise-level performance.',
+      tech: ['Java', 'Database Management', 'Swing/AWT', 'System Design'],
+      users: 'Educational',
+      status: 'Active'
+    },
+    5: {
+      title: 'Learning Management System',
+      desc: 'Educational platform for course management, student enrollment, and learning resource distribution. Designed with focus on user experience and accessibility.',
+      tech: ['HTML5', 'CSS3', 'Responsive Design', 'Educational Tech'],
+      users: 'Educational',
+      status: 'Active'
     }
   };
 
