@@ -529,28 +529,13 @@ section {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-}
-
-.edu-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-alt) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .edu-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 8px 32px rgba(0, 217, 255, 0.1);
-  transform: translateX(4px);
-}
-
-.edu-card:hover::before {
-  opacity: 1;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
 }
 
 .edu-header {
