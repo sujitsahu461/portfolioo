@@ -6,7 +6,8 @@ A static portfolio site for Sujit Sahu built with plain HTML, CSS, and JavaScrip
 
 - Loader screen with animated progress bar
 - Entry screen with intro copy and Enter button
-- Hero, About, Projects, Skills, Contact, and Footer sections
+- Hero, About, Education, Projects, Skills, Contact, and Footer sections
+- Education cards with smooth hover animations (lift & glow effects)
 - Custom cursor on fine-pointer devices
 - Scroll-based reveals and hover motion
 - Responsive layout with no build step required
@@ -21,6 +22,19 @@ The page now initializes with a defensive startup flow:
 - ScrollTrigger features only run when `ScrollTrigger` is present
 
 This logic lives in [script.js](c:\Users\ADMIN\Downloads\portfolio claude\script.js).
+
+## Education Section
+
+The portfolio now features a dedicated **Education** section showcasing:
+
+- **GIET University Gunupur** - Bachelor of Technology in Computer Science (Jul 2024 – Jul 2028)
+- **Seven Hills Residential School** - Senior Secondary Education (Jul 2012 – Jul 2024)
+
+Education cards feature smooth hover animations matching the work section:
+- Lift animation on hover (`translateY(-10px)`)
+- Glowing box shadow effect
+- Border color transition to accent color
+- 0.3s smooth transitions
 
 ## Project structure
 
