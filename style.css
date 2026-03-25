@@ -558,7 +558,7 @@ section {
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   flex-wrap: wrap;
 }
 
@@ -581,47 +581,8 @@ section {
   color: var(--text-muted);
 }
 
-.edu-period {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-}
-
-.date-badge {
-  background: rgba(0, 217, 255, 0.1);
-  color: var(--accent);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  white-space: nowrap;
-}
-
 .edu-details {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
-}
-
-.edu-detail-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.detail-label {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.detail-value {
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.95rem;
+  display: none;
 }
 
 @media (max-width: 768px) {
