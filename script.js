@@ -166,58 +166,37 @@ function setupProjectCards() {
   const projectData = {
     1: {
       title: 'Real-Time Weather Dashboard',
-      desc: 'Built a lightweight, geolocation-aware weather application with real-time API integration, offline caching, and city search. Handles 500+ concurrent users with 99% uptime. Features include temperature/humidity/wind data, AQI tracking, and Celsius/Fahrenheit toggle.',
-      tech: ['JavaScript', 'OpenWeather API', 'Geolocation', 'LocalStorage', 'Responsive Design'],
-      users: '500+',
+      desc: 'Web-based weather application using HTML, CSS, JavaScript, and OpenWeather API to show real-time temperature, humidity, wind, visibility, rain chance, and AQI. Features include city search functionality, geolocation support, temperature unit toggle (°C/°F), and responsive, user-friendly interface with helpful tips.',
+      tech: ['JavaScript', 'OpenWeather API', 'HTML5', 'CSS3', 'Geolocation API', 'Responsive Design'],
+      github: 'https://github.com/sujitsahu461/weather-project',
       status: 'Active'
     },
     2: {
-      title: 'Secured Banking Platform',
-      desc: 'Enterprise-grade banking backend demonstrating secure financial systems architecture. Implements encrypted transactions, role-based access control (RBAC), audit logging, and compliance patterns. Handles complex operations like fund transfers with zero tolerance for data loss.',
-      tech: ['Java', 'Database', 'OOP', 'Encryption', 'RBAC'],
-      users: 'Educational',
+      title: 'Bank Management System',
+      desc: 'Comprehensive banking system with account management, transaction processing, and customer operations. Built with Java for robust backend processing and secure financial data handling. Demonstrates strong understanding of object-oriented design principles and banking domain logic.',
+      tech: ['Java', 'OOP', 'Database Design', 'Backend Development', 'Transaction Management'],
+      github: 'https://github.com/sujitsahu461/bank-management',
       status: 'Active'
     },
     3: {
-      title: 'Low-Bandwidth PWA',
-      desc: 'Progressive Web App optimized for 2G/3G environments with service workers, aggressive caching, and data compression. Reduces data usage by 85% while maintaining full functionality. Demonstrates modern web optimization techniques for emerging markets.',
-      tech: ['PWA', 'Service Workers', 'Offline-First', 'Web Performance', 'Data Compression'],
-      users: '2M+ (target)',
+      title: 'Bandwidth-Agnostic PWA',
+      desc: 'Lightweight Progressive Web App optimized for low-bandwidth environments at university. Provides portal access with minimal data usage and offline capabilities. Demonstrates expertise in performance optimization, service workers, and offline-first architecture for emerging markets.',
+      tech: ['PWA', 'Service Workers', 'Offline-First', 'Data Compression', 'Progressive Enhancement'],
+      github: 'https://github.com/sujitsahu461/bandwidth-agnostic-pwa',
       status: 'Active'
     },
     4: {
-      title: 'Enterprise Hotel Management Suite',
-      desc: 'End-to-end system handling complex room allocations, real-time availability, guest profiles, and transaction processing. Reduces booking errors by 95% and processes 1000+ daily transactions. Built for scalability and reliability.',
-      tech: ['Java', 'Database Design', 'Business Logic', 'Reporting', 'System Architecture'],
-      users: 'Commercial',
+      title: 'Hotel Management System',
+      desc: 'Comprehensive hotel management platform with booking system, customer management, and administrative operations. Built with Java for enterprise-level performance, demonstrating ability to handle complex business logic and data relationships in real-world scenarios.',
+      tech: ['Java', 'Database Design', 'Business Logic', 'System Architecture', 'Admin Operations'],
+      github: 'https://github.com/sujitsahu461/hotelmanagement',
       status: 'Active'
     },
     5: {
-      title: 'Learning Management System',
-      desc: 'Intuitive LMS supporting 200+ students across 15+ courses with 90% engagement rate. Features course enrollment, resource distribution, progress tracking, and achievement badges. Demonstrates UX excellence in educational technology.',
-      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Educational UX'],
-      users: '200+',
-      status: 'Active'
-    },
-    6: {
-      title: 'End-to-End Encrypted Password Manager',
-      desc: 'Military-grade password manager with client-side AES-256 encryption and zero-knowledge architecture. Master password uses Bcrypt hashing with salt. Demonstrates deep understanding of cryptographic principles, secure coding practices, and zero-knowledge proofs.',
-      tech: ['Cryptography', 'Node.js', 'AES-256', 'Bcrypt', 'Zero-Knowledge'],
-      users: 'Security-focused',
-      status: 'Active'
-    },
-    7: {
-      title: 'Network Security Auditing Tool',
-      desc: 'Python-based penetration testing tool for network vulnerability assessment. Features port scanning, service detection, vulnerability mapping, CVSS scoring, and compliance reporting. Identifies critical vulnerabilities 40% faster than manual audits.',
-      tech: ['Python', 'Network Security', 'Port Scanning', 'CVSS', 'Cybersecurity'],
-      users: 'Security teams',
-      status: 'Active'
-    },
-    8: {
-      title: 'Hardened REST API Framework',
-      desc: 'Production-ready Node.js API framework with JWT authentication, CORS handling, SQL injection protection, rate limiting, and comprehensive error handling. Used as reference architecture for team projects.',
-      tech: ['Node.js', 'Express', 'JWT', 'OWASP', 'API Security'],
-      users: 'Production',
+      title: 'Learning Management System (LMS)',
+      desc: 'Educational platform for course management, student enrollment, and learning resource distribution. Designed with seamless user experience and accessibility focus. Demonstrates strong frontend skills and understanding of educational technology requirements.',
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Educational UX', 'Learning Platform'],
+      github: 'https://github.com/sujitsahu461/LMSPROJECT',
       status: 'Active'
     }
   };

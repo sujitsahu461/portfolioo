@@ -574,6 +574,18 @@ section {
   gap: 2rem;
 }
 
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project-card {
   background: rgba(0, 217, 255, 0.02);
   border: 1px solid var(--border);
