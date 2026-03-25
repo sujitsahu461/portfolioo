@@ -220,7 +220,7 @@ body {
   background: var(--accent);
   top: -100px;
   left: -100px;
-  animation: blob-animation 8s infinite;
+  /* No animation - visible immediately */
 }
 
 .blob-2 {
@@ -229,7 +229,7 @@ body {
   background: var(--accent-alt);
   bottom: -50px;
   right: -50px;
-  animation: blob-animation 10s infinite reverse;
+  /* No animation - visible immediately */
 }
 
 .blob-3 {
@@ -238,21 +238,9 @@ body {
   background: var(--accent);
   top: 50%;
   right: 5%;
-  animation: blob-animation 12s infinite;
+  /* No animation - visible immediately */
 }
 
-@keyframes blob-animation {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  33% {
-    transform: translate(30px, -50px);
-  }
-  66% {
-    transform: translate(-20px, 20px);
-  }
-}
 
 /* SECTIONS */
 section {
@@ -295,7 +283,7 @@ section {
 }
 
 .hero-content {
-  animation: fadeInUp 0.8s ease-out;
+  /* No animation - visible immediately */
 }
 
 .hero-title {
@@ -313,16 +301,7 @@ section {
 
 .hero-title .word {
   display: inline-block;
-  animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  animation-fill-mode: both;
-}
-
-.hero-title .line:nth-child(1) .word {
-  animation-delay: 0.1s;
-}
-
-.hero-title .line:nth-child(2) .word {
-  animation-delay: 0.2s;
+  /* No animation - visible immediately */
 }
 
 .hero-subtitle {
@@ -352,7 +331,7 @@ section {
   font-weight: 500;
   color: var(--accent);
   margin-bottom: 2rem;
-  animation: floatIn 0.8s ease-out;
+  /* No animation - visible immediately */
 }
 
 .badge-dot {
@@ -361,27 +340,7 @@ section {
   height: 8px;
   background: var(--accent);
   border-radius: 50%;
-  animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes floatIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* No animation - visible immediately */
 }
 
 .hero-ctas {
@@ -456,7 +415,7 @@ section {
 }
 
 .hero-image {
-  animation: fadeInRight 0.8s ease-out;
+  /* No animation - visible immediately */
 }
 
 .image-wrapper {
@@ -483,19 +442,7 @@ section {
   opacity: 0.2;
   filter: blur(20px);
   z-index: 1;
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.2;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.3;
-  }
+  /* No animation - visible immediately */
 }
 
 /* ABOUT */
@@ -799,14 +746,8 @@ section {
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--accent-alt));
   border-radius: 10px;
-  animation: growWidth 1s ease-out forwards;
   box-shadow: 0 0 10px var(--accent);
-}
-
-@keyframes growWidth {
-  from {
-    width: 0 !important;
-  }
+  /* No animation - visible immediately */
 }
 
 .skill-techs {
@@ -975,7 +916,7 @@ footer {
   justify-content: center;
   padding: 2rem;
   backdrop-filter: blur(5px);
-  animation: fadeIn 0.3s;
+  /* No animation - visible immediately */
 }
 
 .modal.show {
@@ -991,7 +932,7 @@ footer {
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  animation: slideUp 0.3s;
+  /* No animation - visible immediately */
 }
 
 .modal-close {
@@ -1106,47 +1047,6 @@ footer {
 }
 
 /* ANIMATIONS */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 /* ENHANCED TRANSITIONS & EFFECTS */
 * {
@@ -1228,17 +1128,8 @@ code {
   background: radial-gradient(circle, rgba(0, 217, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0;
-  animation: gridMove 20s linear infinite;
+  /* No animation - visible immediately */
   z-index: -1;
-}
-
-@keyframes gridMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(20px, 20px);
-  }
 }
 
 /* RESPONSIVE */
