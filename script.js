@@ -13,7 +13,6 @@ function init() {
   setupSkillAnimations();
   setupSmoothScroll();
   setupIntersectionObserver();
-  setupTypingEffect();
   setupCardTilt();
 }
 
@@ -25,41 +24,6 @@ function setupLoader() {
       loader.classList.add('hidden');
     }, 1500);
   });
-}
-
-// ===== TYPING EFFECT =====
-function setupTypingEffect() {
-  const typingElement = document.querySelector('.typing-text');
-  if (!typingElement) return;
-
-  const phrases = ['Cyber Security Specialist', 'Secure Code Architect', 'Full-Stack Developer'];
-  let currentPhrase = 0;
-  let currentChar = 0;
-  let isDeleting = false;
-
-  function type() {
-    const phrase = phrases[currentPhrase];
-    const typingSpeed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && currentChar < phrase.length) {
-      typingElement.textContent += phrase[currentChar];
-      currentChar++;
-      setTimeout(type, typingSpeed);
-    } else if (isDeleting && currentChar > 0) {
-      typingElement.textContent = phrase.substring(0, currentChar - 1);
-      currentChar--;
-      setTimeout(type, typingSpeed);
-    } else if (!isDeleting && currentChar === phrase.length) {
-      isDeleting = true;
-      setTimeout(type, 2000);
-    } else if (isDeleting && currentChar === 0) {
-      isDeleting = false;
-      currentPhrase = (currentPhrase + 1) % phrases.length;
-      setTimeout(type, 500);
-    }
-  }
-
-  setTimeout(type, 500);
 }
 
 // ===== THEME TOGGLE =====

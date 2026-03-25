@@ -1148,56 +1148,6 @@ footer {
   }
 }
 
-/* TYPING ANIMATION */
-.typing-text::after {
-  content: "";
-  animation: typing 0.05s steps(1), blink 0.5s step-end infinite;
-  animation-delay: 1.5s, 1.5s;
-  animation-fill-mode: both;
-}
-
-@keyframes typing {
-  from {
-    content: "";
-  }
-  1% {
-    content: "Cybersecurity";
-  }
-  40% {
-    content: "Cybersecurity";
-  }
-  45% {
-    content: "";
-  }
-  46% {
-    content: "F";
-  }
-  52% {
-    content: "Full-Stack";
-  }
-  80% {
-    content: "Full-Stack";
-  }
-  85% {
-    content: "";
-  }
-  86% {
-    content: "I";
-  }
-  92% {
-    content: "Innovator";
-  }
-  100% {
-    content: "Innovator";
-  }
-}
-
-@keyframes blink {
-  50% {
-    border-right-color: transparent;
-  }
-}
-
 /* ENHANCED TRANSITIONS & EFFECTS */
 * {
   scroll-behavior: smooth;
