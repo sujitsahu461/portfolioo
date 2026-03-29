@@ -414,6 +414,18 @@ section {
   color: var(--primary);
 }
 
+.btn-tertiary {
+  color: var(--text);
+  border: 2px solid var(--accent-alt);
+  background: transparent;
+}
+
+.btn-tertiary:hover {
+  background: var(--accent-alt);
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
 .hero-image {
   /* No animation - visible immediately */
 }
