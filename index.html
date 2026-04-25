@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sujit Sahu | Cybersecurity & Full Stack Developer</title>
-  <meta name="description" content="Premium Awwwards-level developer portfolio" />
+  <title>Sujit Sahu | Software Developer</title>
+  <meta name="description" content="Portfolio of Sujit Sahu, Software Developer & Security Engineer" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,122 +18,85 @@
   
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-logo">SS</div>
+      <div class="nav-logo">SUJIT.</div>
       <div class="nav-menu">
         <a href="#hero" class="nav-link active">Home</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#education" class="nav-link">Education</a>
-        <a href="#work" class="nav-link">Work</a>
         <a href="#skills" class="nav-link">Skills</a>
+        <a href="#work" class="nav-link">Work</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
-      <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-      </button>
     </div>
   </nav>
 
-  <div class="loader">
-    <div class="loader-content">
-      <div class="loader-circle"></div>
-      <p>Initializing</p>
-    </div>
-  </div>
-
-  <div class="background-animation">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
   <main>
     <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-content">
-            <div class="hero-badge">
-              <span class="badge-dot"></span>
-              <span>Full-Stack Developer & Security Engineer</span>
-            </div>
-            <h1 class="hero-title">
-              <span class="line">
-                <span class="word">Building Secure</span>
-              </span>
-              <span class="line">
-                <span class="word">Code That Scales</span>
-              </span>
-            </h1>
-            <p class="hero-subtitle">I design full-stack applications with security and scalability at their core—turning complex problems into elegant, bulletproof solutions.</p>
-            <p class="hero-desc">Specialized in cybersecurity, backend architecture, and performant frontends. I'm passionate about building systems that defenders trust and users love.</p>
-            <div class="hero-ctas">
-              <a href="#work" class="btn btn-primary">
-                <span>Explore My Work</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-              <a href="#contact" class="btn btn-secondary">
-                <span>Let's Talk Security 🔒</span>
-              </a>
-              <a href="Sujit_Kumar_Sahu_Resume.pdf" class="btn btn-tertiary" download>
-                <span>View Resume</span>
-                <i class="fas fa-file-pdf"></i>
-              </a>
-            </div>
-            <div class="hero-stats">
-              <div class="stat">
-                <span class="stat-number">8+</span>
-                <span class="stat-label">Projects</span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">88%</span>
-                <span class="stat-label">Cybersecurity</span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Secure Code</span>
-              </div>
-            </div>
+    <section id="hero" class="figma-hero">
+      <div class="container hero-grid">
+        <div class="hero-text-col">
+          <p class="greeting">HI, I'M SUJIT <span>👋</span></p>
+          <h1 class="massive-title">
+            SOFTWARE<br />
+            <span class="accent-red">DEVELOPER</span>
+          </h1>
+          <p class="hero-desc">
+            I build secure, scalable full-stack applications. With a focus on cybersecurity and seamless performance, I turn complex problems into elegant, bulletproof solutions.
+          </p>
+          <div class="hero-buttons">
+            <a href="#work" class="btn btn-primary">VIEW MY PROJECTS <i class="fas fa-arrow-right"></i></a>
+            <a href="Sujit_Kumar_Sahu_Resume.pdf" class="btn btn-outline" download>RESUME</a>
           </div>
-          <div class="hero-image">
-            <div class="image-wrapper">
-              <img src="profile.jpg" alt="Sujit Sahu" />
-              <div class="glow"></div>
-            </div>
+          <div class="hero-stats">
+            <div class="stat"><span class="stat-number">8+</span><span class="stat-label">PROJECTS</span></div>
+            <div class="stat"><span class="stat-number">100%</span><span class="stat-label">SECURE CODE</span></div>
+          </div>
+        </div>
+        <div class="hero-img-col">
+          <div class="avatar-wrapper">
+            <img src="cartoon-avatar.png" alt="Sujit 3D Avatar" class="floating-avatar" />
+            <!-- Floating shapes representation -->
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="about">
+    <section id="about" class="figma-section">
       <div class="container">
-        <div class="section-header">
-          <h2>About Me</h2>
-          <div class="header-line"></div>
+        <div class="section-title-wrap">
+          <h2 class="section-title">ABOUT ME</h2>
+          <span class="watermark">INFO</span>
         </div>
         <div class="about-grid">
-          <div class="about-content">
-            <p class="about-intro">I'm a cybersecurity-focused developer building intentionally secure systems. While most developers add security as an afterthought, I bake it in from day one—because great code isn't just fast or beautiful, it's <strong>bulletproof</strong>.</p>
-            
-            <p class="about-paragraph">Currently pursuing my B.Tech in Computer Science, I'm constantly exploring the intersection of security and scalability. I've spent time in penetration testing, secure backend architecture, cryptography, and full-stack development. This unique blend lets me build features that users love while defenders trust.</p>
-            
-            <p class="about-paragraph">When I'm not coding, I'm reading security research, participating in CTF competitions, and exploring modern development practices. I believe great software is built by engineers who care deeply about both innovation and responsibility.</p>
-
-            <div class="highlights">
-              <div class="highlight-card">
-                <i class="fas fa-shield-alt"></i>
-                <h4>Security-First Mindset</h4>
-                <p>Threat modeling, secure design, and cryptography embedded in every project</p>
+          <div class="about-text">
+            <p>I'm a cybersecurity-focused developer building intentionally secure systems. While most developers add security as an afterthought, I bake it in from day one—because great code isn't just fast or beautiful, it's <strong>bulletproof</strong>.</p>
+            <p>Currently pursuing my B.Tech in Computer Science, I'm constantly exploring the intersection of security and scalability. I've spent time in penetration testing, secure backend architecture, cryptography, and full-stack development.</p>
+            <p>When I'm not coding, I'm reading security research, participating in CTF competitions, and exploring modern development practices.</p>
+          </div>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <i class="fas fa-shield-alt"></i>
+              <div>
+                <h4>Security-First</h4>
+                <p>Threat modeling & secure design</p>
               </div>
-              <div class="highlight-card">
-                <i class="fas fa-laptop-code"></i>
-                <h4>Full-Stack Expertise</h4>
-                <p>From React frontends to Node.js backends to DevOps automation</p>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-laptop-code"></i>
+              <div>
+                <h4>Full-Stack</h4>
+                <p>React, Node.js, Python, Databases</p>
               </div>
-              <div class="highlight-card">
-                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-rocket"></i>
+              <div>
                 <h4>Scalable Architecture</h4>
-                <p>Building systems that grow with your business while maintaining security</p>
+                <p>Systems built for growth</p>
               </div>
             </div>
           </div>
@@ -140,235 +105,27 @@
     </section>
 
     <!-- EDUCATION -->
-    <section id="education" class="education">
+    <section id="education" class="figma-section dark-alt">
       <div class="container">
-        <div class="section-header">
-          <h2>Education</h2>
-          <div class="header-line"></div>
+        <div class="section-title-wrap">
+          <h2 class="section-title">EDUCATION</h2>
+          <span class="watermark">STUDY</span>
         </div>
-        <div class="education-timeline">
-          <!-- University Education -->
-          <div class="edu-card">
-            <div class="edu-header">
-              <div class="edu-info">
-                <h3>GIET University Gunupur</h3>
-                <p class="edu-field">Bachelor of Technology - B.Tech in Computer Science</p>
-                <p class="edu-institution">Jul 2024 – Jul 2028</p>
-              </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>GIET University Gunupur</h3>
+              <h4>Bachelor of Technology - B.Tech in Computer Science</h4>
+              <span class="timeline-date">Jul 2024 – Jul 2028</span>
             </div>
           </div>
-
-          <!-- School Education -->
-          <div class="edu-card">
-            <div class="edu-header">
-              <div class="edu-info">
-                <h3>Seven Hills Residential School</h3>
-                <p class="edu-field">Senior Secondary Education</p>
-                <p class="edu-institution">Jul 2012 – Jul 2024</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK -->
-    <section id="work" class="work">
-      <div class="container">
-        <div class="section-header">
-          <h2>Featured Work</h2>
-          <div class="header-line"></div>
-        </div>
-        <div class="projects-grid">
-          <!-- Project 1: Weather Project -->
-          <div class="project-card" data-project="1">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-cloud-sun"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">JavaScript • OpenWeather API • Responsive</div>
-              <h3>Real-Time Weather Dashboard</h3>
-              <p>Web-based weather application using HTML, CSS, JavaScript, and OpenWeather API to show real-time temperature, humidity, wind, visibility, rain chance, and AQI. Features city search, geolocation support, °C/°F toggle, and responsive, user-friendly interface with helpful tips.</p>
-              <div class="project-features">
-                <span class="feature-chip">Real-time weather data</span>
-                <span class="feature-chip">City search</span>
-                <span class="feature-chip">Geolocation</span>
-                <span class="feature-chip">Temperature toggle</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/weather-project" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2: Bank Management System -->
-          <div class="project-card" data-project="2">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-university"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">Java • Backend System • Database</div>
-              <h3>Bank Management System</h3>
-              <p>Comprehensive banking system with account management, transaction processing, and customer operations. Built with Java for robust backend processing and secure financial data handling. Demonstrates strong understanding of object-oriented design and banking domain logic.</p>
-              <div class="project-features">
-                <span class="feature-chip">Account management</span>
-                <span class="feature-chip">Transactions</span>
-                <span class="feature-chip">Customer operations</span>
-                <span class="feature-chip">OOP Architecture</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/bank-management" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3: Bandwidth-Agnostic PWA -->
-          <div class="project-card" data-project="3">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-wifi"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">PWA • Service Workers • Low-Bandwidth</div>
-              <h3>Bandwidth-Agnostic PWA</h3>
-              <p>Lightweight Progressive Web App optimized for low-bandwidth environments at university. Provides portal access with minimal data usage and offline capabilities. Demonstrates expertise in performance optimization, service workers, and offline-first architecture.</p>
-              <div class="project-features">
-                <span class="feature-chip">Offline-first</span>
-                <span class="feature-chip">Service Workers</span>
-                <span class="feature-chip">Data compression</span>
-                <span class="feature-chip">Progressive enhancement</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/bandwidth-agnostic-pwa" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 4: Hotel Management -->
-          <div class="project-card" data-project="4">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-key"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">Java • Full-Stack • Management System</div>
-              <h3>Hotel Management System</h3>
-              <p>Comprehensive hotel management platform with booking system, customer management, and administrative operations. Built with Java for enterprise-level performance, demonstrating ability to handle complex business logic and data relationships in real-world scenarios.</p>
-              <div class="project-features">
-                <span class="feature-chip">Booking system</span>
-                <span class="feature-chip">Customer management</span>
-                <span class="feature-chip">Admin operations</span>
-                <span class="feature-chip">Database design</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/hotelmanagement" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 5: Learning Management System -->
-          <div class="project-card" data-project="5">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">HTML • CSS • JavaScript • E-Learning</div>
-              <h3>Learning Management System (LMS)</h3>
-              <p>Educational platform for course management, student enrollment, and learning resource distribution. Designed with seamless user experience and accessibility focus. Demonstrates strong frontend skills and understanding of educational technology requirements.</p>
-              <div class="project-features">
-                <span class="feature-chip">Course management</span>
-                <span class="feature-chip">Student enrollment</span>
-                <span class="feature-chip">Resource distribution</span>
-                <span class="feature-chip">Responsive design</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/LMSPROJECT" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 6: Finn-Track-Pro -->
-          <div class="project-card" data-project="6">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">JavaScript • Full-Stack • Finance • PostgreSQL</div>
-              <h3>Finn-Track-Pro — Finance Tracker</h3>
-              <p>Production-grade full-stack personal finance tracker with expense management, income tracking, and budget analytics. Features a secure REST API backend, PostgreSQL database on Neon, deployed on Render with a Vercel-hosted frontend. Built with robust input validation and rate-limiting for enterprise-level reliability.</p>
-              <div class="project-features">
-                <span class="feature-chip">Expense management</span>
-                <span class="feature-chip">Budget analytics</span>
-                <span class="feature-chip">REST API</span>
-                <span class="feature-chip">PostgreSQL</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/Finn-Track-Pro" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 7: BullLens Smart Stock Tracker -->
-          <div class="project-card" data-project="7">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-robot"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">Python • FastAPI • Machine Learning • MySQL</div>
-              <h3>BullLens — Smart Stock Market Predictor</h3>
-              <p>AI-powered stock market predictor combining FastAPI backend, machine learning models, and real-time data from yfinance. Features stock price forecasting, volatility prediction, risk scoring, and a dynamic Single Page Application frontend. Integrates MySQL for persistent data and YOLOv8 vision capabilities for advanced analysis.</p>
-              <div class="project-features">
-                <span class="feature-chip">ML Price Forecasting</span>
-                <span class="feature-chip">Volatility Prediction</span>
-                <span class="feature-chip">FastAPI Backend</span>
-                <span class="feature-chip">Real-time Data</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/BULLLENS-SMART-STOCK-TRACKER" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 8: Superpower Hands -->
-          <div class="project-card" data-project="8">
-            <div class="project-image">
-              <div class="project-image-placeholder">
-                <i class="fas fa-hand-sparkles"></i>
-              </div>
-              <div class="project-overlay"></div>
-            </div>
-            <div class="project-content">
-              <div class="project-tag">Python • Computer Vision • MediaPipe</div>
-              <h3>Superpower Hands</h3>
-              <p>A Python-based computer vision application leveraging MediaPipe for real-time hand tracking and gesture recognition. Designed with interactive hand pose detection, dynamic UI components, and optimized for local desktop execution.</p>
-              <div class="project-features">
-                <span class="feature-chip">Computer Vision</span>
-                <span class="feature-chip">Hand Tracking</span>
-                <span class="feature-chip">Gesture Recognition</span>
-                <span class="feature-chip">MediaPipe</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/sujitsahu461/superpower_hands" target="_blank" class="project-link"><i class="fas fa-github"></i>View on GitHub</a>
-              </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>Seven Hills Residential School</h3>
+              <h4>Senior Secondary Education</h4>
+              <span class="timeline-date">Jul 2012 – Jul 2024</span>
             </div>
           </div>
         </div>
@@ -376,126 +133,124 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="skills">
+    <section id="skills" class="figma-section">
       <div class="container">
-        <div class="section-header">
-          <h2>Technical Skills</h2>
-          <div class="header-line"></div>
+        <div class="section-title-wrap">
+          <h2 class="section-title">MY SKILLS</h2>
+          <span class="watermark">TECH</span>
         </div>
-        <p class="skills-intro">Specialized in secure, scalable full-stack development with deep cybersecurity expertise</p>
-        
         <div class="skills-grid">
-          <!-- Frontend -->
-          <div class="skill-item">
-            <div class="skill-category">
-              <i class="fas fa-paint-brush"></i>
-              <span>Frontend Development</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 92%"></div>
-            </div>
-            <div class="skill-techs">
-              <span class="tech-badge">HTML5</span>
-              <span class="tech-badge">CSS3</span>
-              <span class="tech-badge">JavaScript</span>
-              <span class="tech-badge">React</span>
-              <span class="tech-badge">Responsive Design</span>
-              <span class="tech-badge">Web Performance</span>
+          <div class="skill-card">
+            <i class="fas fa-code"></i>
+            <h3>Frontend</h3>
+            <p>HTML5, CSS3, JavaScript, React, Responsive Design</p>
+          </div>
+          <div class="skill-card">
+            <i class="fas fa-server"></i>
+            <h3>Backend</h3>
+            <p>Node.js, Express, Python, Java, PostgreSQL, MongoDB</p>
+          </div>
+          <div class="skill-card">
+            <i class="fas fa-lock"></i>
+            <h3>Cybersecurity</h3>
+            <p>Cryptography, Pen Testing, OWASP, Secure Coding</p>
+          </div>
+          <div class="skill-card">
+            <i class="fas fa-tools"></i>
+            <h3>Tools & DevOps</h3>
+            <p>Git, Docker, Linux, CI/CD, AWS</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="figma-section dark-alt">
+      <div class="container">
+        <div class="section-title-wrap">
+          <h2 class="section-title">FEATURED WORK</h2>
+          <span class="watermark">PORTFOLIO</span>
+        </div>
+        
+        <div class="projects-grid">
+          <!-- 1 -->
+          <div class="project-card" data-project="6">
+            <div class="project-img"><i class="fas fa-chart-line"></i></div>
+            <div class="project-info">
+              <span class="project-tag">Full-Stack • PostgreSQL</span>
+              <h3>Finn-Track-Pro</h3>
+              <p>Production-grade full-stack personal finance tracker with REST API and Vercel-hosted frontend.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
-
-          <!-- Backend -->
-          <div class="skill-item">
-            <div class="skill-category">
-              <i class="fas fa-server"></i>
-              <span>Backend Development</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 88%"></div>
-            </div>
-            <div class="skill-techs">
-              <span class="tech-badge">Node.js</span>
-              <span class="tech-badge">Express</span>
-              <span class="tech-badge">Python</span>
-              <span class="tech-badge">Java</span>
-              <span class="tech-badge">MongoDB</span>
-              <span class="tech-badge">SQL</span>
+          <!-- 2 -->
+          <div class="project-card" data-project="7">
+            <div class="project-img"><i class="fas fa-robot"></i></div>
+            <div class="project-info">
+              <span class="project-tag">Python • Machine Learning</span>
+              <h3>BullLens Smart Tracker</h3>
+              <p>AI-powered stock market predictor combining FastAPI backend and real-time data analysis.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
-
-          <!-- Cybersecurity -->
-          <div class="skill-item">
-            <div class="skill-category">
-              <i class="fas fa-shield-alt"></i>
-              <span>Cybersecurity</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 90%"></div>
-            </div>
-            <div class="skill-techs">
-              <span class="tech-badge">Cryptography</span>
-              <span class="tech-badge">Network Security</span>
-              <span class="tech-badge">Penetration Testing</span>
-              <span class="tech-badge">OWASP</span>
-              <span class="tech-badge">Secure Coding</span>
-              <span class="tech-badge">OSINT</span>
+          <!-- 3 -->
+          <div class="project-card" data-project="8">
+            <div class="project-img"><i class="fas fa-hand-sparkles"></i></div>
+            <div class="project-info">
+              <span class="project-tag">Computer Vision • MediaPipe</span>
+              <h3>Superpower Hands</h3>
+              <p>Real-time hand tracking and gesture recognition desktop application.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
-
-          <!-- DevOps & Tools -->
-          <div class="skill-item">
-            <div class="skill-category">
-              <i class="fas fa-cogs"></i>
-              <span>DevOps & Tools</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 85%"></div>
-            </div>
-            <div class="skill-techs">
-              <span class="tech-badge">Git & GitHub</span>
-              <span class="tech-badge">Docker</span>
-              <span class="tech-badge">Linux</span>
-              <span class="tech-badge">AWS</span>
-              <span class="tech-badge">CI/CD</span>
-              <span class="tech-badge">API Design</span>
+          <!-- 4 -->
+          <div class="project-card" data-project="1">
+            <div class="project-img"><i class="fas fa-cloud-sun"></i></div>
+            <div class="project-info">
+              <span class="project-tag">JavaScript • API</span>
+              <h3>Weather Dashboard</h3>
+              <p>Real-time weather application using OpenWeather API with geolocation.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
-
-          <!-- Specialized Skills -->
-          <div class="skill-item">
-            <div class="skill-category">
-              <i class="fas fa-star"></i>
-              <span>Specialized Skills</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 85%"></div>
-            </div>
-            <div class="skill-techs">
-              <span class="tech-badge">System Design</span>
-              <span class="tech-badge">Scalability</span>
-              <span class="tech-badge">Problem Solving</span>
-              <span class="tech-badge">Team Collaboration</span>
-              <span class="tech-badge">Technical Writing</span>
-              <span class="tech-badge">Code Review</span>
+          <!-- 5 -->
+          <div class="project-card" data-project="2">
+            <div class="project-img"><i class="fas fa-university"></i></div>
+            <div class="project-info">
+              <span class="project-tag">Java • OOP</span>
+              <h3>Bank Management System</h3>
+              <p>Comprehensive banking system for account and transaction management.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
-
-          <!-- Expertise -->
-          <div class="skill-item">
-            <div class="skill-category">
-              <i class="fas fa-rocket"></i>
-              <span>Areas of Expertise</span>
+          <!-- 6 -->
+          <div class="project-card" data-project="3">
+            <div class="project-img"><i class="fas fa-wifi"></i></div>
+            <div class="project-info">
+              <span class="project-tag">PWA • Service Workers</span>
+              <h3>Bandwidth-Agnostic PWA</h3>
+              <p>Offline-first web app optimized for low-bandwidth environments.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: 88%"></div>
+          </div>
+          <!-- 7 -->
+          <div class="project-card" data-project="4">
+            <div class="project-img"><i class="fas fa-key"></i></div>
+            <div class="project-info">
+              <span class="project-tag">Java • Database</span>
+              <h3>Hotel Management System</h3>
+              <p>Enterprise-level platform for booking and customer management.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
-            <div class="skill-techs">
-              <span class="tech-badge">Full-Stack Apps</span>
-              <span class="tech-badge">PWA Development</span>
-              <span class="tech-badge">Security Architecture</span>
-              <span class="tech-badge">Performance Optimization</span>
-              <span class="tech-badge">Fault Tolerance</span>
-              <span class="tech-badge">Data Privacy</span>
+          </div>
+          <!-- 8 -->
+          <div class="project-card" data-project="5">
+            <div class="project-img"><i class="fas fa-graduation-cap"></i></div>
+            <div class="project-info">
+              <span class="project-tag">HTML • CSS • JS</span>
+              <h3>Learning Management System</h3>
+              <p>Educational platform for course and student management.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
         </div>
@@ -503,89 +258,46 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2>Let's Build Something Secure</h2>
-          <div class="header-line"></div>
+    <section id="contact" class="figma-section contact-section">
+      <div class="container text-center">
+        <div class="section-title-wrap center-wrap">
+          <h2 class="section-title">LET'S CONNECT</h2>
+          <span class="watermark">CONTACT</span>
         </div>
-        <div class="contact-content">
-          <p class="contact-desc">Looking for a developer passionate about security and scalability? Let's build systems that are both powerful and trustworthy. Interested in internships, freelance projects, or collaborations.</p>
-          <div class="contact-channels">
-            <a href="mailto:smartsujit7334@gmail.com" class="contact-card">
-              <i class="fas fa-envelope"></i>
-              <span>Send an Email</span>
-              <p>smartsujit7334@gmail.com</p>
-              <span class="contact-cta">Quick contact</span>
-            </a>
-            <a href="https://github.com/sujitsahu461" target="_blank" class="contact-card">
-              <i class="fas fa-github"></i>
-              <span>GitHub Profile</span>
-              <p>@sujitsahu461</p>
-              <span class="contact-cta">View projects & code</span>
-            </a>
-            <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" class="contact-card">
-              <i class="fab fa-linkedin"></i>
-              <span>LinkedIn</span>
-              <p>Sujit Kumar Sahu</p>
-              <span class="contact-cta">Professional network</span>
-            </a>
-            <a href="https://www.instagram.com/_sujit_.23?igsh=MWdxNG1jN3pld3RkMw==" target="_blank" class="contact-card">
-              <i class="fab fa-instagram"></i>
-              <span>Instagram</span>
-              <p>@_sujit_.23</p>
-              <span class="contact-cta">Follow & connect</span>
-            </a>
-          </div>
-          <div class="contact-footer">
-            <p><strong>Availability:</strong> Open to internships, full-time roles, and interesting projects</p>
-            <p><strong>Expertise:</strong> Full-stack development, cybersecurity, scalable architecture</p>
-          </div>
+        <p class="contact-subtitle">Have a project in mind or want to discuss security? My inbox is always open.</p>
+        
+        <a href="mailto:smartsujit7334@gmail.com" class="massive-email">smartsujit7334<br/>@gmail.com</a>
+        
+        <div class="social-links-large">
+          <a href="https://github.com/sujitsahu461" target="_blank"><i class="fab fa-github"></i> GITHUB</a>
+          <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
+          <a href="https://www.instagram.com/_sujit_.23?igsh=MWdxNG1jN3pld3RkMw==" target="_blank"><i class="fab fa-instagram"></i> INSTAGRAM</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Sujit Sahu. Built with passion.</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Sujit Sahu. Designed with passion.</p>
+    </div>
   </footer>
 
-  <button class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Modal -->
+  <!-- Project Modal -->
   <div class="modal" id="projectModal">
-    <div class="modal-content">
+    <div class="modal-content figma-modal">
       <button class="modal-close">&times;</button>
       <div class="modal-body">
-        <div class="modal-image">
-          <div class="modal-placeholder"></div>
-        </div>
-        <div class="modal-info">
-          <h3 id="modalTitle"></h3>
-          <p id="modalDesc"></p>
-          <div class="modal-tech" id="modalTech"></div>
-          <div class="modal-stats">
-            <div class="stat">
-              <span>Users</span>
-              <strong id="modalUsers"></strong>
-            </div>
-            <div class="stat">
-              <span>Status</span>
-              <strong id="modalStatus"></strong>
-            </div>
-          </div>
-          <div class="modal-actions">
-            <a href="#" class="btn btn-primary" target="_blank">Live Demo</a>
-            <a href="#" class="btn btn-secondary" target="_blank">Source Code</a>
-          </div>
+        <h3 id="modalTitle" class="modal-title"></h3>
+        <p id="modalDesc" class="modal-desc"></p>
+        <div class="modal-tech" id="modalTech"></div>
+        <div class="modal-actions">
+          <a href="#" id="modalGithub" class="btn btn-primary" target="_blank"><i class="fab fa-github"></i> View Repository</a>
         </div>
       </div>
     </div>
   </div>
 
-
-  <script defer src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

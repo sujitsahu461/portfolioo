@@ -1,77 +1,18 @@
-// PREMIUM PORTFOLIO - FULL FEATURED JAVASCRIPT
+// PORTFOLIO JAVASCRIPT
 
-// ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-  setupLoader();
-  setupThemeToggle();
   setupNavigation();
   setupScrollProgress();
-  setupBackToTop();
   setupProjectCards();
-  setupSkillAnimations();
   setupSmoothScroll();
-  setupIntersectionObserver();
-  setupCardTilt();
-}
-
-// ===== LOADER =====
-function setupLoader() {
-  window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-    setTimeout(() => {
-      loader.classList.add('hidden');
-    }, 1500);
-  });
-}
-
-// ===== THEME TOGGLE =====
-function setupThemeToggle() {
-  const toggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  
-  if (savedTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    toggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
-
-  toggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    toggle.innerHTML = newTheme === 'light' 
-      ? '<i class="fas fa-sun"></i>' 
-      : '<i class="fas fa-moon"></i>';
-  });
 }
 
 // ===== NAVIGATION =====
 function setupNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
-
-  // Smooth scroll on click
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        const offset = 80;
-        const top = targetSection.offsetTop - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-        
-        // Update active link
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  });
 
   // Update active link on scroll
   window.addEventListener('scroll', () => {
@@ -104,23 +45,6 @@ function setupScrollProgress() {
   });
 }
 
-// ===== BACK TO TOP =====
-function setupBackToTop() {
-  const btn = document.getElementById('backToTop');
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      btn.classList.add('show');
-    } else {
-      btn.classList.remove('show');
-    }
-  });
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
 // ===== PROJECT CARDS MODAL =====
 function setupProjectCards() {
   const projectCards = document.querySelectorAll('.project-card');
@@ -132,57 +56,49 @@ function setupProjectCards() {
       title: 'Real-Time Weather Dashboard',
       desc: 'Web-based weather application using HTML, CSS, JavaScript, and OpenWeather API to show real-time temperature, humidity, wind, visibility, rain chance, and AQI. Features include city search functionality, geolocation support, temperature unit toggle (°C/°F), and responsive, user-friendly interface with helpful tips.',
       tech: ['JavaScript', 'OpenWeather API', 'HTML5', 'CSS3', 'Geolocation API', 'Responsive Design'],
-      github: 'https://github.com/sujitsahu461/weather-project',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/weather-project'
     },
     2: {
       title: 'Bank Management System',
       desc: 'Comprehensive banking system with account management, transaction processing, and customer operations. Built with Java for robust backend processing and secure financial data handling. Demonstrates strong understanding of object-oriented design principles and banking domain logic.',
       tech: ['Java', 'OOP', 'Database Design', 'Backend Development', 'Transaction Management'],
-      github: 'https://github.com/sujitsahu461/bank-management',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/bank-management'
     },
     3: {
       title: 'Bandwidth-Agnostic PWA',
       desc: 'Lightweight Progressive Web App optimized for low-bandwidth environments at university. Provides portal access with minimal data usage and offline capabilities. Demonstrates expertise in performance optimization, service workers, and offline-first architecture for emerging markets.',
       tech: ['PWA', 'Service Workers', 'Offline-First', 'Data Compression', 'Progressive Enhancement'],
-      github: 'https://github.com/sujitsahu461/bandwidth-agnostic-pwa',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/bandwidth-agnostic-pwa'
     },
     4: {
       title: 'Hotel Management System',
       desc: 'Comprehensive hotel management platform with booking system, customer management, and administrative operations. Built with Java for enterprise-level performance, demonstrating ability to handle complex business logic and data relationships in real-world scenarios.',
       tech: ['Java', 'Database Design', 'Business Logic', 'System Architecture', 'Admin Operations'],
-      github: 'https://github.com/sujitsahu461/hotelmanagement',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/hotelmanagement'
     },
     5: {
       title: 'Learning Management System (LMS)',
       desc: 'Educational platform for course management, student enrollment, and learning resource distribution. Designed with seamless user experience and accessibility focus. Demonstrates strong frontend skills and understanding of educational technology requirements.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Educational UX', 'Learning Platform'],
-      github: 'https://github.com/sujitsahu461/LMSPROJECT',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/LMSPROJECT'
     },
     6: {
       title: 'Finn-Track-Pro — Finance Tracker',
       desc: 'Production-grade full-stack personal finance tracker with expense management, income tracking, and budget analytics. Features a secure REST API backend, PostgreSQL database on Neon, deployed on Render with a Vercel-hosted frontend. Built with robust input validation and rate-limiting for enterprise-level reliability.',
       tech: ['JavaScript', 'Full-Stack', 'Finance', 'PostgreSQL', 'REST API'],
-      github: 'https://github.com/sujitsahu461/Finn-Track-Pro',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/Finn-Track-Pro'
     },
     7: {
       title: 'BullLens — Smart Stock Market Predictor',
       desc: 'AI-powered stock market predictor combining FastAPI backend, machine learning models, and real-time data from yfinance. Features stock price forecasting, volatility prediction, risk scoring, and a dynamic Single Page Application frontend. Integrates MySQL for persistent data and YOLOv8 vision capabilities for advanced analysis.',
       tech: ['Python', 'FastAPI', 'Machine Learning', 'MySQL', 'Real-time Data'],
-      github: 'https://github.com/sujitsahu461/BULLLENS-SMART-STOCK-TRACKER',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/BULLLENS-SMART-STOCK-TRACKER'
     },
     8: {
       title: 'Superpower Hands',
       desc: 'A Python-based computer vision application leveraging MediaPipe for real-time hand tracking and gesture recognition. Designed with interactive hand pose detection, dynamic UI components, and optimized for local desktop execution.',
       tech: ['Python', 'Computer Vision', 'MediaPipe', 'Gesture Recognition', 'Hand Tracking'],
-      github: 'https://github.com/sujitsahu461/superpower_hands',
-      status: 'Active'
+      github: 'https://github.com/sujitsahu461/superpower_hands'
     }
   };
 
@@ -193,8 +109,7 @@ function setupProjectCards() {
       
       document.getElementById('modalTitle').textContent = data.title;
       document.getElementById('modalDesc').textContent = data.desc;
-      document.getElementById('modalUsers').textContent = data.users;
-      document.getElementById('modalStatus').textContent = data.status;
+      document.getElementById('modalGithub').setAttribute('href', data.github);
       
       const techHtml = data.tech.map(t => `<span>${t}</span>`).join('');
       document.getElementById('modalTech').innerHTML = techHtml;
@@ -204,10 +119,12 @@ function setupProjectCards() {
     });
   });
 
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('show');
-    document.body.style.overflow = 'auto';
-  });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    });
+  }
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -215,29 +132,6 @@ function setupProjectCards() {
       document.body.style.overflow = 'auto';
     }
   });
-}
-
-// ===== SKILL ANIMATIONS =====
-function setupSkillAnimations() {
-  const skillItems = document.querySelectorAll('.skill-item');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const skillProgress = entry.target.querySelector('.skill-progress');
-        if (skillProgress && !entry.target.classList.contains('animated')) {
-          entry.target.classList.add('animated');
-          const width = skillProgress.style.width;
-          skillProgress.style.width = '0';
-          setTimeout(() => {
-            skillProgress.style.width = width;
-          }, 100);
-        }
-      }
-    });
-  }, { threshold: 0.5 });
-
-  skillItems.forEach(item => observer.observe(item));
 }
 
 // ===== SMOOTH SCROLL =====
@@ -255,48 +149,3 @@ function setupSmoothScroll() {
     });
   });
 }
-
-// ===== INTERSECTION OBSERVER =====
-function setupIntersectionObserver() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  document.querySelectorAll('.about, .project-card, .highlight-card, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    observer.observe(el);
-  });
-}
-
-// ===== ADVANCED: TILT EFFECT ON PROJECT CARDS =====
-function setupCardTilt() {
-  const projectCards = document.querySelectorAll('.project-card');
-  
-  projectCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 10;
-      const rotateY = (centerX - x) / 10;
-      
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-    });
-  });
-}
-
-// ===== CONSOLE MESSAGE =====
-console.log('%c💻 Premium Portfolio Loaded', 'color: #00d9ff; font-size: 16px; font-weight: bold;');
-console.log('%cBuilt with passion by Sujit Sahu', 'color: #00d9ff; font-size: 12px;');
