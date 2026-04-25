@@ -162,6 +162,27 @@ function setupProjectCards() {
       tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Educational UX', 'Learning Platform'],
       github: 'https://github.com/sujitsahu461/LMSPROJECT',
       status: 'Active'
+    },
+    6: {
+      title: 'Finn-Track-Pro — Finance Tracker',
+      desc: 'Production-grade full-stack personal finance tracker with expense management, income tracking, and budget analytics. Features a secure REST API backend, PostgreSQL database on Neon, deployed on Render with a Vercel-hosted frontend. Built with robust input validation and rate-limiting for enterprise-level reliability.',
+      tech: ['JavaScript', 'Full-Stack', 'Finance', 'PostgreSQL', 'REST API'],
+      github: 'https://github.com/sujitsahu461/Finn-Track-Pro',
+      status: 'Active'
+    },
+    7: {
+      title: 'BullLens — Smart Stock Market Predictor',
+      desc: 'AI-powered stock market predictor combining FastAPI backend, machine learning models, and real-time data from yfinance. Features stock price forecasting, volatility prediction, risk scoring, and a dynamic Single Page Application frontend. Integrates MySQL for persistent data and YOLOv8 vision capabilities for advanced analysis.',
+      tech: ['Python', 'FastAPI', 'Machine Learning', 'MySQL', 'Real-time Data'],
+      github: 'https://github.com/sujitsahu461/BULLLENS-SMART-STOCK-TRACKER',
+      status: 'Active'
+    },
+    8: {
+      title: 'Superpower Hands',
+      desc: 'A Python-based computer vision application leveraging MediaPipe for real-time hand tracking and gesture recognition. Designed with interactive hand pose detection, dynamic UI components, and optimized for local desktop execution.',
+      tech: ['Python', 'Computer Vision', 'MediaPipe', 'Gesture Recognition', 'Hand Tracking'],
+      github: 'https://github.com/sujitsahu461/superpower_hands',
+      status: 'Active'
     }
   };
 
