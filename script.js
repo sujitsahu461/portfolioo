@@ -99,6 +99,18 @@ function setupProjectCards() {
       desc: 'A Python-based computer vision application leveraging MediaPipe for real-time hand tracking and gesture recognition. Designed with interactive hand pose detection, dynamic UI components, and optimized for local desktop execution.',
       tech: ['Python', 'Computer Vision', 'MediaPipe', 'Gesture Recognition', 'Hand Tracking'],
       github: 'https://github.com/sujitsahu461/superpower_hands'
+    },
+    9: {
+      title: 'IPL Analytics — Crunch-26',
+      desc: 'A comprehensive Python-based IPL data analytics project. Refactored from a monolithic notebook into a modular Python package to optimize data processing with Pandas and generate professional-grade visualizations.',
+      tech: ['Python', 'Pandas', 'Data Analysis', 'Visualization', 'Modular Package'],
+      github: 'https://github.com/sujitsahu461/IPL-CRUNCH-26'
+    },
+    10: {
+      title: 'VoteWise',
+      desc: 'A modern voting and polling application system built with a focus on robust functionality, smooth user experience, and secure operations. Designed with a clean frontend to interface with a development server.',
+      tech: ['HTML', 'Web App', 'UI/UX', 'Frontend'],
+      github: 'https://github.com/sujitsahu461/votewise'
     }
   };
 
