@@ -7,6 +7,7 @@ function init() {
   setupScrollProgress();
   setupProjectCards();
   setupSmoothScroll();
+  setupAnalyticsTracking();
 }
 
 // ===== NAVIGATION =====
@@ -119,6 +120,14 @@ function setupProjectCards() {
       const projectId = card.getAttribute('data-project');
       const data = projectData[projectId];
       
+      // Google Analytics Track Project View
+      if (typeof gtag === 'function') {
+        gtag('event', 'project_view', {
+          'event_category': 'Engagement',
+          'event_label': data.title
+        });
+      }
+      
       document.getElementById('modalTitle').textContent = data.title;
       document.getElementById('modalDesc').textContent = data.desc;
       document.getElementById('modalGithub').setAttribute('href', data.github);
@@ -160,4 +169,63 @@ function setupSmoothScroll() {
       }
     });
   });
+}
+
+// ===== GOOGLE ANALYTICS CUSTOM TRACKING =====
+function setupAnalyticsTracking() {
+  const track = (name, category, label) => {
+    if (typeof gtag === 'function') {
+      gtag('event', name, {
+        'event_category': category,
+        'event_label': label
+      });
+    }
+  };
+
+  // Track Navigation Link Clicks
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      track('navigation_click', 'Navigation', this.textContent.trim());
+    });
+  });
+
+  // Track Resume Downloads
+  const resumeBtn = document.querySelector('a[href*="Resume.pdf"]');
+  if (resumeBtn) {
+    resumeBtn.addEventListener('click', () => {
+      track('resume_download', 'Engagement', 'Sujit Sahu Resume PDF');
+    });
+  }
+
+  // Track Hero CTA clicks
+  const heroWorkBtn = document.querySelector('.futuristic-hero a[href="#work"]');
+  if (heroWorkBtn) {
+    heroWorkBtn.addEventListener('click', () => {
+      track('hero_cta_click', 'Engagement', 'View Deployed Work Button');
+    });
+  }
+
+  // Track Social Links
+  document.querySelectorAll('.social-links-large a, .site-footer a').forEach(link => {
+    link.addEventListener('click', function() {
+      track('social_click', 'Outbound Links', this.textContent.trim() || this.href);
+    });
+  });
+
+  // Track Email Link
+  const emailLink = document.querySelector('a[href^="mailto:"]');
+  if (emailLink) {
+    emailLink.addEventListener('click', function() {
+      track('contact_click', 'Engagement', 'Email Link');
+    });
+  }
+
+  // Track Modal Outbound GitHub click
+  const modalGithub = document.getElementById('modalGithub');
+  if (modalGithub) {
+    modalGithub.addEventListener('click', function() {
+      const title = document.getElementById('modalTitle').textContent;
+      track('repo_click', 'Outbound Links', `GitHub: ${title}`);
+    });
+  }
 }
