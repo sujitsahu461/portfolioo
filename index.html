@@ -28,14 +28,54 @@
   
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-logo">SUJIT.</div>
-      <div class="nav-menu">
-        <a href="#hero" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#work" class="nav-link">Work</a>
-        <a href="#contact" class="nav-link">Contact</a>
+      <div class="nav-logo">&lt;Sujit /&gt;</div>
+      <div class="nav-menu-wrapper">
+        <div class="nav-menu">
+          <a href="#hero" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#education" class="nav-link">Education</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#certificates" class="nav-link">Certificates</a>
+          <a href="#work" class="nav-link">Work</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle theme">
+            <i class="fas fa-moon theme-icon"></i>
+          </button>
+          <div class="dropdown-3dot">
+            <button class="btn-3dot" id="btn3Dot" aria-label="More options" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu-3dot" id="dropdownMenu3Dot">
+              <button class="dropdown-item" id="certsToggleBtn">
+                <i class="fas fa-certificate"></i>
+                <span>Certificates</span>
+              </button>
+              <div class="dropdown-item has-submenu" tabindex="0">
+                <span class="dropdown-label"><i class="fas fa-compass"></i> Navigate <i class="fas fa-chevron-right submenu-arrow"></i></span>
+                <div class="submenu-3dot">
+                  <a href="#hero" class="submenu-item">Home</a>
+                  <a href="#about" class="submenu-item">About</a>
+                  <a href="#education" class="submenu-item">Education</a>
+                  <a href="#skills" class="submenu-item">Skills</a>
+                  <a href="#certificates" class="submenu-item">Certificates</a>
+                  <a href="#work" class="submenu-item">Work</a>
+                  <a href="#contact" class="submenu-item">Contact</a>
+                </div>
+              </div>
+              <div class="dropdown-item has-submenu" tabindex="0">
+                <span class="dropdown-label"><i class="fas fa-share-alt"></i> Connect <i class="fas fa-chevron-right submenu-arrow"></i></span>
+                <div class="submenu-3dot">
+                  <a href="https://github.com/sujitsahu461" target="_blank" class="submenu-item"><i class="fab fa-github"></i> GitHub</a>
+                  <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" class="submenu-item"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                  <a href="https://www.instagram.com/_sujit_.23?igsh=MWdxNG1jN3pld3RkMw==" target="_blank" class="submenu-item"><i class="fab fa-instagram"></i> Instagram</a>
+                  <a href="mailto:smartsujit7334@gmail.com" class="submenu-item"><i class="fas fa-envelope"></i> Email</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -199,8 +239,26 @@
       </div>
     </section>
 
+    <!-- CERTIFICATES -->
+    <section id="certificates" class="figma-section dark-alt">
+      <div class="container">
+        <div class="section-title-wrap">
+          <h2 class="section-title">CERTIFICATIONS</h2>
+          <span class="watermark">BADGES</span>
+        </div>
+        <div class="certs-grid-page" id="certsGridPage">
+          <!-- Load at least 10 certs dynamically from JS -->
+        </div>
+        <div class="text-center" style="margin-top: 4rem;">
+          <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/" class="btn btn-primary" target="_blank">
+            <i class="fab fa-linkedin"></i> Verify All on LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- WORK -->
-    <section id="work" class="figma-section dark-alt">
+    <section id="work" class="figma-section">
       <div class="container">
         <div class="section-title-wrap">
           <h2 class="section-title">FEATURED WORK</h2>
@@ -330,10 +388,28 @@
         </div>
       </div>
     </section>
+    
+    <!-- DYNAMIC QUOTE SECTION -->
+    <section class="quote-section">
+      <div class="container">
+        <div class="quote-card">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p id="dynamicQuote" class="quote-text">"Security is not a product, but a process."</p>
+          <p id="quoteAuthor" class="quote-author">— Bruce Schneier</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
+      <div class="footer-links">
+        <a href="#" class="footer-link" data-doc="disclaimer">Disclaimer</a>
+        <span class="footer-dot">•</span>
+        <a href="#" class="footer-link" data-doc="privacy">Privacy Policy</a>
+        <span class="footer-dot">•</span>
+        <a href="#" class="footer-link" data-doc="terms">Terms & Conditions</a>
+      </div>
       <p>&copy; 2026 Sujit Sahu. Designed with passion.</p>
     </div>
   </footer>
@@ -348,6 +424,36 @@
         <div class="modal-tech" id="modalTech"></div>
         <div class="modal-actions">
           <a href="https://github.com" id="modalGithub" class="btn btn-primary" target="_blank"><i class="fab fa-github"></i> View Repository</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal Modal -->
+  <div class="modal" id="legalModal">
+    <div class="modal-content figma-modal legal-modal-content">
+      <button class="modal-close" id="legalModalClose">&times;</button>
+      <div class="modal-body">
+        <h3 id="legalModalTitle" class="modal-title"></h3>
+        <div id="legalModalBody" class="legal-modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificates Modal -->
+  <div class="modal" id="certsModal">
+    <div class="modal-content figma-modal certs-modal-content">
+      <button class="modal-close" id="certsModalClose">&times;</button>
+      <div class="modal-body">
+        <h3 class="modal-title">Featured Certifications</h3>
+        <p class="modal-desc" style="color: var(--text-secondary); margin-bottom: 1.5rem;">Verifiable professional credentials in Cybersecurity, Cloud Infrastructure, and AI Development.</p>
+        <div class="certs-grid" id="certsGrid">
+          <!-- Load certs dynamically from JS -->
+        </div>
+        <div class="modal-actions" style="margin-top: 2rem; display: flex; justify-content: flex-end;">
+          <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/" class="btn btn-primary" target="_blank">
+            <i class="fab fa-linkedin"></i> Verify on LinkedIn
+          </a>
         </div>
       </div>
     </div>
