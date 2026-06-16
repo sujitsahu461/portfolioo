@@ -2,7 +2,7 @@
 
 A premium, high-fidelity personal brand landing page built with vanilla **HTML5, CSS3, and JavaScript**. Designed with a minimalist Silicon Valley aesthetic, cinematic radial-gradient lighting, subtle interactive grid frameworks, and clean modern typography.
 
-Live Production URL: **[sujitsahu461.github.io/portfolioo/](https://sujitsahu461.github.io/portfolioo/)**
+Live Production URLs: **[portfolioo-sand-sigma.vercel.app (Vercel)](https://portfolioo-sand-sigma.vercel.app)** | **[sujitsahu461.github.io/portfolioo/ (GitHub Pages)](https://sujitsahu461.github.io/portfolioo/)**
 
 ---
 
@@ -13,16 +13,20 @@ This portfolio is engineered to look like a high-end tech website, startup found
 * **Cinematic Backdrop Lighting:** Built using a custom deep-space radial gradient (#0c1326 to #06070a) and a faint, barely-visible cybergrid layout (#00f0ff at 0.7% opacity) for a sleek Silicon Valley feel.
 * **Refined Typography & Kerning:** Uses *Montserrat* for strong, uppercase headings with tight modern kerning (`-0.03em`) and *Inter* for highly readable, soft slate-grey description text.
 * **Subtle Interactive Motion:** Smooth CSS hover transitions (`translateY(-4px)`) that brighten card border gradients and trigger soft neon drop-shadows on card elements.
+* **Premium Overlay Glassmorphism:** Features dark overlays with high-quality backdrop-blurs (`backdrop-filter: blur(10px)`) and custom Webkit-designed scrollbars.
 
 ---
 
 ## 🚀 Key Features
 
-* **Silicon Valley Landing Page:** Elegant hero section showing stats, clean description text, and direct resume integrations.
-* **Premium Grid Highlights:** Meticulously designed About Me highlight cards featuring Security-First, Full-Stack, and Scalable Architecture details.
-* **Interactive Timeline:** A bespoke timeline layout highlighting GIET University and Seven Hills education logs with hover glowing lift effects.
-* **Clean Project Modals:** A flexible, vanilla JS-driven modal card showcasing 10 featured projects spanning Full-Stack REST APIs, FastAPI Machine Learning Trackers, Computer Vision Hand Tracking, and OOP Java modules.
+* **Silicon Valley Landing Page:** Elegant hero section showing stats, clean description text, logo `<Sujit />`, and direct resume integrations.
+* **Persisted Light & Dark Mode Toggle:** Dedicated theme button in the navbar using CSS custom variables that sync colors dynamically and store user preferences locally in browser `localStorage`.
+* **3-Dot Options Dropdown Menu:** Custom interactive menu containing section sub-navigation (`Navigate >`), social platforms (`Connect >`), and scrolling controls.
+* **10 Verifiable Certifications:** Dedicated certifications section and overlay modal showcasing **10 real credentials** from your resume (including Cisco, HP LIFE, CTR MSME AI internship, PrepRight, EduSkills Python, Let's Upgrade ChatGPT, GIET coursework, and Coding Ninjas) with direct LinkedIn validation links.
+* **Dynamic Quote Generator:** Quotation container displaying a rotating collection of 14 quotes from science, philosophy, history, and life on each refresh.
+* **Professional Legal Documents:** Fully compliant modals for Disclaimer (ethical hacking and no-warranty clauses), Privacy Policy (minimal PII capture, Vercel logs, and localStorage disclosures), and Terms & Conditions (Indian legal jurisdiction in Odisha, India, and acceptable use).
 * **Zero Build Steps:** Engineered entirely with raw web languages, requiring no heavy package builds or compile pipelines for superfast loading.
+* **Cache-Busting Asset Versioning:** Integrated with query parameters on stylesheet and script links to prevent client-side cache locks.
 
 ---
 
