@@ -896,7 +896,53 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .nav-menu { display: none; /* simple mobile nav override */ }
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .nav-container {
+    display: block;
+    position: relative;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .nav-logo {
+    display: inline-block;
+    padding-top: 0.25rem;
+  }
+
+  .nav-menu-wrapper {
+    display: block;
+  }
+
+  .nav-actions {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.5rem;
+  }
+
+  .nav-menu {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1.25rem;
+    margin-top: 0.85rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar for IE/Edge */
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Webkit */
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    flex-shrink: 0;
+  }
+
   .massive-title { font-size: 3rem; line-height: 1.25; }
   .section-title { font-size: 2.2rem; }
   .watermark { font-size: 3.5rem; top: -0.8rem; }
