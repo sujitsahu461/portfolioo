@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', init);
 function init() {
   setupNavigation();
   setupScrollProgress();
+  setupFramerScrollScene();
+  // Scroll reveals handled by animations.js (GSAP ScrollTrigger)
   setupProjectCards();
   setupSmoothScroll();
   setupAnalyticsTracking();
@@ -50,6 +52,38 @@ function setupScrollProgress() {
     progressBar.style.width = scrolled + '%';
   });
 }
+
+// ===== FRAMER-STYLE SCROLL SCENE =====
+function setupFramerScrollScene() {
+  const scene = document.querySelector('.framer-scroll-scene');
+  if (!scene) return;
+
+  let rafId = null;
+
+  const updateScene = () => {
+    rafId = null;
+
+    const scrollHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const progress = Math.min(window.scrollY / scrollHeight, 1);
+    const offset = window.scrollY * 0.03;
+    const parallax = window.scrollY * 0.08;
+
+    scene.style.setProperty('--scroll-progress', progress.toFixed(4));
+    scene.style.setProperty('--scroll-offset', `${offset.toFixed(2)}px`);
+    scene.style.setProperty('--scroll-parallax', `${parallax.toFixed(2)}px`);
+  };
+
+  const requestUpdate = () => {
+    if (rafId !== null) return;
+    rafId = window.requestAnimationFrame(updateScene);
+  };
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  updateScene();
+}
+
+// ===== SCROLL REVEALS (moved to animations.js — GSAP ScrollTrigger) =====
 
 // ===== PROJECT CARDS MODAL =====
 function setupProjectCards() {
@@ -144,6 +178,63 @@ function setupProjectCards() {
       document.body.style.overflow = 'hidden';
     });
   });
+
+  // Global handler for Experience Details Modal
+  window.openExpModal = function(expKey) {
+    const expData = {
+      'mcl': {
+        title: 'Web Developer — Mahanadi Coalfields Ltd',
+        desc: 'Role: Web Developer Intern (Jun 2026 - Present · 2 mos, Sambalpur, Odisha, India · On-site)\n\nConstructing responsive web applications, operational data portals, and software tools for industrial workflows at Mahanadi Coalfields Ltd. Implementing scalable frontend layouts, secure backend API integrations, and robust database systems tailored for industrial operations.',
+        tech: ['Web Development', 'Full-Stack Development', 'Industrial Systems', 'Database Systems', 'Frontend & Backend'],
+        link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/'
+      },
+      'eduskills-prompt': {
+        title: 'Prompt Engineer — EduSkills Foundation®',
+        desc: 'Role: Prompt Engineer Virtual Intern (Apr 2026 - Jun 2026 · 3 mos, Bhubaneswar, Odisha · Remote)\n\nCompleted a 10-week Prompt Engineering for AI Virtual Internship by EduSkills in collaboration with AICTE and the Ministry of Education. Gained hands-on exposure to Generative AI, Large Language Models (LLMs), prompt optimization, context engineering, and AI-driven problem solving.',
+        tech: ['Artificial Intelligence (AI)', 'Context Engineering', 'Generative AI', 'Prompt Engineering', 'LLM Optimization'],
+        link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
+      },
+      'eduskills-python': {
+        title: 'Python Developer — EduSkills Foundation®',
+        desc: 'Role: Python Full Stack Virtual Intern (Jan 2026 - Mar 2026 · 3 mos, Bhubaneswar, Odisha · Remote)\n\nCompleted a 10-week Python Full Stack Development Virtual Internship under AICTE, EduSkills, and National Internship Portal (Jan–Mar 2026). Gained hands-on experience in FastAPI, REST API development, database integration, authentication, and React basics. Built and deployed full-stack projects, including an in-memory cache with TTL.',
+        tech: ['Python', 'FastAPI', 'React.js', 'REST APIs', 'Database Integration', 'Authentication', 'In-Memory Cache (TTL)'],
+        link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
+      },
+      'preppright': {
+        title: 'Cyber Security Intern — PreppRight EdTech Pvt. Ltd.',
+        desc: 'Role: Cyber Security Intern (Jun 2025 - Jul 2025 · 2 mos, New Delhi · Remote)\n\nCompleted Cyber Security training at Preppright EdTech Pvt. Ltd., New Delhi (June–July 2025). Gained hands-on knowledge of network security, ethical hacking fundamentals, vulnerability assessment, and basic penetration testing. Worked with tools and techniques for threat analysis, risk mitigation, and securing systems against cyber attacks.',
+        tech: ['Network Security', 'Ethical Hacking', 'Vulnerability Assessment', 'Penetration Testing', 'Threat Analysis', 'Risk Mitigation'],
+        link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
+      },
+      'cttc': {
+        title: 'AI / ML Intern — Central Tool Room & Training Centre (CTTC MSME)',
+        desc: 'Role: AI/ML Intern (May 2025 - Jun 2025 · 2 mos, Bhubaneswar, Odisha, India · On-site)\n\nCompleted an AI/ML internship at Central Tool Room and Training Centre (CTTC, Govt. of India). Gained hands-on experience in data preprocessing, feature engineering, and model building using Python, NumPy, Pandas, Matplotlib, and Scikit-learn. Implemented algorithms like Linear Regression, Decision Trees, and KNN, evaluating models using accuracy and confusion matrix on real-world datasets.',
+        tech: ['Artificial Intelligence (AI)', 'Data Visualization', 'Python', 'NumPy & Pandas', 'Scikit-learn', 'KNN & Decision Trees', 'Confusion Matrix'],
+        link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
+      }
+    };
+
+    const data = expData[expKey];
+    if (!data) return;
+
+    const modal = document.getElementById('projectModal');
+    if (!modal) return;
+
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalDesc').textContent = data.desc;
+    
+    const githubBtn = document.getElementById('modalGithub');
+    if (githubBtn) {
+      githubBtn.setAttribute('href', data.link);
+      githubBtn.innerHTML = '<i class="fab fa-linkedin"></i> View Certification / Profile';
+    }
+
+    const techHtml = data.tech.map(t => `<span>${t}</span>`).join('');
+    document.getElementById('modalTech').innerHTML = techHtml;
+
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  };
 
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -459,7 +550,7 @@ function setupLegalModal() {
         
         <h4>1. Personal Information Collection</h4>
         <p>This Site is a static landing page built strictly for showcasing professional capabilities. We do not maintain any backend registration database, newsletter sign-up sheets, or interactive forms that capture your personal identifying details (PII) such as your name, phone number, physical address, or credentials.
-        <br>If you choose to contact me via the email link provided (<a href="mailto:smartsujit7334@gmail.com" class="legal-email">smartsujit7334@gmail.com</a>), the information you provide (name, email address, message body) will be used solely to communicate with you regarding your inquiry. This data is never rented, sold, or shared with third parties.</p>
+        <br>If you choose to contact me via the email link provided (<a href="mailto:sujitkumarsahu7334@gmail.com" class="legal-email">sujitkumarsahu7334@gmail.com</a>), the information you provide (name, email address, message body) will be used solely to communicate with you regarding your inquiry. This data is never rented, sold, or shared with third parties.</p>
         
         <h4>2. Persistent User Preferences (Local Storage)</h4>
         <p>To deliver a consistent interface experience, this Site uses browser Local Storage (<code>localStorage</code>) to save and persist your color theme selection (dark mode vs. light mode). This configuration is stored locally on your physical device, is not transmitted to our servers or third-party databases, and can be cleared at any time by clearing your browser's site settings or cache.</p>
@@ -471,7 +562,7 @@ function setupLegalModal() {
         <p>Our static files are hosted and deployed via modern cloud architecture (e.g., Vercel / GitHub). The hosting providers automatically log standard request headers (such as IP address, browser user-agent, and timestamp) to identify security threats, mitigate DDoS attacks, and verify server health. These logs are maintained and secured directly by the hosting platform in compliance with global security regulations.</p>
         
         <h4>5. Compliance with Global Frameworks (GDPR & CCPA)</h4>
-        <p>Even though this Site is a personal portfolio, I strive to align with global privacy rules. You have the right to request access to, correction of, or permanent deletion of any email correspondence you send to me. For any data protection requests, please contact me directly at <a href="mailto:smartsujit7334@gmail.com" class="legal-email">smartsujit7334@gmail.com</a>.</p>
+        <p>Even though this Site is a personal portfolio, I strive to align with global privacy rules. You have the right to request access to, correction of, or permanent deletion of any email correspondence you send to me. For any data protection requests, please contact me directly at <a href="mailto:sujitkumarsahu7334@gmail.com" class="legal-email">sujitkumarsahu7334@gmail.com</a>.</p>
       `
     },
     terms: {

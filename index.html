@@ -21,10 +21,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
-  <link rel="stylesheet" href="style.css?v=1.0.2" />
+  <!-- Animation Libraries (GSAP + Lenis) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="style.css?v=1.0.3" />
 </head>
 <body>
   <div id="scrollProgress"></div>
+  <div class="framer-scroll-scene" aria-hidden="true">
+    <div class="framer-scroll-scene__grid"></div>
+    <div class="framer-scroll-scene__orb framer-scroll-scene__orb--one"></div>
+    <div class="framer-scroll-scene__orb framer-scroll-scene__orb--two"></div>
+    <svg class="framer-scroll-scene__svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="framerScrollStroke" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="var(--accent-cyan)" stop-opacity="0.1" />
+          <stop offset="45%" stop-color="white" stop-opacity="0.85" />
+          <stop offset="100%" stop-color="var(--accent-pink)" stop-opacity="0.12" />
+        </linearGradient>
+        <filter id="framerScrollBlur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="8" />
+        </filter>
+      </defs>
+      <g class="framer-scroll-scene__lines">
+        <path d="M-100 220 C 180 90, 360 320, 620 190 S 1040 70, 1330 180 S 1600 310, 1820 140" />
+        <path d="M-120 430 C 140 290, 380 520, 620 410 S 1020 250, 1280 380 S 1520 540, 1740 390" />
+        <path d="M-80 670 C 180 540, 420 760, 680 620 S 1080 460, 1320 590 S 1540 740, 1760 610" />
+      </g>
+      <g class="framer-scroll-scene__nodes">
+        <circle cx="240" cy="180" r="10" />
+        <circle cx="520" cy="270" r="8" />
+        <circle cx="860" cy="190" r="12" />
+        <circle cx="1160" cy="320" r="9" />
+        <circle cx="380" cy="620" r="10" />
+        <circle cx="920" cy="580" r="8" />
+        <circle cx="1330" cy="640" r="11" />
+      </g>
+      <g class="framer-scroll-scene__rings">
+        <circle cx="1140" cy="260" r="150" />
+        <circle cx="460" cy="610" r="190" />
+      </g>
+    </svg>
+  </div>
   
   <nav class="navbar">
     <div class="nav-container">
@@ -34,6 +74,7 @@
           <a href="#hero" class="nav-link active">Home</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#education" class="nav-link">Education</a>
+          <a href="#experience" class="nav-link">Experience</a>
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#certificates" class="nav-link">Certificates</a>
           <a href="#work" class="nav-link">Work</a>
@@ -58,6 +99,7 @@
                   <a href="#hero" class="submenu-item">Home</a>
                   <a href="#about" class="submenu-item">About</a>
                   <a href="#education" class="submenu-item">Education</a>
+                  <a href="#experience" class="submenu-item">Experience</a>
                   <a href="#skills" class="submenu-item">Skills</a>
                   <a href="#certificates" class="submenu-item">Certificates</a>
                   <a href="#work" class="submenu-item">Work</a>
@@ -70,7 +112,7 @@
                   <a href="https://github.com/sujitsahu461" target="_blank" class="submenu-item"><i class="fab fa-github"></i> GitHub</a>
                   <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" class="submenu-item"><i class="fab fa-linkedin"></i> LinkedIn</a>
                   <a href="https://www.instagram.com/_sujit_.23?igsh=MWdxNG1jN3pld3RkMw==" target="_blank" class="submenu-item"><i class="fab fa-instagram"></i> Instagram</a>
-                  <a href="mailto:smartsujit7334@gmail.com" class="submenu-item"><i class="fas fa-envelope"></i> Email</a>
+                  <a href="mailto:sujitkumarsahu7334@gmail.com" class="submenu-item"><i class="fas fa-envelope"></i> Email</a>
                 </div>
               </div>
             </div>
@@ -201,6 +243,189 @@
               <h3>Seven Hills Residential School</h3>
               <h4>Senior Secondary Education</h4>
               <span class="timeline-date">Jul 2012 – Jul 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="figma-section dark-alt">
+      <div class="container">
+        <div class="section-title-wrap">
+          <h2 class="section-title">EXPERIENCE</h2>
+          <span class="watermark">CAREER</span>
+        </div>
+        <div class="experience-grid">
+          <!-- 1. Mahanadi Coalfields Ltd -->
+          <div class="experience-card">
+            <div class="experience-badge"><i class="fas fa-building"></i> On-site</div>
+            <div class="experience-header">
+              <div class="company-icon-box"><i class="fas fa-industry"></i></div>
+              <div>
+                <h3 class="role-title">Web Developer</h3>
+                <h4 class="company-name">Mahanadi Coalfields Ltd · Internship</h4>
+              </div>
+            </div>
+            <div class="experience-meta">
+              <span><i class="fas fa-calendar-alt"></i> Jun 2026 – Present · 2 mos</span>
+              <span><i class="fas fa-map-marker-alt"></i> Sambalpur, Odisha, India · On-site</span>
+            </div>
+            <p class="experience-desc">Constructing responsive web applications, operational data portals, and software tools for industrial workflows. Implementing scalable frontend layouts, secure backend API integrations, and robust database systems.</p>
+            <div class="experience-tags">
+              <span>Web Development</span>
+              <span>Full-Stack Development</span>
+              <span>Industrial Automation</span>
+              <span>Database Systems</span>
+            </div>
+            <div class="experience-actions">
+              <button class="btn btn-outline btn-sm exp-btn" onclick="openExpModal('mcl')">
+                <i class="fas fa-info-circle"></i> View Internship Details
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. EduSkills Foundation - Prompt Engineer -->
+          <div class="experience-card">
+            <div class="experience-badge remote-badge"><i class="fas fa-laptop-house"></i> Remote</div>
+            <div class="experience-header">
+              <div class="company-icon-box eduskills-icon"><i class="fas fa-robot"></i></div>
+              <div>
+                <h3 class="role-title">Prompt Engineer</h3>
+                <h4 class="company-name">EduSkills Foundation® · Virtual Internship</h4>
+              </div>
+            </div>
+            <div class="experience-meta">
+              <span><i class="fas fa-calendar-alt"></i> Apr 2026 – Jun 2026 · 3 mos</span>
+              <span><i class="fas fa-map-marker-alt"></i> Bhubaneswar, Odisha, India · Remote</span>
+            </div>
+            <p class="experience-desc">Completed 10-week Prompt Engineering for AI Virtual Internship by EduSkills in collaboration with AICTE and the Ministry of Education. Gained hands-on exposure to Generative AI, Large Language Models (LLMs), prompt optimization, and AI-driven problem solving.</p>
+            <div class="exp-cert-box">
+              <i class="fas fa-award cert-box-icon"></i>
+              <div>
+                <span class="cert-box-title">AI Prompt Engineering Virtual Internship</span>
+                <span class="cert-box-issuer">EduSkills & AICTE · Ministry of Education</span>
+              </div>
+            </div>
+            <div class="experience-tags">
+              <span>Artificial Intelligence (AI)</span>
+              <span>Context Engineering</span>
+              <span>Generative AI</span>
+              <span>Prompt Engineering</span>
+              <span>+6 Skills</span>
+            </div>
+            <div class="experience-actions">
+              <button class="btn btn-outline btn-sm exp-btn" onclick="openExpModal('eduskills-prompt')">
+                <i class="fas fa-certificate"></i> View Certificate & Info
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. EduSkills Foundation - Python Developer -->
+          <div class="experience-card">
+            <div class="experience-badge remote-badge"><i class="fas fa-laptop-house"></i> Remote</div>
+            <div class="experience-header">
+              <div class="company-icon-box eduskills-icon"><i class="fab fa-python"></i></div>
+              <div>
+                <h3 class="role-title">Python Developer</h3>
+                <h4 class="company-name">EduSkills Foundation® · Virtual Internship</h4>
+              </div>
+            </div>
+            <div class="experience-meta">
+              <span><i class="fas fa-calendar-alt"></i> Jan 2026 – Mar 2026 · 3 mos</span>
+              <span><i class="fas fa-map-marker-alt"></i> Bhubaneswar, Odisha, India · Remote</span>
+            </div>
+            <p class="experience-desc">Completed a 10-week Python Full Stack Development Virtual Internship under AICTE, EduSkills, and National Internship Portal. Gained hands-on experience in FastAPI, REST API development, DB integration, authentication, and React. Built an in-memory cache with TTL.</p>
+            <div class="exp-cert-box">
+              <i class="fas fa-certificate cert-box-icon"></i>
+              <div>
+                <span class="cert-box-title">Python Full Stack Internship Certificate</span>
+                <span class="cert-box-issuer">EduSkills, AICTE & National Internship Portal</span>
+              </div>
+            </div>
+            <div class="experience-tags">
+              <span>Python</span>
+              <span>React.js</span>
+              <span>FastAPI</span>
+              <span>REST APIs</span>
+              <span>In-Memory Cache (TTL)</span>
+            </div>
+            <div class="experience-actions">
+              <button class="btn btn-outline btn-sm exp-btn" onclick="openExpModal('eduskills-python')">
+                <i class="fas fa-certificate"></i> View Certificate & Info
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. PreppRight EdTech -->
+          <div class="experience-card">
+            <div class="experience-badge remote-badge"><i class="fas fa-laptop-house"></i> Remote</div>
+            <div class="experience-header">
+              <div class="company-icon-box preppright-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <h3 class="role-title">Cyber Security Intern</h3>
+                <h4 class="company-name">PreppRight EdTech Pvt. Ltd. · Internship</h4>
+              </div>
+            </div>
+            <div class="experience-meta">
+              <span><i class="fas fa-calendar-alt"></i> Jun 2025 – Jul 2025 · 2 mos</span>
+              <span><i class="fas fa-map-marker-alt"></i> New Delhi · Remote</span>
+            </div>
+            <p class="experience-desc">Completed Cyber Security training at Preppright EdTech Pvt. Ltd. Gained hands-on knowledge of network security, ethical hacking fundamentals, vulnerability assessment, threat analysis, risk mitigation, and securing systems against cyber attacks.</p>
+            <div class="exp-cert-box">
+              <i class="fas fa-user-shield cert-box-icon"></i>
+              <div>
+                <span class="cert-box-title">Cyber Security Training Certificate</span>
+                <span class="cert-box-issuer">PreppRight EdTech Pvt. Ltd.</span>
+              </div>
+            </div>
+            <div class="experience-tags">
+              <span>Network Security</span>
+              <span>Ethical Hacking</span>
+              <span>Vulnerability Assessment</span>
+              <span>Penetration Testing</span>
+              <span>Risk Mitigation</span>
+            </div>
+            <div class="experience-actions">
+              <button class="btn btn-outline btn-sm exp-btn" onclick="openExpModal('preppright')">
+                <i class="fas fa-shield-alt"></i> View Certificate & Info
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. Central Tool Room & Training Centre (CTTC MSME) -->
+          <div class="experience-card">
+            <div class="experience-badge"><i class="fas fa-building"></i> On-site</div>
+            <div class="experience-header">
+              <div class="company-icon-box cttc-icon"><i class="fas fa-brain"></i></div>
+              <div>
+                <h3 class="role-title">AI / ML Intern</h3>
+                <h4 class="company-name">Central Tool Room & Training Centre (MSME, Govt. of India)</h4>
+              </div>
+            </div>
+            <div class="experience-meta">
+              <span><i class="fas fa-calendar-alt"></i> May 2025 – Jun 2025 · 2 mos</span>
+              <span><i class="fas fa-map-marker-alt"></i> Bhubaneswar, Odisha, India · On-site</span>
+            </div>
+            <p class="experience-desc">Completed an AI/ML internship at CTTC. Gained hands-on experience in data preprocessing, feature engineering, and model building using Python, NumPy, Pandas, Matplotlib, and Scikit-learn (Linear Regression, Decision Trees, KNN, Confusion Matrix).</p>
+            <div class="exp-cert-box">
+              <i class="fas fa-microchip cert-box-icon"></i>
+              <div>
+                <span class="cert-box-title">AI / ML Training Certificate</span>
+                <span class="cert-box-issuer">CTTC (MSME, Government of India)</span>
+              </div>
+            </div>
+            <div class="experience-tags">
+              <span>Artificial Intelligence (AI)</span>
+              <span>Data Visualization</span>
+              <span>Scikit-learn</span>
+              <span>NumPy & Pandas</span>
+              <span>+5 Skills</span>
+            </div>
+            <div class="experience-actions">
+              <button class="btn btn-outline btn-sm exp-btn" onclick="openExpModal('cttc')">
+                <i class="fas fa-award"></i> View Certificate & Info
+              </button>
             </div>
           </div>
         </div>
@@ -379,7 +604,7 @@
         </div>
         <p class="contact-subtitle">Have a project in mind or want to discuss security? My inbox is always open.</p>
         
-        <a href="mailto:smartsujit7334@gmail.com" class="massive-email">smartsujit7334<br/>@gmail.com</a>
+        <a href="mailto:sujitkumarsahu7334@gmail.com" class="massive-email">sujitkumarsahu7334<br/>@gmail.com</a>
         
         <div class="social-links-large">
           <a href="https://github.com/sujitsahu461" target="_blank"><i class="fab fa-github"></i> GITHUB</a>
@@ -416,7 +641,7 @@
 
   <!-- Project Modal -->
   <div class="modal" id="projectModal">
-    <div class="modal-content figma-modal">
+    <div class="modal-content figma-modal" data-lenis-prevent>
       <button class="modal-close">&times;</button>
       <div class="modal-body">
         <h3 id="modalTitle" class="modal-title"></h3>
@@ -431,7 +656,7 @@
 
   <!-- Legal Modal -->
   <div class="modal" id="legalModal">
-    <div class="modal-content figma-modal legal-modal-content">
+    <div class="modal-content figma-modal legal-modal-content" data-lenis-prevent>
       <button class="modal-close" id="legalModalClose">&times;</button>
       <div class="modal-body">
         <h3 id="legalModalTitle" class="modal-title"></h3>
@@ -442,7 +667,7 @@
 
   <!-- Certificates Modal -->
   <div class="modal" id="certsModal">
-    <div class="modal-content figma-modal certs-modal-content">
+    <div class="modal-content figma-modal certs-modal-content" data-lenis-prevent>
       <button class="modal-close" id="certsModalClose">&times;</button>
       <div class="modal-body">
         <h3 class="modal-title">Featured Certifications</h3>
@@ -459,6 +684,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=1.0.1"></script>
+  <script src="script.js?v=1.0.2"></script>
+  <script src="animations.js?v=1.0.0" defer></script>
 </body>
 </html>
