@@ -300,10 +300,10 @@
               <span><i class="fas fa-map-marker-alt"></i> Bhubaneswar, Odisha, India · Remote</span>
             </div>
             <p class="experience-desc">Completed 10-week Prompt Engineering for AI Virtual Internship by EduSkills in collaboration with AICTE and the Ministry of Education. Gained hands-on exposure to Generative AI, Large Language Models (LLMs), prompt optimization, and AI-driven problem solving.</p>
-            <div class="exp-cert-box">
+            <div class="exp-cert-box" onclick="openExpModal('eduskills-prompt')" role="button" tabindex="0">
               <i class="fas fa-award cert-box-icon"></i>
               <div>
-                <span class="cert-box-title">AI Prompt Engineering Virtual Internship</span>
+                <span class="cert-box-title">AI Prompt Engineering Virtual Internship <i class="fas fa-external-link-alt" style="font-size: 0.75rem; color: var(--accent-cyan); margin-left: 4px;"></i></span>
                 <span class="cert-box-issuer">EduSkills & AICTE · Ministry of Education</span>
               </div>
             </div>
@@ -336,10 +336,10 @@
               <span><i class="fas fa-map-marker-alt"></i> Bhubaneswar, Odisha, India · Remote</span>
             </div>
             <p class="experience-desc">Completed a 10-week Python Full Stack Development Virtual Internship under AICTE, EduSkills, and National Internship Portal. Gained hands-on experience in FastAPI, REST API development, DB integration, authentication, and React. Built an in-memory cache with TTL.</p>
-            <div class="exp-cert-box">
+            <div class="exp-cert-box" onclick="openExpModal('eduskills-python')" role="button" tabindex="0">
               <i class="fas fa-certificate cert-box-icon"></i>
               <div>
-                <span class="cert-box-title">Python Full Stack Internship Certificate</span>
+                <span class="cert-box-title">Python Full Stack Internship Certificate <i class="fas fa-external-link-alt" style="font-size: 0.75rem; color: var(--accent-cyan); margin-left: 4px;"></i></span>
                 <span class="cert-box-issuer">EduSkills, AICTE & National Internship Portal</span>
               </div>
             </div>
@@ -372,10 +372,10 @@
               <span><i class="fas fa-map-marker-alt"></i> New Delhi · Remote</span>
             </div>
             <p class="experience-desc">Completed Cyber Security training at Preppright EdTech Pvt. Ltd. Gained hands-on knowledge of network security, ethical hacking fundamentals, vulnerability assessment, threat analysis, risk mitigation, and securing systems against cyber attacks.</p>
-            <div class="exp-cert-box">
+            <div class="exp-cert-box" onclick="openExpModal('preppright')" role="button" tabindex="0">
               <i class="fas fa-user-shield cert-box-icon"></i>
               <div>
-                <span class="cert-box-title">Cyber Security Training Certificate</span>
+                <span class="cert-box-title">Cyber Security Training Certificate <i class="fas fa-external-link-alt" style="font-size: 0.75rem; color: var(--accent-cyan); margin-left: 4px;"></i></span>
                 <span class="cert-box-issuer">PreppRight EdTech Pvt. Ltd.</span>
               </div>
             </div>
@@ -408,10 +408,10 @@
               <span><i class="fas fa-map-marker-alt"></i> Bhubaneswar, Odisha, India · On-site</span>
             </div>
             <p class="experience-desc">Completed an AI/ML internship at CTTC. Gained hands-on experience in data preprocessing, feature engineering, and model building using Python, NumPy, Pandas, Matplotlib, and Scikit-learn (Linear Regression, Decision Trees, KNN, Confusion Matrix).</p>
-            <div class="exp-cert-box">
+            <div class="exp-cert-box" onclick="openExpModal('cttc')" role="button" tabindex="0">
               <i class="fas fa-microchip cert-box-icon"></i>
               <div>
-                <span class="cert-box-title">AI / ML Training Certificate</span>
+                <span class="cert-box-title">AI / ML Training Certificate <i class="fas fa-external-link-alt" style="font-size: 0.75rem; color: var(--accent-cyan); margin-left: 4px;"></i></span>
                 <span class="cert-box-issuer">CTTC (MSME, Government of India)</span>
               </div>
             </div>
@@ -639,12 +639,19 @@
     </div>
   </footer>
 
-  <!-- Project Modal -->
+  <!-- Project & Experience Modal -->
   <div class="modal" id="projectModal">
     <div class="modal-content figma-modal" data-lenis-prevent>
       <button class="modal-close">&times;</button>
       <div class="modal-body">
         <h3 id="modalTitle" class="modal-title"></h3>
+        
+        <!-- Certificate Image Container -->
+        <div id="modalImageContainer" style="display:none; margin: 16px 0; text-align: center;">
+          <img id="modalImage" src="" alt="Internship Certificate" style="max-width: 100%; max-height: 480px; border-radius: 12px; border: 1px solid var(--accent-cyan); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.25); cursor: pointer; transition: transform 0.3s ease;" onclick="window.open(this.src, '_blank')" title="Click to open full high-res image in new tab" />
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px;"><i class="fas fa-search-plus"></i> Tap / click certificate image to open full resolution</p>
+        </div>
+
         <p id="modalDesc" class="modal-desc"></p>
         <div class="modal-tech" id="modalTech"></div>
         <div class="modal-actions">
@@ -684,7 +691,12 @@
     </div>
   </div>
 
-  <script src="script.js?v=1.0.2"></script>
-  <script src="animations.js?v=1.0.0" defer></script>
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Scroll back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js?v=1.0.3"></script>
+  <script src="animations.js?v=1.0.1" defer></script>
 </body>
 </html>

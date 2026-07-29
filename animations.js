@@ -54,6 +54,7 @@
     initContactReveal();
     initQuoteReveal();
     initScrollProgress();
+    initBackToTop();
 
     // Refresh ScrollTrigger after all dynamic content is rendered
     // (certificates are rendered dynamically by script.js)
@@ -209,133 +210,183 @@
   }
 
   // =====================================================
-  // 4. SECTION REVEALS (titles, text, highlight items)
+  // 4. REVERSE WATERFALL SECTION REVEALS
   // =====================================================
   function initSectionReveals() {
-    // Section title wraps
+    // Section title wraps — Reverse Waterfall Rise
     gsap.utils.toArray('.section-title-wrap').forEach(el => {
       gsap.from(el, {
         scrollTrigger: {
           trigger: el,
-          start: 'top 85%',
+          start: 'top 88%',
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 40,
-        duration: 0.8,
+        y: 60,
+        filter: 'blur(6px)',
+        duration: 0.9,
         ease: 'power3.out',
       });
     });
 
-    // About text paragraphs — staggered
+    // About text paragraphs — Reverse Stagger (bottom-up sequence)
     const aboutTexts = gsap.utils.toArray('.about-text p');
     if (aboutTexts.length) {
       gsap.from(aboutTexts, {
         scrollTrigger: {
           trigger: '.about-text',
-          start: 'top 82%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 35,
-        stagger: 0.12,
-        duration: 0.8,
+        y: 50,
+        stagger: {
+          amount: 0.4,
+          from: 'end' // Reverse waterfall
+        },
+        duration: 0.85,
         ease: 'power3.out',
       });
     }
 
-    // Highlight items — staggered
+    // Highlight items — Reverse Waterfall Elevation
     const highlightItems = gsap.utils.toArray('.highlight-item');
     if (highlightItems.length) {
       gsap.from(highlightItems, {
         scrollTrigger: {
           trigger: '.about-highlights',
-          start: 'top 82%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 35,
-        stagger: 0.1,
-        duration: 0.7,
+        y: 70,
+        scale: 0.92,
+        filter: 'blur(5px)',
+        stagger: {
+          amount: 0.5,
+          from: 'end' // Reverse waterfall
+        },
+        duration: 0.85,
         ease: 'power3.out',
       });
     }
 
-    // Timeline items — staggered
+    // Timeline items (Education) — Reverse Waterfall Stagger
     const timelineItems = gsap.utils.toArray('.timeline-item');
     if (timelineItems.length) {
       gsap.from(timelineItems, {
         scrollTrigger: {
           trigger: '.timeline',
-          start: 'top 82%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 40,
-        stagger: 0.15,
-        duration: 0.8,
+        y: 75,
+        stagger: {
+          amount: 0.5,
+          from: 'end' // Reverse waterfall
+        },
+        duration: 0.85,
         ease: 'power3.out',
       });
     }
 
-    // Experience cards — staggered reveal
+    // Experience cards — Reverse Waterfall Reveal (All cards stay aligned on the same line)
     const expCards = gsap.utils.toArray('.experience-card');
     if (expCards.length) {
       gsap.fromTo(expCards, 
-        { opacity: 0, y: 35 },
+        { 
+          opacity: 0, 
+          y: 60, 
+          scale: 0.95, 
+          filter: 'blur(4px)' 
+        },
         {
           scrollTrigger: {
             trigger: '.experience-grid',
-            start: 'top 88%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
           opacity: 1,
           y: 0,
-          stagger: 0.1,
-          duration: 0.8,
+          scale: 1,
+          filter: 'blur(0px)',
+          stagger: {
+            amount: 0.45,
+            from: 'end' // Reverse waterfall bottom-up flow
+          },
+          duration: 0.85,
           ease: 'power3.out',
-          clearProps: 'opacity,transform',
+          clearProps: 'opacity,transform,filter',
         }
       );
     }
   }
 
   // =====================================================
-  // 5. CARD STAGGER (skills, projects, certificates)
+  // 5. REVERSE WATERFALL CARD STAGGER (Skills, Projects, Certificates)
   // =====================================================
   function initCardStagger() {
-    // Skill cards
+    // Skill cards — Reverse Waterfall Grid Stagger (All cards aligned on same line)
     const skillCards = gsap.utils.toArray('.skill-card');
     if (skillCards.length) {
-      gsap.from(skillCards, {
-        scrollTrigger: {
-          trigger: '.skills-grid',
-          start: 'top 82%',
-          toggleActions: 'play none none none',
+      gsap.fromTo(skillCards,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
+          filter: 'blur(4px)'
         },
-        opacity: 0,
-        y: 45,
-        stagger: 0.08,
-        duration: 0.7,
-        ease: 'power3.out',
-      });
+        {
+          scrollTrigger: {
+            trigger: '.skills-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: 'blur(0px)',
+          stagger: {
+            amount: 0.5,
+            from: 'end' // Reverse waterfall
+          },
+          duration: 0.85,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform,filter'
+        }
+      );
     }
 
-    // Project cards
+    // Project cards — Reverse Waterfall Grid Elevation (All cards aligned on same line)
     const projectCards = gsap.utils.toArray('.project-card');
     if (projectCards.length) {
-      gsap.from(projectCards, {
-        scrollTrigger: {
-          trigger: '.projects-grid',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
+      gsap.fromTo(projectCards,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
+          filter: 'blur(4px)'
         },
-        opacity: 0,
-        y: 50,
-        stagger: 0.08,
-        duration: 0.7,
-        ease: 'power3.out',
-      });
+        {
+          scrollTrigger: {
+            trigger: '.projects-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: 'blur(0px)',
+          stagger: {
+            amount: 0.55,
+            from: 'end' // REVERSE WATERFALL STAGGER
+          },
+          duration: 0.85,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform,filter'
+        }
+      );
     }
 
     // Certificate cards (dynamically rendered — use MutationObserver fallback)
@@ -344,7 +395,7 @@
 
   /**
    * Certificate cards are rendered dynamically by script.js.
-   * We observe the container and trigger animations once cards appear.
+   * We observe the container and trigger Reverse Waterfall animations once cards appear.
    */
   function initCertCardAnimations() {
     const certsContainer = document.getElementById('certsGridPage');
@@ -354,18 +405,32 @@
       const certCards = gsap.utils.toArray('.cert-card-page');
       if (!certCards.length) return;
 
-      gsap.from(certCards, {
-        scrollTrigger: {
-          trigger: certsContainer,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
+      gsap.fromTo(certCards,
+        {
+          opacity: 0,
+          y: 80,
+          scale: 0.92,
+          filter: 'blur(5px)'
         },
-        opacity: 0,
-        y: 45,
-        stagger: 0.06,
-        duration: 0.7,
-        ease: 'power3.out',
-      });
+        {
+          scrollTrigger: {
+            trigger: certsContainer,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: 'blur(0px)',
+          stagger: {
+            amount: 0.6,
+            from: 'end' // REVERSE WATERFALL STAGGER
+          },
+          duration: 0.85,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform,filter'
+        }
+      );
     };
 
     // If cards already exist, animate now
@@ -576,13 +641,13 @@
   }
 
   // =====================================================
-  // 11. CONTACT SECTION REVEAL
+  // 11. REVERSE WATERFALL CONTACT SECTION REVEAL
   // =====================================================
   function initContactReveal() {
     const contactSection = document.querySelector('#contact');
     if (!contactSection) return;
 
-    // Contact subtitle
+    // Contact subtitle — Reverse Waterfall Rise
     const subtitle = contactSection.querySelector('.contact-subtitle');
     if (subtitle) {
       gsap.from(subtitle, {
@@ -592,13 +657,14 @@
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 30,
-        duration: 0.7,
+        y: 50,
+        filter: 'blur(4px)',
+        duration: 0.8,
         ease: 'power3.out',
       });
     }
 
-    // Massive email
+    // Massive email — Reverse Waterfall Lift
     const email = contactSection.querySelector('.massive-email');
     if (email) {
       gsap.from(email, {
@@ -608,14 +674,15 @@
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 40,
-        scale: 0.96,
-        duration: 0.9,
+        y: 60,
+        scale: 0.94,
+        filter: 'blur(5px)',
+        duration: 0.95,
         ease: 'power3.out',
       });
     }
 
-    // Social links — staggered
+    // Social links — Reverse Waterfall Stagger
     const socialLinks = gsap.utils.toArray('.social-links-large a');
     if (socialLinks.length) {
       gsap.from(socialLinks, {
@@ -625,16 +692,19 @@
           toggleActions: 'play none none none',
         },
         opacity: 0,
-        y: 25,
-        stagger: 0.1,
-        duration: 0.6,
+        y: 45,
+        stagger: {
+          amount: 0.4,
+          from: 'end' // Reverse waterfall
+        },
+        duration: 0.75,
         ease: 'power3.out',
       });
     }
   }
 
   // =====================================================
-  // 12. QUOTE SECTION REVEAL
+  // 12. REVERSE WATERFALL QUOTE REVEAL
   // =====================================================
   function initQuoteReveal() {
     const quoteCard = document.querySelector('.quote-card');
@@ -647,9 +717,10 @@
         toggleActions: 'play none none none',
       },
       opacity: 0,
-      y: 35,
-      scale: 0.98,
-      duration: 0.9,
+      y: 65,
+      scale: 0.94,
+      filter: 'blur(6px)',
+      duration: 0.95,
       ease: 'power3.out',
     });
   }
@@ -670,6 +741,33 @@
       },
       width: '100%',
       ease: 'none',
+    });
+  }
+
+  // =====================================================
+  // 14. FLOATING BACK TO TOP BUTTON
+  // =====================================================
+  function initBackToTop() {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+
+    ScrollTrigger.create({
+      start: 'top -300px',
+      onUpdate: (self) => {
+        if (self.scroll() > 300) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
+        }
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      if (lenisInstance) {
+        lenisInstance.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
   }
 

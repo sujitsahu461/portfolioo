@@ -170,7 +170,12 @@ function setupProjectCards() {
       document.getElementById('modalTitle').textContent = data.title;
       document.getElementById('modalDesc').textContent = data.desc;
       document.getElementById('modalGithub').setAttribute('href', data.github);
+      document.getElementById('modalGithub').innerHTML = '<i class="fab fa-github"></i> View Repository';
       
+      // Hide certificate image container for standard projects
+      const imageContainer = document.getElementById('modalImageContainer');
+      if (imageContainer) imageContainer.style.display = 'none';
+
       const techHtml = data.tech.map(t => `<span>${t}</span>`).join('');
       document.getElementById('modalTech').innerHTML = techHtml;
       
@@ -190,24 +195,28 @@ function setupProjectCards() {
       },
       'eduskills-prompt': {
         title: 'Prompt Engineer — EduSkills Foundation®',
+        certImage: 'certificates/eduskills-prompt.jpg',
         desc: 'Role: Prompt Engineer Virtual Intern (Apr 2026 - Jun 2026 · 3 mos, Bhubaneswar, Odisha · Remote)\n\nCompleted a 10-week Prompt Engineering for AI Virtual Internship by EduSkills in collaboration with AICTE and the Ministry of Education. Gained hands-on exposure to Generative AI, Large Language Models (LLMs), prompt optimization, context engineering, and AI-driven problem solving.',
         tech: ['Artificial Intelligence (AI)', 'Context Engineering', 'Generative AI', 'Prompt Engineering', 'LLM Optimization'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
       },
       'eduskills-python': {
         title: 'Python Developer — EduSkills Foundation®',
+        certImage: 'certificates/eduskills-python.jpg',
         desc: 'Role: Python Full Stack Virtual Intern (Jan 2026 - Mar 2026 · 3 mos, Bhubaneswar, Odisha · Remote)\n\nCompleted a 10-week Python Full Stack Development Virtual Internship under AICTE, EduSkills, and National Internship Portal (Jan–Mar 2026). Gained hands-on experience in FastAPI, REST API development, database integration, authentication, and React basics. Built and deployed full-stack projects, including an in-memory cache with TTL.',
         tech: ['Python', 'FastAPI', 'React.js', 'REST APIs', 'Database Integration', 'Authentication', 'In-Memory Cache (TTL)'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
       },
       'preppright': {
         title: 'Cyber Security Intern — PreppRight EdTech Pvt. Ltd.',
+        certImage: 'certificates/preppright.jpg',
         desc: 'Role: Cyber Security Intern (Jun 2025 - Jul 2025 · 2 mos, New Delhi · Remote)\n\nCompleted Cyber Security training at Preppright EdTech Pvt. Ltd., New Delhi (June–July 2025). Gained hands-on knowledge of network security, ethical hacking fundamentals, vulnerability assessment, and basic penetration testing. Worked with tools and techniques for threat analysis, risk mitigation, and securing systems against cyber attacks.',
         tech: ['Network Security', 'Ethical Hacking', 'Vulnerability Assessment', 'Penetration Testing', 'Threat Analysis', 'Risk Mitigation'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
       },
       'cttc': {
         title: 'AI / ML Intern — Central Tool Room & Training Centre (CTTC MSME)',
+        certImage: 'certificates/cttc-aiml.jpg',
         desc: 'Role: AI/ML Intern (May 2025 - Jun 2025 · 2 mos, Bhubaneswar, Odisha, India · On-site)\n\nCompleted an AI/ML internship at Central Tool Room and Training Centre (CTTC, Govt. of India). Gained hands-on experience in data preprocessing, feature engineering, and model building using Python, NumPy, Pandas, Matplotlib, and Scikit-learn. Implemented algorithms like Linear Regression, Decision Trees, and KNN, evaluating models using accuracy and confusion matrix on real-world datasets.',
         tech: ['Artificial Intelligence (AI)', 'Data Visualization', 'Python', 'NumPy & Pandas', 'Scikit-learn', 'KNN & Decision Trees', 'Confusion Matrix'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
@@ -223,10 +232,22 @@ function setupProjectCards() {
     document.getElementById('modalTitle').textContent = data.title;
     document.getElementById('modalDesc').textContent = data.desc;
     
+    // Render Certificate Image if available
+    const imageContainer = document.getElementById('modalImageContainer');
+    const modalImage = document.getElementById('modalImage');
+    if (imageContainer && modalImage) {
+      if (data.certImage) {
+        modalImage.src = data.certImage;
+        imageContainer.style.display = 'block';
+      } else {
+        imageContainer.style.display = 'none';
+      }
+    }
+
     const githubBtn = document.getElementById('modalGithub');
     if (githubBtn) {
       githubBtn.setAttribute('href', data.link);
-      githubBtn.innerHTML = '<i class="fab fa-linkedin"></i> View Certification / Profile';
+      githubBtn.innerHTML = '<i class="fab fa-linkedin"></i> Verify Certification on LinkedIn';
     }
 
     const techHtml = data.tech.map(t => `<span>${t}</span>`).join('');
