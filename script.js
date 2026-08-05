@@ -189,7 +189,8 @@ function setupProjectCards() {
     const expData = {
       'mcl': {
         title: 'Web Developer — Mahanadi Coalfields Ltd',
-        desc: 'Role: Web Developer Intern (Jun 2026 - Present · 2 mos, Sambalpur, Odisha, India · On-site)\n\nConstructing responsive web applications, operational data portals, and software tools for industrial workflows at Mahanadi Coalfields Ltd. Implementing scalable frontend layouts, secure backend API integrations, and robust database systems tailored for industrial operations.',
+        certImage: 'certificates/mcl-internship.jpg',
+        desc: 'Role: Web Developer Intern (Jun 2026 · 1 mo, Sambalpur, Odisha, India · On-site)\n\nCompleted Internship training in System Dept., MCL HQ (01.06.2026 to 30.06.2026). Constructed responsive web applications, operational data portals, and software tools for industrial workflows. Implemented scalable frontend layouts, secure backend API integrations, and robust database systems tailored for industrial operations.',
         tech: ['Web Development', 'Full-Stack Development', 'Industrial Systems', 'Database Systems', 'Frontend & Backend'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/'
       },
@@ -307,7 +308,7 @@ function setupAnalyticsTracking() {
   });
 
   // Track Resume Downloads
-  const resumeBtn = document.querySelector('a[href*="Resume.pdf"]');
+  const resumeBtn = document.querySelector('a[href*="Resume"], a[href*="SUJIT"]');
   if (resumeBtn) {
     resumeBtn.addEventListener('click', () => {
       track('resume_download', 'Engagement', 'Sujit Sahu Resume PDF');
@@ -661,6 +662,13 @@ function setupCertificates() {
   const certsToggleBtn = document.getElementById('certsToggleBtn');
 
   const certificates = [
+    {
+      title: "MCL Web Developer Internship Certificate",
+      issuer: "Mahanadi Coalfields Limited (Coal India)",
+      desc: "Successfully completed Internship training in System Dept., MCL HQ, Sambalpur (01.06.2026 to 30.06.2026).",
+      skills: ["Web Development", "Full-Stack Dev", "Industrial Systems", "Database Systems"],
+      icon: "fas fa-industry"
+    },
     {
       title: "Cisco Cybersecurity Certification",
       issuer: "Cisco Networking Academy",

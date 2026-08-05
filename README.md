@@ -39,7 +39,13 @@ portfolioo/
 ├── script.js             # Navigation logic, active sections, and project modals
 ├── server.js             # Lightweight local development server
 ├── sujit-photo.jpg       # High-resolution widescreen brand mockup centerpiece
-├── Sujit_Kumar_Sahu_Resume.pdf  # Software Developer & AI Engineer PDF Resume
+├── B Tech Resume Format SUJIT.pdf # Software Developer & AI Engineer PDF Resume
+├── certificates/
+│   ├── mcl-internship.jpg       # MCL Web Developer Internship Certificate
+│   ├── eduskills-prompt.jpg
+│   ├── eduskills-python.jpg
+│   ├── preppright.jpg
+│   └── cttc-aiml.jpg
 └── README.md             # Developer documentation
 ```
 
