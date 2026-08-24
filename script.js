@@ -769,3 +769,145 @@ function setupCertificates() {
     });
   }
 }
+
+
+/* =====================================================
+   INTERACTIVE CONNECT HUB — Spotlight & Copy Engine
+   ===================================================== */
+(function initInteractiveConnectHub() {
+  // 1. Mouse-following Spotlight Glow & 3D Tilt Effect
+  const cards = document.querySelectorAll('.spotlight-card');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      if (!reducedMotion) {
+        // Subtle 3D tilt
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // 2. Interactive Clipboard Copy Buttons
+  const copyButtons = document.querySelectorAll('.btn-copy-trigger');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const val = btn.getAttribute('data-copy-val');
+      const label = btn.getAttribute('data-label') || 'Item';
+
+      if (!val) return;
+
+      try {
+        await navigator.clipboard.writeText(val);
+        // Temporary icon swap to checkmark
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check" style="color: var(--accent-green);"></i>';
+        btn.style.borderColor = 'var(--accent-green)';
+
+        showInteractiveToast(`Copied ${label}!`, val);
+
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.style.borderColor = '';
+        }, 2000);
+      } catch (err) {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = val;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showInteractiveToast(`Copied ${label}!`, val);
+      }
+    });
+  });
+
+  // 3. Interactive Quick Topic Chips
+  const topicChips = document.querySelectorAll('.topic-chip');
+  const subjectInput = document.getElementById('messageSubject');
+
+  topicChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      topicChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const subj = chip.getAttribute('data-subject');
+      if (subjectInput && subj) {
+        subjectInput.value = subj;
+        subjectInput.focus();
+      }
+    });
+  });
+})();
+
+// Global Toast Notification Trigger
+let toastTimeout = null;
+function showInteractiveToast(title, desc) {
+  const toast = document.getElementById('interactiveToast');
+  const titleEl = document.getElementById('toastTitle');
+  const descEl = document.getElementById('toastDesc');
+  const progressEl = document.getElementById('toastProgress');
+
+  if (!toast || !titleEl || !descEl) return;
+
+  clearTimeout(toastTimeout);
+
+  titleEl.textContent = title;
+  descEl.textContent = desc;
+
+  if (progressEl) {
+    progressEl.style.transition = 'none';
+    progressEl.style.transform = 'scaleX(1)';
+  }
+
+  toast.classList.add('show');
+
+  // Trigger progress shrink
+  setTimeout(() => {
+    if (progressEl) {
+      progressEl.style.transition = 'transform 2.6s linear';
+      progressEl.style.transform = 'scaleX(0)';
+    }
+  }, 50);
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2800);
+}
+
+// Global Quick Message Transmitter Handler
+function handleQuickMessage(event) {
+  event.preventDefault();
+  const name = document.getElementById('senderName')?.value || '';
+  const email = document.getElementById('senderEmail')?.value || '';
+  const subject = document.getElementById('messageSubject')?.value || 'Inquiry from Portfolio';
+  const body = document.getElementById('messageBody')?.value || '';
+
+  const formattedBody = `Hi Sujit,\n\n${body}\n\n---\nFrom: ${name}\nContact Email: ${email}`;
+  const mailtoUrl = `mailto:sujitkumarsahu7334@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
+
+  showInteractiveToast('Opening Email Draft...', 'Launching your default email client with formatted message!');
+  
+  setTimeout(() => {
+    window.location.href = mailtoUrl;
+  }, 600);
+}
+
+

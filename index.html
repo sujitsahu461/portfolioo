@@ -26,7 +26,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
 
-  <link rel="stylesheet" href="style.css?v=1.0.3" />
+  <link rel="stylesheet" href="style.css?v=2.2.1" />
 </head>
 <body>
   <div id="scrollProgress"></div>
@@ -123,83 +123,165 @@
   </nav>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO / PROFILE -->
     <section id="hero" class="figma-hero futuristic-hero">
       <!-- Glow & Grid Overlays -->
       <div class="hero-cyber-grid"></div>
       <div class="hero-glow-sphere cyan-glow"></div>
       <div class="hero-glow-sphere magenta-glow"></div>
 
-      <div class="container hero-grid">
-        <div class="hero-text-col">
-          <p class="greeting">SUJIT KUMAR SAHU</p>
-          <h1 class="massive-title">
-            CYBERSECURITY<br />
-            <span class="accent-cyan">AI ENGINEER</span><br />
-            <span class="accent-red">DEVELOPER</span>
-          </h1>
-          <p class="hero-desc">
-            Building scalable AI-powered applications, secure digital systems, and modern software solutions that create real-world impact.
-          </p>
-          <div class="hero-buttons">
-            <a href="#work" class="btn btn-primary cyber-btn">DEPLOYED WORK <i class="fas fa-arrow-right"></i></a>
-            <a href="B Tech Resume Format SUJIT.pdf" class="btn btn-outline" target="_blank">RESUME</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat"><span class="stat-number accent-cyan">10+</span><span class="stat-label">Production Repos</span></div>
-            <div class="stat"><span class="stat-number accent-green">100%</span><span class="stat-label">Defense Metrics</span></div>
-          </div>
-        </div>
-        <div class="hero-img-col">
-          <div class="avatar-wrapper cinematic-wrapper">
-            <!-- Main visual centerpiece -->
-            <img src="sujit-photo.jpg" alt="Sujit Kumar Sahu - Cybersecurity AI Engineer" class="floating-avatar cinematic-centerpiece" />
-            
-            <!-- Dynamic floating UX HUD elements (Disabled to showcase image details)
-            <div class="hud-box hud-top-left">
-              <div class="hud-header"><i class="fas fa-shield-alt"></i> Threat Telemetry</div>
-              <div class="hud-body">
-                <code>SYSTEM: DEPLOYED</code>
-                <div class="hud-bar"><span style="width: 94%"></span></div>
-              </div>
-            </div>
-            
-            <div class="hud-box hud-bottom-right">
-              <div class="hud-header"><i class="fas fa-network-wired"></i> Model Status</div>
-              <div class="hud-body">
-                <code>INTEL_NODE: ACTIVE</code>
-                <div class="hud-radar"></div>
-              </div>
-            </div>
-            -->
+      <div class="container profile-hero-layout">
 
-            <!-- Accent glows -->
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
+        <!-- LEFT: Portrait photo + quotes -->
+        <div class="profile-left-col reveal-item" style="--reveal-delay:100ms">
+          <!-- Portrait Frame -->
+          <div class="profile-portrait-frame">
+            <div class="portrait-glow-ring"></div>
+            <img
+              src="sujit-new-photo.jpg"
+              alt="Sujit Kumar Sahu — B.Tech Computer Science student, Cybersecurity & AI Engineer"
+              class="profile-portrait-img"
+              id="profilePortraitImg"
+            />
+            <div class="portrait-accent-dot dot-tl"></div>
+            <div class="portrait-accent-dot dot-br"></div>
+          </div>
+
+          <!-- Punch Line Card -->
+          <div class="profile-punchline-card" role="region" aria-label="Personal Punchline">
+            <div class="punchline-header">
+              <i class="fas fa-quote-left punchline-quote-icon" aria-hidden="true"></i>
+              <span class="punchline-badge"><i class="fas fa-code"></i> PHILOSOPHY</span>
+            </div>
+            <p class="punchline-text">"I don’t just learn technology. I build with it."</p>
+            <div class="punchline-footer">
+              <span class="punchline-author">— Sujit Kumar Sahu</span>
+            </div>
           </div>
         </div>
+
+        <!-- RIGHT: Name, intro, hobbies, location, CTA -->
+        <div class="profile-right-col reveal-item" style="--reveal-delay:200ms">
+          <div class="profile-identity">
+            <p class="profile-tagline">SUJIT KUMAR SAHU</p>
+            <h1 class="profile-name-title">
+              CYBERSECURITY<br />
+              <span class="accent-cyan">AI ENGINEER</span> &amp;
+              <span class="accent-red">DEVELOPER</span>
+            </h1>
+            <p class="profile-intro">
+              B.Tech Computer Science student at GIET University Gunupur, building
+              intentionally <strong>secure systems</strong> and scalable
+              AI-powered applications. Passionate about bridging the gap between
+              cybersecurity and modern software engineering.
+            </p>
+          </div>
+
+          <!-- Stats row -->
+          <div class="profile-stats-row reveal-item" style="--reveal-delay:300ms">
+            <div class="profile-stat">
+              <span class="profile-stat-num accent-cyan">10+</span>
+              <span class="profile-stat-label">Production Repos</span>
+            </div>
+            <div class="profile-stat-divider"></div>
+            <div class="profile-stat">
+              <span class="profile-stat-num accent-green">5+</span>
+              <span class="profile-stat-label">Internships</span>
+            </div>
+            <div class="profile-stat-divider"></div>
+            <div class="profile-stat">
+              <span class="profile-stat-num accent-red">2026</span>
+              <span class="profile-stat-label">Active</span>
+            </div>
+          </div>
+
+          <!-- Hobbies -->
+          <div class="profile-hobbies-section reveal-item" style="--reveal-delay:380ms">
+            <h3 class="profile-section-label"><i class="fas fa-heart" aria-hidden="true"></i> Hobbies &amp; Interests</h3>
+            <div class="profile-hobbies-grid" role="list">
+              <div class="hobby-card" role="listitem" tabindex="0">
+                <span class="hobby-icon" aria-hidden="true">💻</span>
+                <div class="hobby-info">
+                  <span class="hobby-name">Technology</span>
+                  <span class="hobby-desc">Building &amp; exploring new tools</span>
+                </div>
+              </div>
+              <div class="hobby-card" role="listitem" tabindex="0">
+                <span class="hobby-icon" aria-hidden="true">🔐</span>
+                <div class="hobby-info">
+                  <span class="hobby-name">Cybersecurity</span>
+                  <span class="hobby-desc">CTFs &amp; ethical hacking</span>
+                </div>
+              </div>
+              <div class="hobby-card" role="listitem" tabindex="0">
+                <span class="hobby-icon" aria-hidden="true">📚</span>
+                <div class="hobby-info">
+                  <span class="hobby-name">Learning</span>
+                  <span class="hobby-desc">Research &amp; self-improvement</span>
+                </div>
+              </div>
+              <div class="hobby-card" role="listitem" tabindex="0">
+                <span class="hobby-icon" aria-hidden="true">📷</span>
+                <div class="hobby-info">
+                  <span class="hobby-name">Photography</span>
+                  <span class="hobby-desc">Capturing moments &amp; nature</span>
+                </div>
+              </div>
+              <div class="hobby-card" role="listitem" tabindex="0">
+                <span class="hobby-icon" aria-hidden="true">🏏</span>
+                <div class="hobby-info">
+                  <span class="hobby-name">Cricket</span>
+                  <span class="hobby-desc">Team sports &amp; strategy</span>
+                </div>
+              </div>
+              <div class="hobby-card" role="listitem" tabindex="0">
+                <span class="hobby-icon" aria-hidden="true">🎵</span>
+                <div class="hobby-info">
+                  <span class="hobby-name">Music</span>
+                  <span class="hobby-desc">Listening &amp; discovering artists</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="profile-location reveal-item" style="--reveal-delay:440ms">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>Sambalpur, Odisha, India</span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="profile-cta-row reveal-item" style="--reveal-delay:500ms">
+            <a href="#work" class="btn btn-primary cyber-btn">DEPLOYED WORK <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="B Tech Resume Format SUJIT.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">RESUME</a>
+          </div>
+        </div>
+
+
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="figma-section">
       <div class="container">
-        <div class="section-title-wrap">
-          <h2 class="section-title">ABOUT ME</h2>
-          <span class="watermark">INFO</span>
-        </div>
         <div class="about-grid">
+          <!-- Left: title + paragraphs -->
           <div class="about-text">
+            <div class="section-title-wrap" style="margin-bottom:2rem;">
+              <h2 class="section-title">ABOUT ME</h2>
+              <span class="watermark">INFO</span>
+            </div>
             <p>I'm a cybersecurity-focused developer building intentionally secure systems. While most developers add security as an afterthought, I bake it in from day one—because great code isn't just fast or beautiful, it's <strong>bulletproof</strong>.</p>
             <p>Currently pursuing my B.Tech in Computer Science, I'm constantly exploring the intersection of security and scalability. I've spent time in penetration testing, secure backend architecture, cryptography, and full-stack development.</p>
             <p>When I'm not coding, I'm reading security research, participating in CTF competitions, and exploring modern development practices.</p>
           </div>
+          <!-- Right: highlight cards, flush from the very top -->
           <div class="about-highlights">
             <div class="highlight-item">
               <i class="fas fa-shield-alt"></i>
               <div>
                 <h4>Security-First</h4>
-                <p>Threat modeling & secure design</p>
+                <p>Threat modeling &amp; secure design</p>
               </div>
             </div>
             <div class="highlight-item">
@@ -446,28 +528,158 @@
           <h2 class="section-title">MY SKILLS</h2>
           <span class="watermark">TECH</span>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <i class="fas fa-code"></i>
-            <h3>Frontend</h3>
-            <p>HTML5, CSS3, JavaScript, React, Responsive Design</p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-server"></i>
-            <h3>Backend</h3>
-            <p>Node.js, Express, Python, Java, PostgreSQL, MongoDB</p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-lock"></i>
-            <h3>Cybersecurity</h3>
-            <p>Cryptography, Pen Testing, OWASP, Secure Coding</p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-tools"></i>
-            <h3>Tools & DevOps</h3>
-            <p>Git, Docker, Linux, CI/CD, AWS</p>
+
+        <!-- Frontend -->
+        <div class="skill-category">
+          <h3 class="skill-cat-label"><i class="fas fa-code"></i> Frontend</h3>
+          <div class="skill-icons-row">
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+              <span>HTML5</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+              <span>CSS3</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <span>JavaScript</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+              <span>React</span>
+            </div>
           </div>
         </div>
+
+        <!-- Backend -->
+        <div class="skill-category">
+          <h3 class="skill-cat-label"><i class="fas fa-server"></i> Backend</h3>
+          <div class="skill-icons-row">
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+              <span>Python</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+              <span>Node.js</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="icon-invert" />
+              <span>Express</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" />
+              <span>FastAPI</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+              <span>Java</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+              <span>PostgreSQL</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+              <span>MongoDB</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+              <span>MySQL</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="icon-django" />
+              <span>Django</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI / ML -->
+        <div class="skill-category">
+          <h3 class="skill-cat-label"><i class="fas fa-brain"></i> AI / ML</h3>
+          <div class="skill-icons-row">
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" />
+              <span>NumPy</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+              <span>Pandas</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn" />
+              <span>Scikit-learn</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib" />
+              <span>Matplotlib</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cybersecurity -->
+        <div class="skill-category">
+          <h3 class="skill-cat-label"><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+          <div class="skill-icons-row">
+            <div class="skill-badge skill-badge--icon">
+              <i class="fas fa-bug"></i>
+              <span>Pen Testing</span>
+            </div>
+            <div class="skill-badge skill-badge--icon">
+              <i class="fas fa-lock"></i>
+              <span>Cryptography</span>
+            </div>
+            <div class="skill-badge skill-badge--icon">
+              <i class="fas fa-shield-virus"></i>
+              <span>OWASP</span>
+            </div>
+            <div class="skill-badge skill-badge--icon">
+              <i class="fas fa-network-wired"></i>
+              <span>Network Security</span>
+            </div>
+            <div class="skill-badge skill-badge--icon">
+              <i class="fas fa-user-secret"></i>
+              <span>Ethical Hacking</span>
+            </div>
+            <div class="skill-badge skill-badge--icon">
+              <i class="fas fa-search"></i>
+              <span>Vuln Assessment</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools & DevOps -->
+        <div class="skill-category">
+          <h3 class="skill-cat-label"><i class="fas fa-tools"></i> Tools &amp; DevOps</h3>
+          <div class="skill-icons-row">
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+              <span>Git</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="icon-invert" />
+              <span>GitHub</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+              <span>Docker</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
+              <span>Linux</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" />
+              <span>AWS</span>
+            </div>
+            <div class="skill-badge">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" />
+              <span>VS Code</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -602,24 +814,221 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT / CONNECT HUB -->
     <section id="contact" class="figma-section contact-section">
-      <div class="container text-center">
-        <div class="section-title-wrap center-wrap">
+      <div class="container">
+        <div class="section-title-wrap center-wrap text-center">
           <h2 class="section-title">LET'S CONNECT</h2>
           <span class="watermark">CONTACT</span>
         </div>
-        <p class="contact-subtitle">Have a project in mind or want to discuss security? My inbox is always open.</p>
         
-        <a href="mailto:sujitkumarsahu7334@gmail.com" class="massive-email">sujitkumarsahu7334<br/>@gmail.com</a>
-        
-        <div class="social-links-large">
-          <a href="https://github.com/sujitsahu461" target="_blank"><i class="fab fa-github"></i> GITHUB</a>
-          <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
-          <a href="https://www.instagram.com/_sujit_.23?igsh=MWdxNG1jN3pld3RkMw==" target="_blank"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+        <!-- Live Status & Availability Bar -->
+        <div class="connect-status-bar reveal-item">
+          <div class="status-pill status-available">
+            <span class="status-pulse-dot"></span>
+            <span class="status-text">Available for Opportunities &amp; Projects</span>
+          </div>
+          <div class="status-meta">
+            <span class="status-item"><i class="fas fa-map-marker-alt"></i> Sambalpur, Odisha, India</span>
+            <span class="status-separator">•</span>
+            <span class="status-item"><i class="fas fa-clock"></i> IST (UTC+5:30)</span>
+            <span class="status-separator">•</span>
+            <span class="status-item highlight-cyan"><i class="fas fa-bolt"></i> Fast Response: &lt; 24h</span>
+          </div>
         </div>
+
+        <p class="contact-subtitle text-center">Whether you have an exciting engineering opportunity, security project, or just want to say hi — let's build something great together.</p>
+        
+        <!-- Interactive Spotlight Connect Cards -->
+        <div class="interactive-connect-grid" id="interactiveConnectGrid">
+          
+          <!-- 1. LinkedIn Card -->
+          <div class="spotlight-card linkedin-spotlight" data-platform="LinkedIn" data-copy="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a">
+            <div class="spotlight-glow"></div>
+            <div class="spotlight-header">
+              <div class="spotlight-icon-box linkedin-color">
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <div class="spotlight-badge"><i class="fas fa-check-circle"></i> Verified</div>
+            </div>
+            <div class="spotlight-body">
+              <span class="spotlight-label">Professional Network</span>
+              <h3 class="spotlight-title">Sujit Kumar Sahu</h3>
+              <p class="spotlight-desc">Cybersecurity &amp; AI Engineer • Full Stack Developer</p>
+              <div class="spotlight-chips">
+                <span class="s-chip"><i class="fas fa-user-friends"></i> 500+ Connections</span>
+                <span class="s-chip"><i class="fas fa-briefcase"></i> Open to Work</span>
+              </div>
+            </div>
+            <div class="spotlight-actions">
+              <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" rel="noopener noreferrer" class="btn-spotlight btn-spotlight-primary">
+                <span>Connect on LinkedIn</span>
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              <button type="button" class="btn-spotlight btn-spotlight-icon btn-copy-trigger" data-copy-val="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" data-label="LinkedIn URL" aria-label="Copy LinkedIn Profile Link" title="Copy Profile Link">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. GitHub Card -->
+          <div class="spotlight-card github-spotlight" data-platform="GitHub" data-copy="https://github.com/sujitsahu461">
+            <div class="spotlight-glow"></div>
+            <div class="spotlight-header">
+              <div class="spotlight-icon-box github-color">
+                <i class="fab fa-github"></i>
+              </div>
+              <div class="spotlight-badge"><i class="fas fa-code-branch"></i> Active</div>
+            </div>
+            <div class="spotlight-body">
+              <span class="spotlight-label">Code &amp; Repositories</span>
+              <h3 class="spotlight-title">sujitsahu461</h3>
+              <p class="spotlight-desc">Open source projects, AI models, security tools &amp; web apps</p>
+              <div class="spotlight-chips">
+                <span class="s-chip"><i class="fas fa-folder-open"></i> 10+ Repos</span>
+                <span class="s-chip"><i class="fas fa-terminal"></i> Daily Commits</span>
+              </div>
+            </div>
+            <div class="spotlight-actions">
+              <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener noreferrer" class="btn-spotlight btn-spotlight-primary">
+                <span>Explore GitHub</span>
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              <button type="button" class="btn-spotlight btn-spotlight-icon btn-copy-trigger" data-copy-val="https://github.com/sujitsahu461" data-label="GitHub URL" aria-label="Copy GitHub Profile Link" title="Copy Profile Link">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. Direct Email Card -->
+          <div class="spotlight-card email-spotlight" data-platform="Email" data-copy="sujitkumarsahu7334@gmail.com">
+            <div class="spotlight-glow"></div>
+            <div class="spotlight-header">
+              <div class="spotlight-icon-box email-color">
+                <i class="fas fa-envelope-open-text"></i>
+              </div>
+              <div class="spotlight-badge priority-badge"><i class="fas fa-bolt"></i> Priority</div>
+            </div>
+            <div class="spotlight-body">
+              <span class="spotlight-label">Direct Communication</span>
+              <h3 class="spotlight-title">Direct Inbox</h3>
+              <p class="spotlight-desc email-text-truncate">sujitkumarsahu7334@gmail.com</p>
+              <div class="spotlight-chips">
+                <span class="s-chip"><i class="fas fa-shield-alt"></i> Encrypted / Secure</span>
+                <span class="s-chip"><i class="fas fa-reply"></i> &lt; 24h Reply</span>
+              </div>
+            </div>
+            <div class="spotlight-actions">
+              <a href="mailto:sujitkumarsahu7334@gmail.com" class="btn-spotlight btn-spotlight-primary">
+                <span>Send Email</span>
+                <i class="fas fa-paper-plane"></i>
+              </a>
+              <button type="button" class="btn-spotlight btn-spotlight-icon btn-copy-trigger" data-copy-val="sujitkumarsahu7334@gmail.com" data-label="Email Address" aria-label="Copy Email Address" title="Copy Email Address">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. Instagram Card -->
+          <div class="spotlight-card instagram-spotlight" data-platform="Instagram" data-copy="https://www.instagram.com/_sujit_.23">
+            <div class="spotlight-glow"></div>
+            <div class="spotlight-header">
+              <div class="spotlight-icon-box instagram-color">
+                <i class="fab fa-instagram"></i>
+              </div>
+              <div class="spotlight-badge"><i class="fas fa-camera"></i> Social</div>
+            </div>
+            <div class="spotlight-body">
+              <span class="spotlight-label">Social &amp; Updates</span>
+              <h3 class="spotlight-title">@_sujit_.23</h3>
+              <p class="spotlight-desc">Tech moments, photography, updates &amp; direct messages</p>
+              <div class="spotlight-chips">
+                <span class="s-chip"><i class="fas fa-comments"></i> DMs Open</span>
+                <span class="s-chip"><i class="fas fa-camera-retro"></i> Photography</span>
+              </div>
+            </div>
+            <div class="spotlight-actions">
+              <a href="https://www.instagram.com/_sujit_.23?igsh=MWdxNG1jN3pld3RkMw==" target="_blank" rel="noopener noreferrer" class="btn-spotlight btn-spotlight-primary">
+                <span>Follow &amp; DM</span>
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              <button type="button" class="btn-spotlight btn-spotlight-icon btn-copy-trigger" data-copy-val="https://www.instagram.com/_sujit_.23" data-label="Instagram Handle" aria-label="Copy Instagram Link" title="Copy Instagram Link">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick Interactive Message Composer Widget -->
+        <div class="connect-quick-composer reveal-item">
+          <div class="composer-header">
+            <div class="composer-title-wrap">
+              <div class="terminal-dots">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+              </div>
+              <h3 class="composer-title"><i class="fas fa-terminal"></i> Quick Message Transmitter</h3>
+            </div>
+            <span class="composer-hint">Instant direct draft composer</span>
+          </div>
+
+          <div class="composer-body">
+            <div class="topic-chips-row">
+              <span class="topic-label">Quick Topic:</span>
+              <button type="button" class="topic-chip active" data-subject="Job Opportunity / Role Discussion">💼 Hiring / Role</button>
+              <button type="button" class="topic-chip" data-subject="Project Collaboration Inquiry">🤝 Project Collaboration</button>
+              <button type="button" class="topic-chip" data-subject="Cybersecurity / AI Consulting">🛡️ Security / AI</button>
+              <button type="button" class="topic-chip" data-subject="Quick Connect / Hello">👋 Quick Hello</button>
+            </div>
+
+            <form id="quickContactForm" class="composer-form" onsubmit="handleQuickMessage(event)">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="senderName"><i class="fas fa-user"></i> Your Name</label>
+                  <input type="text" id="senderName" class="form-control" placeholder="e.g. Alex Morgan" required />
+                </div>
+                <div class="form-group">
+                  <label for="senderEmail"><i class="fas fa-at"></i> Your Email</label>
+                  <input type="email" id="senderEmail" class="form-control" placeholder="name@company.com" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="messageSubject"><i class="fas fa-tag"></i> Subject</label>
+                <input type="text" id="messageSubject" class="form-control" value="Job Opportunity / Role Discussion" required />
+              </div>
+              <div class="form-group">
+                <label for="messageBody"><i class="fas fa-comment-alt"></i> Message</label>
+                <textarea id="messageBody" class="form-control" rows="3" placeholder="Hi Sujit, I came across your portfolio and would like to discuss..." required></textarea>
+              </div>
+              <div class="composer-footer">
+                <div class="composer-security-badge">
+                  <i class="fas fa-lock"></i> Direct mailto launch • 100% Client-Side
+                </div>
+                <button type="submit" class="btn btn-primary cyber-btn transmit-btn">
+                  <span>TRANSMIT MESSAGE</span>
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </div>
     </section>
+
+    <!-- Floating Global Toast Notification -->
+    <div id="interactiveToast" class="interactive-toast" aria-live="polite" role="status">
+      <div class="toast-content">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <div class="toast-text-wrap">
+          <span class="toast-title" id="toastTitle">Copied!</span>
+          <span class="toast-desc" id="toastDesc">Value copied to clipboard</span>
+        </div>
+      </div>
+      <div class="toast-progress" id="toastProgress"></div>
+    </div>
     
     <!-- DYNAMIC QUOTE SECTION -->
     <section class="quote-section">
@@ -703,7 +1112,7 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="script.js?v=1.0.3"></script>
+  <script src="script.js?v=2.2.1"></script>
   <script src="animations.js?v=1.0.1" defer></script>
 </body>
 </html>

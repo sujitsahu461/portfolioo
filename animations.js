@@ -142,7 +142,7 @@
   }
 
   // =====================================================
-  // 3. HERO ENTRANCE ANIMATIONS
+  // 3. HERO ENTRANCE ANIMATIONS — Profile Section
   // =====================================================
   function initHeroAnimations() {
     const hero = document.querySelector('#hero');
@@ -155,49 +155,56 @@
       }
     });
 
-    // Greeting text
-    tl.from('.greeting', {
+    // Profile tagline
+    tl.from('.profile-tagline', {
       opacity: 0,
       y: 30,
       duration: 0.7,
     }, 0.1);
 
-    // Massive title — line by line via children
-    tl.from('.massive-title', {
+    // Profile title
+    tl.from('.profile-name-title', {
       opacity: 0,
       y: 50,
       duration: 1,
     }, 0.25);
 
-    // Hero description
-    tl.from('.hero-desc', {
+    // Profile intro text
+    tl.from('.profile-intro', {
       opacity: 0,
       y: 30,
       duration: 0.8,
     }, 0.5);
 
-    // Hero buttons — staggered
-    tl.from('.hero-buttons .btn', {
+    // CTA buttons — staggered
+    tl.from('.profile-cta-row .btn', {
       opacity: 0,
       y: 25,
       stagger: 0.12,
       duration: 0.7,
     }, 0.65);
 
-    // Hero stats — staggered
-    tl.from('.hero-stats .stat', {
+    // Stats — staggered
+    tl.from('.profile-stat', {
       opacity: 0,
       y: 20,
       stagger: 0.1,
       duration: 0.6,
     }, 0.8);
 
-    // Hero image — scale reveal (fromTo ensures photo is always fully visible after animation)
-    tl.fromTo('.cinematic-wrapper',
-      { opacity: 0, scale: 1.08 },
+    // Portrait image — scale reveal
+    tl.fromTo('.profile-portrait-frame',
+      { opacity: 0, scale: 1.06 },
       { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' },
-      0.3
+      0.2
     );
+
+    // Punchline card fade in
+    tl.from('.profile-punchline-card', {
+      opacity: 0,
+      y: 18,
+      duration: 0.7,
+    }, 0.55);
 
     // Background glow shapes
     tl.from('.hero-glow-sphere', {
