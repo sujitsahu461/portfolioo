@@ -785,26 +785,25 @@
   // Responds to mouse position with magnetic forces, glowing web lines,
   // and theme-tailored colors for Dark & Light modes. No bubbles.
   function initInteractiveBackground() {
-    if (window.innerWidth < 480) return;
-
-    // Create canvas dynamically
-    const canvas = document.createElement('canvas');
-    canvas.id = 'interactiveBg';
-    canvas.setAttribute('aria-hidden', 'true');
-    document.body.insertBefore(canvas, document.body.firstChild);
-
-    // Hide old framer-scroll-scene (orbs/bubbles)
+    // Hide old framer-scroll-scene (orbs/bubbles) permanently on all devices
     const oldScene = document.querySelector('.framer-scroll-scene');
     if (oldScene) oldScene.style.display = 'none';
+
+    // Avoid duplicate canvas if re-initialized
+    let canvas = document.getElementById('interactiveBg');
+    if (!canvas) {
+      canvas = document.createElement('canvas');
+      canvas.id = 'interactiveBg';
+      canvas.setAttribute('aria-hidden', 'true');
+      document.body.insertBefore(canvas, document.body.firstChild);
+    }
 
     const ctx = canvas.getContext('2d');
     let w, h, dpr;
     let mx = -9999, my = -9999;
-
-    const isMobile = window.innerWidth < 768;
-    const NUM_PARTICLES = isMobile ? 60 : 110;
-    const LINK_DIST = isMobile ? 120 : 160;
-    const MOUSE_RAD = isMobile ? 160 : 230;
+    let numParticles = 32;
+    let linkDist = 90;
+    let mouseRad = 130;
 
     let particles = [];
 
@@ -814,11 +813,12 @@
       }
 
       reset() {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.7;
-        this.vy = (Math.random() - 0.5) * 0.7;
-        this.radius = Math.random() * 2 + 1.2;
+        this.x = Math.random() * (w || window.innerWidth);
+        this.y = Math.random() * (h || window.innerHeight);
+        const speedMultiplier = window.innerWidth < 480 ? 0.45 : 0.65;
+        this.vx = (Math.random() - 0.5) * speedMultiplier;
+        this.vy = (Math.random() - 0.5) * speedMultiplier;
+        this.radius = window.innerWidth < 480 ? Math.random() * 1.5 + 1.0 : Math.random() * 2 + 1.2;
         this.baseAlpha = Math.random() * 0.45 + 0.25;
         this.colorType = Math.random() > 0.35 ? 'cyan' : 'magenta';
       }
@@ -831,16 +831,33 @@
         if (this.x < 0 || this.x > w) this.vx *= -1;
         if (this.y < 0 || this.y > h) this.vy *= -1;
 
-        // Mouse displacement physics
+        // Mouse/Touch displacement physics
         const dx = mx - this.x;
         const dy = my - this.y;
         const dist = Math.hypot(dx, dy);
 
-        if (dist < MOUSE_RAD && dist > 1) {
-          const force = (1 - dist / MOUSE_RAD) * 3.5;
+        if (dist < mouseRad && dist > 1) {
+          const force = (1 - dist / mouseRad) * 3.5;
           this.x -= (dx / dist) * force;
           this.y -= (dy / dist) * force;
         }
+      }
+    }
+
+    function updateConfig() {
+      const width = window.innerWidth;
+      if (width < 480) {
+        numParticles = 32;
+        linkDist = 90;
+        mouseRad = 130;
+      } else if (width < 768) {
+        numParticles = 55;
+        linkDist = 120;
+        mouseRad = 170;
+      } else {
+        numParticles = 105;
+        linkDist = 160;
+        mouseRad = 230;
       }
     }
 
@@ -854,16 +871,39 @@
       canvas.style.height = h + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      particles = Array.from({ length: NUM_PARTICLES }, () => new Particle());
+      updateConfig();
+
+      // Adjust particle count smoothly
+      if (particles.length === 0 || Math.abs(particles.length - numParticles) > 10) {
+        particles = Array.from({ length: numParticles }, () => new Particle());
+      }
     }
 
-    // Mouse and Touch listener
+    // Mouse and Touch listeners (passive for smooth scrolling)
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
     document.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
-    document.addEventListener('touchmove', e => {
-      if (e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; }
+    
+    document.addEventListener('touchstart', e => {
+      if (e.touches && e.touches[0]) {
+        mx = e.touches[0].clientX;
+        my = e.touches[0].clientY;
+      }
     }, { passive: true });
-    document.addEventListener('touchend', () => { mx = -9999; my = -9999; }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+      if (e.touches && e.touches[0]) {
+        mx = e.touches[0].clientX;
+        my = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+      setTimeout(() => { mx = -9999; my = -9999; }, 300);
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', () => {
+      mx = -9999; my = -9999;
+    }, { passive: true });
 
     function isDark() {
       return document.documentElement.getAttribute('data-theme') !== 'light';
@@ -880,12 +920,12 @@
 
       // 1. Draw subtle mouse aura glow
       if (mx > -5000) {
-        const grad = ctx.createRadialGradient(mx, my, 0, mx, my, MOUSE_RAD * 1.3);
+        const grad = ctx.createRadialGradient(mx, my, 0, mx, my, mouseRad * 1.3);
         grad.addColorStop(0, cursorGlowColor);
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(mx, my, MOUSE_RAD * 1.3, 0, Math.PI * 2);
+        ctx.arc(mx, my, mouseRad * 1.3, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -901,8 +941,8 @@
           const dy = p.y - p2.y;
           const dist = Math.hypot(dx, dy);
 
-          if (dist < LINK_DIST) {
-            const alpha = (1 - dist / LINK_DIST) * (dark ? 0.35 : 0.42);
+          if (dist < linkDist) {
+            const alpha = (1 - dist / linkDist) * (dark ? 0.35 : 0.42);
             const strokeColor = p.colorType === 'cyan' ? cyanStroke : pinkStroke;
             ctx.strokeStyle = `rgba(${strokeColor}, ${alpha.toFixed(3)})`;
             ctx.lineWidth = dark ? 1.0 : 1.4;
@@ -919,8 +959,8 @@
           const mdy = my - p.y;
           const mdist = Math.hypot(mdx, mdy);
 
-          if (mdist < MOUSE_RAD) {
-            const mAlpha = (1 - mdist / MOUSE_RAD) * (dark ? 0.7 : 0.75);
+          if (mdist < mouseRad) {
+            const mAlpha = (1 - mdist / mouseRad) * (dark ? 0.7 : 0.75);
             ctx.strokeStyle = `rgba(${cyanStroke}, ${mAlpha.toFixed(3)})`;
             ctx.lineWidth = dark ? 1.6 : 2.0;
             ctx.beginPath();

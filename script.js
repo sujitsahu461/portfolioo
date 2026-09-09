@@ -21,6 +21,8 @@ function init() {
 function setupNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
+  const navMenu = document.querySelector('.nav-menu');
+  let lastActiveId = '';
 
   // Update active link on scroll
   window.addEventListener('scroll', () => {
@@ -28,18 +30,22 @@ function setupNavigation() {
     
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      if (window.scrollY >= sectionTop - 200) {
+      if (window.scrollY >= sectionTop - 220) {
         current = section.getAttribute('id');
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href').slice(1) === current) {
-        link.classList.add('active');
-      }
-    });
-  });
+    if (current && current !== lastActiveId) {
+      lastActiveId = current;
+      navLinks.forEach(link => {
+        const isTarget = link.getAttribute('href').slice(1) === current;
+        link.classList.toggle('active', isTarget);
+        if (isTarget && window.innerWidth <= 768 && navMenu) {
+          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    }
+  }, { passive: true });
 }
 
 // ===== SCROLL PROGRESS =====
