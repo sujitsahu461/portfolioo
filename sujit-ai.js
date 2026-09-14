@@ -74,21 +74,32 @@
 
   // ── Panel Open/Close ──
   function openChat() {
+    if (!panel) init();
+    if (!panel) return;
     isOpen = true;
     panel.classList.add('sai-open');
     document.body.classList.add('sai-chat-open');
-    inputField.focus();
+    const launcher = document.getElementById('sujitAiLauncher');
+    if (launcher) launcher.setAttribute('aria-expanded', 'true');
+    if (inputField) inputField.focus();
     trackEvent('chat_opened');
   }
 
   function closeChat() {
+    if (!panel) return;
     isOpen = false;
     panel.classList.remove('sai-open');
     document.body.classList.remove('sai-chat-open');
+    const launcher = document.getElementById('sujitAiLauncher');
+    if (launcher) launcher.setAttribute('aria-expanded', 'false');
     if (lastTriggerElement) {
       lastTriggerElement.focus();
     }
   }
+
+  // Expose global methods for inline clicks or external scripts
+  window.openSujitAi = openChat;
+  window.closeSujitAi = closeChat;
 
   // ── Render Welcome State ──
   function renderWelcome() {
@@ -543,60 +554,76 @@
   }
 
   // ── Initialize ──
-  function init() {
-    // Create launcher button
-    const launcher = document.createElement('button');
-    launcher.id = 'sujitAiLauncher';
-    launcher.setAttribute('aria-label', 'Open Sujit AI chat assistant');
-    launcher.innerHTML = `
-      <i class="fas fa-robot sai-launcher-icon"></i>
-      <span>Ask Sujit AI</span>
-      <span class="sai-launcher-pulse" aria-hidden="true"></span>
-    `;
-    document.body.appendChild(launcher);
+  let initialized = false;
 
-    // Create chat panel
-    const panelEl = document.createElement('div');
-    panelEl.id = 'sujitAiPanel';
-    panelEl.setAttribute('role', 'dialog');
-    panelEl.setAttribute('aria-label', 'Sujit AI chat assistant');
-    panelEl.setAttribute('aria-modal', 'true');
-    panelEl.innerHTML = `
-      <div class="sai-header">
-        <div class="sai-header-left">
-          <div class="sai-avatar"><i class="fas fa-robot"></i></div>
-          <div class="sai-header-info">
-            <h3>Sujit AI</h3>
-            <p><span class="sai-status-dot"></span>Ask about work, projects & skills</p>
+  function init() {
+    if (initialized) return;
+
+    // 1. Get existing launcher button or create as fallback
+    let launcher = document.getElementById('sujitAiLauncher');
+    if (!launcher) {
+      launcher = document.createElement('button');
+      launcher.id = 'sujitAiLauncher';
+      launcher.type = 'button';
+      launcher.setAttribute('aria-label', 'Open Sujit AI chat assistant');
+      launcher.setAttribute('aria-haspopup', 'dialog');
+      launcher.setAttribute('aria-expanded', 'false');
+      launcher.innerHTML = `
+        <i class="fas fa-robot sai-launcher-icon" aria-hidden="true"></i>
+        <span class="sai-launcher-text">Ask Sujit AI</span>
+        <span class="sai-launcher-pulse" aria-hidden="true"></span>
+      `;
+      document.body.appendChild(launcher);
+    }
+
+    // 2. Get existing chat panel or create as fallback
+    let panelEl = document.getElementById('sujitAiPanel');
+    if (!panelEl) {
+      panelEl = document.createElement('div');
+      panelEl.id = 'sujitAiPanel';
+      panelEl.setAttribute('role', 'dialog');
+      panelEl.setAttribute('aria-label', 'Sujit AI chat assistant');
+      panelEl.setAttribute('aria-modal', 'true');
+      panelEl.setAttribute('data-lenis-prevent', 'true');
+      panelEl.innerHTML = `
+        <div class="sai-header">
+          <div class="sai-header-left">
+            <div class="sai-avatar"><i class="fas fa-robot"></i></div>
+            <div class="sai-header-info">
+              <h3>Sujit AI</h3>
+              <p><span class="sai-status-dot"></span>Ask about work, projects & skills</p>
+            </div>
+          </div>
+          <div class="sai-header-actions">
+            <button class="sai-header-btn sai-clear-btn" type="button" aria-label="Clear conversation" title="Clear conversation">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="sai-header-btn sai-close-btn" type="button" aria-label="Close chat" title="Close">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         </div>
-        <div class="sai-header-actions">
-          <button class="sai-header-btn sai-clear-btn" type="button" aria-label="Clear conversation" title="Clear conversation">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-          <button class="sai-header-btn sai-close-btn" type="button" aria-label="Close chat" title="Close">
-            <i class="fas fa-times"></i>
-          </button>
+        <div class="sai-messages" aria-live="polite" aria-atomic="false" data-lenis-prevent="true"></div>
+        <div class="sai-input-area">
+          <div class="sai-input-row">
+            <textarea
+              class="sai-input-field"
+              placeholder="Ask about Sujit's projects, skills, experience..."
+              rows="1"
+              maxlength="${MAX_MESSAGE_LENGTH}"
+              aria-label="Chat message input"
+            ></textarea>
+            <button class="sai-send-btn" type="button" disabled aria-label="Send message">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+          <div class="sai-char-count">0/${MAX_MESSAGE_LENGTH}</div>
         </div>
-      </div>
-      <div class="sai-messages" aria-live="polite" aria-atomic="false"></div>
-      <div class="sai-input-area">
-        <div class="sai-input-row">
-          <textarea
-            class="sai-input-field"
-            placeholder="Ask about Sujit's projects, skills, experience..."
-            rows="1"
-            maxlength="${MAX_MESSAGE_LENGTH}"
-            aria-label="Chat message input"
-          ></textarea>
-          <button class="sai-send-btn" type="button" disabled aria-label="Send message">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </div>
-        <div class="sai-char-count">0/${MAX_MESSAGE_LENGTH}</div>
-      </div>
-    `;
-    document.body.appendChild(panelEl);
+      `;
+      document.body.appendChild(panelEl);
+    }
+
+    initialized = true;
 
     // Cache DOM references
     panel = panelEl;
@@ -607,79 +634,106 @@
 
     // Prevent external smooth-scroll libraries (Lenis) from intercepting mouse wheel inside chat
     panelEl.setAttribute('data-lenis-prevent', 'true');
-    messagesContainer.setAttribute('data-lenis-prevent', 'true');
+    if (messagesContainer) {
+      messagesContainer.setAttribute('data-lenis-prevent', 'true');
 
-    // Ensure native mouse wheel scroll is completely unobstructed
-    messagesContainer.addEventListener('wheel', (e) => {
-      e.stopPropagation();
-    }, { passive: true });
+      // Native mouse wheel scroll isolation
+      messagesContainer.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+      }, { passive: true });
 
-    // Enable smooth independent scrolling tracking
-    messagesContainer.addEventListener('scroll', () => {
-      const threshold = 60;
-      const distanceFromBottom =
-        messagesContainer.scrollHeight -
-        messagesContainer.scrollTop -
-        messagesContainer.clientHeight;
-      userScrolledUp = distanceFromBottom > threshold;
-    }, { passive: true });
+      // Enable smooth independent scrolling tracking
+      messagesContainer.addEventListener('scroll', () => {
+        const threshold = 60;
+        const distanceFromBottom =
+          messagesContainer.scrollHeight -
+          messagesContainer.scrollTop -
+          messagesContainer.clientHeight;
+        userScrolledUp = distanceFromBottom > threshold;
+      }, { passive: true });
 
-    // Render welcome state
-    renderWelcome();
+      // Render welcome state if empty
+      if (!messagesContainer.querySelector('.sai-welcome') && conversationHistory.length === 0) {
+        renderWelcome();
+      }
+    }
 
     // ── Event Listeners ──
 
-    // Launcher click
-    launcher.addEventListener('click', () => {
+    // Launcher click / tap
+    launcher.addEventListener('click', (e) => {
+      e.preventDefault();
       lastTriggerElement = launcher;
       openChat();
     });
 
     // Close button
-    panelEl.querySelector('.sai-close-btn').addEventListener('click', closeChat);
+    const closeBtn = panelEl.querySelector('.sai-close-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeChat);
+    }
 
     // Clear button
-    panelEl.querySelector('.sai-clear-btn').addEventListener('click', clearConversation);
+    const clearBtn = panelEl.querySelector('.sai-clear-btn');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', clearConversation);
+    }
 
     // Send button
-    sendBtn.addEventListener('click', () => sendMessage());
+    if (sendBtn) {
+      sendBtn.addEventListener('click', () => sendMessage());
+    }
 
     // Delegated click on interactive related subtopics
-    messagesContainer.addEventListener('click', (e) => {
-      const subtopicBtn = e.target.closest('.sai-subtopic-btn');
-      if (subtopicBtn) {
-        const prompt = subtopicBtn.getAttribute('data-prompt');
-        if (prompt && !isStreaming) {
-          sendMessage(prompt);
-          trackEvent('subtopic_clicked', prompt);
+    if (messagesContainer) {
+      messagesContainer.addEventListener('click', (e) => {
+        const subtopicBtn = e.target.closest('.sai-subtopic-btn');
+        if (subtopicBtn) {
+          const prompt = subtopicBtn.getAttribute('data-prompt');
+          if (prompt && !isStreaming) {
+            sendMessage(prompt);
+            trackEvent('subtopic_clicked', prompt);
+          }
         }
-      }
-    });
+      });
+    }
 
     // Input events
-    inputField.addEventListener('input', () => {
-      updateSendButton();
-      updateCharCount();
-      autoResizeInput();
-    });
+    if (inputField) {
+      inputField.addEventListener('input', () => {
+        updateSendButton();
+        updateCharCount();
+        autoResizeInput();
+      });
 
-    inputField.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
+      inputField.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+
+      // Mobile keyboard auto-scroll support
+      inputField.addEventListener('focus', () => {
+        setTimeout(() => {
+          inputField.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }, 300);
+      });
+    }
 
     // Global keyboard
     document.addEventListener('keydown', handleKeyDown);
-
-    // Close on backdrop click (desktop only — panel doesn't have a backdrop, so no-op)
   }
 
-  // Wait for DOM ready
+  // Self-executing initialization hooks
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+
+  // Load event backup for slow mobile connections
+  window.addEventListener('load', () => {
+    if (!initialized) init();
+  });
 })();

@@ -113,6 +113,7 @@ const server = http.createServer(async (req, res) => {
         res.end(`Server Error: ${error.code}`);
       }
     } else {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(content);
     }
