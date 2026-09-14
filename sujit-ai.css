@@ -1,0 +1,757 @@
+/* ===================================================================
+   SUJIT AI — Chat Interface Styles
+   Uses existing portfolio CSS variables for seamless integration.
+   =================================================================== */
+
+/* ── Floating Launcher Button ── */
+#sujitAiLauncher {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  right: auto;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.15), rgba(200, 0, 255, 0.1));
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  border-radius: 50px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 24px rgba(0, 210, 255, 0.12), 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+#sujitAiLauncher:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 210, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 210, 255, 0.2), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+#sujitAiLauncher:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+#sujitAiLauncher .sai-launcher-icon {
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+}
+
+#sujitAiLauncher .sai-launcher-pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: saiPulse 2s ease-in-out infinite;
+}
+
+@keyframes saiPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* Hide launcher when chat is open */
+body.sai-chat-open #sujitAiLauncher { display: none; }
+
+/* ── Chat Panel ── */
+#sujitAiPanel {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  right: auto;
+  z-index: 9999;
+  width: 440px;
+  max-width: calc(100vw - 24px);
+  height: 620px;
+  max-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-main);
+  border: 1px solid rgba(0, 210, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition: visibility 0.25s, opacity 0.25s cubic-bezier(0.25,0.8,0.25,1), transform 0.25s cubic-bezier(0.25,0.8,0.25,1);
+}
+
+#sujitAiPanel.sai-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── Header ── */
+.sai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-alt);
+  flex-shrink: 0;
+}
+
+.sai-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(0,210,255,0.2), rgba(200,0,255,0.15));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.sai-header-info h3 {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.sai-header-info p {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin: 2px 0 0;
+  letter-spacing: 0.01em;
+}
+
+.sai-status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.sai-header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.sai-header-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.sai-header-btn:hover {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+}
+
+.sai-header-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Messages Container & Visible Side Scroll Line ── */
+.sai-messages {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 14px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 210, 255, 0.7) rgba(0, 210, 255, 0.08);
+}
+
+/* Chrome, Edge, Safari WebKit Scrollbar — Distinct Glowing Side Line */
+.sai-messages::-webkit-scrollbar {
+  width: 10px;
+  display: block;
+}
+
+.sai-messages::-webkit-scrollbar-track {
+  background: rgba(0, 210, 255, 0.05);
+  border-left: 2px solid rgba(0, 210, 255, 0.35); /* Illuminated side line indicator */
+  border-radius: 4px;
+}
+
+.sai-messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d2ff, #a855f7);
+  border-radius: 6px;
+  border: 2px solid rgba(12, 19, 38, 0.8);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.sai-messages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #38bdf8, #c084fc);
+  box-shadow: 0 0 16px rgba(0, 210, 255, 0.9);
+}
+
+.sai-messages::-webkit-scrollbar-thumb:active {
+  background: #00d2ff;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 1);
+}
+
+/* ── Welcome / Empty State ── */
+.sai-welcome {
+  text-align: center;
+  padding: 24px 8px;
+}
+
+.sai-welcome-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: block;
+  color: var(--accent-cyan);
+}
+
+.sai-welcome h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.sai-welcome p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.sai-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.sai-suggestion-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  max-width: 100%;
+  text-align: left;
+}
+
+.sai-suggestion-btn:hover {
+  background: rgba(0, 210, 255, 0.08);
+  border-color: rgba(0, 210, 255, 0.3);
+  color: var(--text-primary);
+}
+
+.sai-suggestion-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Message Bubbles ── */
+.sai-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 100%;
+  animation: saiFadeIn 0.25s ease-out;
+}
+
+@keyframes saiFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sai-msg-user {
+  flex-direction: row-reverse;
+}
+
+.sai-msg-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sai-msg-user .sai-msg-avatar {
+  background: rgba(0, 210, 255, 0.12);
+  color: var(--accent-cyan);
+}
+
+.sai-msg-assistant .sai-msg-avatar {
+  background: linear-gradient(135deg, rgba(0,210,255,0.15), rgba(200,0,255,0.1));
+  color: var(--accent-cyan);
+}
+
+.sai-msg-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.sai-msg-content {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.sai-msg-user .sai-msg-content {
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.15);
+  color: var(--text-primary);
+  border-top-right-radius: 4px;
+}
+
+.sai-msg-assistant .sai-msg-content {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-top-left-radius: 4px;
+}
+
+/* Markdown inside assistant messages */
+.sai-msg-assistant .sai-msg-content h1,
+.sai-msg-assistant .sai-msg-content h2,
+.sai-msg-assistant .sai-msg-content h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  margin: 12px 0 6px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.sai-msg-assistant .sai-msg-content h3 { font-size: 0.85rem; }
+
+.sai-msg-assistant .sai-msg-content p {
+  margin: 0 0 8px;
+}
+
+.sai-msg-assistant .sai-msg-content p:last-child { margin-bottom: 0; }
+
+.sai-msg-assistant .sai-msg-content ul,
+.sai-msg-assistant .sai-msg-content ol {
+  padding-left: 18px;
+  margin: 6px 0;
+}
+
+.sai-msg-assistant .sai-msg-content li {
+  margin-bottom: 4px;
+}
+
+.sai-msg-assistant .sai-msg-content strong {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.sai-msg-assistant .sai-msg-content code {
+  background: rgba(0,0,0,0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: 'Courier New', monospace;
+}
+
+.sai-msg-assistant .sai-msg-content pre {
+  background: rgba(0,0,0,0.4);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.sai-msg-assistant .sai-msg-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.sai-msg-assistant .sai-msg-content a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,210,255,0.3);
+}
+
+.sai-msg-assistant .sai-msg-content a:hover {
+  border-bottom-color: var(--accent-cyan);
+}
+
+/* ── Message Actions ── */
+.sai-msg-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.sai-msg:hover .sai-msg-actions,
+.sai-msg-actions:focus-within {
+  opacity: 1;
+}
+
+.sai-msg-action-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.sai-msg-action-btn:hover {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+}
+
+/* ── Sources & Related Subtopics ── */
+.sai-sources {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sai-sources-label {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.sai-sources-label i {
+  color: var(--accent-cyan);
+  font-size: 0.7rem;
+}
+
+.sai-sources-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sai-source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.22);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sai-source-chip:hover {
+  background: rgba(0, 210, 255, 0.2);
+  border-color: rgba(0, 210, 255, 0.5);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 210, 255, 0.25);
+}
+
+.sai-source-chip:active {
+  transform: translateY(0);
+}
+
+.sai-source-chip:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.sai-source-chip i {
+  font-size: 0.65rem;
+  color: var(--accent-cyan);
+}
+
+/* ── Loading / Typing Indicator ── */
+.sai-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+}
+
+.sai-typing-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  animation: saiTypingBounce 1.4s infinite ease-in-out;
+}
+
+.sai-typing-dot:nth-child(2) { animation-delay: 0.16s; }
+.sai-typing-dot:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes saiTypingBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── Streaming Cursor ── */
+.sai-streaming-cursor::after {
+  content: '▊';
+  animation: saiBlink 1s step-end infinite;
+  color: var(--accent-cyan);
+  margin-left: 1px;
+}
+
+@keyframes saiBlink {
+  50% { opacity: 0; }
+}
+
+/* ── Error State ── */
+.sai-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 51, 102, 0.08);
+  border: 1px solid rgba(255, 51, 102, 0.2);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: var(--accent-red);
+}
+
+.sai-error-retry {
+  margin-left: auto;
+  border: none;
+  background: rgba(255,51,102,0.12);
+  color: var(--accent-red);
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-family: var(--font-body);
+  transition: background 0.2s;
+}
+
+.sai-error-retry:hover {
+  background: rgba(255,51,102,0.2);
+}
+
+/* ── Input Area ── */
+.sai-input-area {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-alt);
+  flex-shrink: 0;
+}
+
+.sai-input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.sai-input-field {
+  flex: 1;
+  resize: none;
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  outline: none;
+  line-height: 1.4;
+  min-height: 42px;
+  max-height: 120px;
+  transition: border-color 0.2s;
+}
+
+.sai-input-field::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.sai-input-field:focus {
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+.sai-send-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.sai-send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 210, 255, 0.25);
+}
+
+.sai-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.sai-send-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+.sai-char-count {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  text-align: right;
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.sai-char-count.sai-visible { opacity: 1; }
+.sai-char-count.sai-over-limit { color: var(--accent-red); }
+
+/* ── Mobile Full-Screen ── */
+@media (max-width: 520px) {
+  #sujitAiLauncher {
+    bottom: 16px;
+    left: 16px;
+    right: auto;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    max-width: calc(100vw - 32px);
+  }
+
+  #sujitAiPanel {
+    bottom: 0;
+    left: 0;
+    right: auto;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: none;
+    z-index: 99999;
+  }
+
+  .sai-header {
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .sai-messages {
+    padding: 16px 12px;
+  }
+
+  .sai-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sai-source-chip {
+    padding: 6px 13px;
+    font-size: 0.74rem;
+    min-height: 32px;
+  }
+
+  .sai-input-area {
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  #sujitAiPanel { transition: visibility 0.1s, opacity 0.1s; }
+  .sai-msg { animation: none; }
+  .sai-typing-dot { animation: none; opacity: 0.6; }
+  .sai-streaming-cursor::after { animation: none; }
+  #sujitAiLauncher .sai-launcher-pulse { animation: none; }
+}
+
+/* ── Light Theme Adjustments ── */
+[data-theme="light"] #sujitAiLauncher {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(219, 39, 119, 0.06));
+  border-color: rgba(2, 132, 199, 0.25);
+  box-shadow: 0 4px 24px rgba(2, 132, 199, 0.1), 0 0 0 1px rgba(0,0,0,0.03);
+}
+
+[data-theme="light"] #sujitAiPanel {
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.06);
+  border-color: rgba(2, 132, 199, 0.15);
+}
+
+[data-theme="light"] .sai-msg-user .sai-msg-content {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.12);
+}
+
+[data-theme="light"] .sai-msg-assistant .sai-msg-content code {
+  background: rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .sai-msg-assistant .sai-msg-content pre {
+  background: rgba(0,0,0,0.04);
+}
