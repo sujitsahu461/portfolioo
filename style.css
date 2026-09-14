@@ -387,10 +387,84 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-logo {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  font-family: 'Orbitron', var(--font-heading), sans-serif;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0.35rem 0.5rem;
+  border-radius: 12px;
+}
+
+.nav-logo:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.nav-logo-icon {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.6));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.nav-logo:hover .nav-logo-img {
+  filter: drop-shadow(0 0 14px rgba(0, 220, 255, 0.95)) drop-shadow(0 0 24px rgba(0, 120, 255, 0.6));
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.nav-logo-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.35) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.nav-logo:hover .nav-logo-glow {
+  opacity: 1;
+}
+
+.nav-logo-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.nav-logo-primary {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+}
+
+.nav-logo-secondary {
+  background: linear-gradient(180deg, #38bdf8 0%, #00b4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.5));
 }
 
 .nav-menu-wrapper {
@@ -1107,6 +1181,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.5rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1854,9 +1929,18 @@ textarea.form-control {
   .nav-logo {
     grid-column: 1;
     grid-row: 1;
-    font-size: 1.25rem;
-    letter-spacing: 1.5px;
     padding: 0.15rem 0;
+    gap: 0.5rem;
+  }
+
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-logo-brand {
+    font-size: 1.15rem;
+    gap: 0.25rem;
   }
 
   .nav-menu-wrapper {
@@ -1958,7 +2042,8 @@ textarea.form-control {
   .container { padding: 0 0.85rem; }
   .nav-container { padding: 0 0.85rem; }
   .massive-title { font-size: 1.95rem; }
-  .nav-logo { font-size: 1.15rem; }
+  .nav-logo-icon { width: 26px; height: 26px; }
+  .nav-logo-brand { font-size: 0.95rem; letter-spacing: 1px; }
   .nav-link { font-size: 0.72rem; padding: 0.32rem 0.7rem; }
 }
 
@@ -3835,6 +3920,784 @@ html.lenis body {
 
   .profile-stat-label {
     font-size: 0.6rem;
+  }
+}
+
+/* ===================================================== */
+/* CYBERNETIC INTRO PRELOADER & STARTING ANIMATION       */
+/* ===================================================== */
+
+body.intro-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none;
+}
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
+  background-color: #030712;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.intro-loader.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(20px);
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+/* Ambient Sci-Fi Backdrop */
+.intro-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.intro-grid-pattern {
+  position: absolute;
+  inset: -50px;
+  background-image: 
+    linear-gradient(rgba(0, 217, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(600px) rotateX(25deg);
+  transform-origin: center bottom;
+  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 75%);
+  animation: introGridDrift 20s linear infinite;
+}
+
+@keyframes introGridDrift {
+  0% { transform: perspective(600px) rotateX(25deg) translateY(0); }
+  100% { transform: perspective(600px) rotateX(25deg) translateY(48px); }
+}
+
+.intro-radial-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, 
+    rgba(0, 162, 255, 0.22) 0%, 
+    rgba(14, 165, 233, 0.08) 40%, 
+    rgba(3, 7, 18, 0.95) 70%, 
+    #030712 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: introHaloPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes introHaloPulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+.intro-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.25) 0px,
+    rgba(0, 0, 0, 0.25) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.intro-particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.intro-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #00d9ff;
+  pointer-events: none;
+  animation: introParticleFloat linear infinite;
+}
+
+@keyframes introParticleFloat {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Central Stage */
+.intro-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 580px;
+  padding: 2rem 1.5rem;
+}
+
+/* HUD Rings & 3D Logo Lockup */
+.intro-logo-core {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.intro-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.intro-ring-outer {
+  inset: 0;
+  border: 1px solid rgba(0, 217, 255, 0.22);
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.15), inset 0 0 25px rgba(0, 180, 255, 0.1);
+  animation: introSpinCW 16s linear infinite;
+}
+
+.intro-ring-mid {
+  inset: 18px;
+  border: 1.5px dashed rgba(56, 189, 248, 0.4);
+  animation: introSpinCCW 12s linear infinite;
+}
+
+.intro-ring-dashed {
+  inset: 34px;
+  border: 1px dotted rgba(0, 217, 255, 0.3);
+  animation: introSpinCW 20s linear infinite;
+}
+
+@keyframes introSpinCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes introSpinCCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Corner Brackets for High-Tech HUD View */
+.intro-corner-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #00d9ff;
+  border-style: solid;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.intro-corner-bracket.tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.intro-corner-bracket.tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.intro-corner-bracket.bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+.intro-corner-bracket.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+/* Emblem Container & Image */
+.intro-emblem-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.intro-emblem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 25px rgba(0, 180, 255, 0.8)) drop-shadow(0 0 60px rgba(0, 100, 255, 0.45));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+  animation: introEmblemBreathe 3s ease-in-out infinite alternate;
+}
+
+@keyframes introEmblemBreathe {
+  0% {
+    transform: scale(0.97);
+    filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.7)) drop-shadow(0 0 45px rgba(0, 100, 255, 0.35));
+  }
+  100% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 35px rgba(0, 220, 255, 0.95)) drop-shadow(0 0 75px rgba(0, 140, 255, 0.55));
+  }
+}
+
+.intro-emblem-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.5) 50%, transparent 80%);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.intro-emblem-glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: introGlowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes introGlowPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.9; }
+}
+
+/* Brand Typography */
+.intro-branding {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro-brand-name {
+  font-family: 'Orbitron', var(--font-heading), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 6px;
+  display: flex;
+  gap: 0.85rem;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+
+.intro-name-first {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 12px rgba(255, 255, 255, 0.25));
+}
+
+.intro-name-last {
+  background: linear-gradient(180deg, #38bdf8 0%, #00b4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(0, 180, 255, 0.65));
+}
+
+.intro-tagline-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.intro-pill-sep {
+  color: #00d9ff;
+  font-size: 0.75rem;
+  filter: drop-shadow(0 0 6px #00d9ff);
+}
+
+.intro-motto-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  color: #64748b;
+  text-transform: uppercase;
+  position: relative;
+  padding-top: 0.6rem;
+}
+
+.intro-motto-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
+}
+
+/* Cyber Console / Progress Bar */
+.intro-console {
+  width: 100%;
+  max-width: 360px;
+}
+
+.intro-progress-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 217, 255, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.intro-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0052cc, #00b4ff 50%, #38bdf8 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 180, 255, 0.5);
+  transition: width 0.15s ease-out;
+}
+
+.intro-progress-glow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  transform: translateX(-100%);
+  animation: introScanSweep 2s ease-in-out infinite;
+}
+
+@keyframes introScanSweep {
+  0% { transform: translateX(-40px); }
+  100% { transform: translateX(380px); }
+}
+
+.intro-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+
+.intro-status-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+}
+
+.intro-status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00d9ff;
+  box-shadow: 0 0 8px #00d9ff;
+  animation: introBlink 1s infinite alternate;
+}
+
+@keyframes introBlink {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.intro-status-label {
+  letter-spacing: 1px;
+}
+
+.intro-percentage-box {
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+}
+
+/* Enter Portfolio Button (Revealed at 100% or Ready) */
+.intro-enter-action {
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(14, 165, 233, 0.25) 100%);
+  border: 1px solid rgba(0, 217, 255, 0.6);
+  color: #ffffff;
+  padding: 0.85rem 2.2rem;
+  border-radius: 999px;
+  font-family: 'Orbitron', var(--font-heading), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  display: none; /* revealed when ready */
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), inset 0 0 15px rgba(0, 217, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: introEnterPulse 1.8s infinite;
+}
+
+@keyframes introEnterPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), inset 0 0 15px rgba(0, 217, 255, 0.15);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 217, 255, 0.65), inset 0 0 25px rgba(0, 217, 255, 0.3);
+    transform: scale(1.03);
+  }
+}
+
+.intro-enter-action:hover {
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.3) 0%, rgba(14, 165, 233, 0.45) 100%);
+  border-color: #00d9ff;
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.7), inset 0 0 20px rgba(0, 217, 255, 0.4);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.intro-enter-arrow {
+  color: #00d9ff;
+  transition: transform 0.3s ease;
+}
+
+.intro-enter-action:hover .intro-enter-arrow {
+  transform: translateX(4px);
+}
+
+.intro-btn-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  animation: introBtnShine 3s infinite;
+}
+
+@keyframes introBtnShine {
+  0% { left: -100%; }
+  30%, 100% { left: 200%; }
+}
+
+/* Quick Skip Button */
+.intro-skip-action {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+}
+
+.intro-skip-action:hover {
+  background: rgba(0, 217, 255, 0.15);
+  border-color: rgba(0, 217, 255, 0.4);
+  color: #00d9ff;
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Footer Brand Branding */
+.footer-brand-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 0.4rem;
+}
+
+.footer-logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 12px rgba(0, 180, 255, 0.5));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.footer-logo-img:hover {
+  transform: scale(1.1) rotate(-3deg);
+  filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.8));
+}
+
+.footer-brand-title {
+  font-family: 'Orbitron', var(--font-heading), sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  background: linear-gradient(180deg, #ffffff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-brand-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+}
+
+/* ===================================================== */
+/* COMPREHENSIVE MOBILE & PHONE OPTIMIZATIONS            */
+/* ===================================================== */
+
+@media (max-width: 768px) {
+  .intro-loader {
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    width: 100dvw;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .intro-stage {
+    padding: 1.5rem 1rem;
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .intro-logo-core {
+    width: 175px;
+    height: 175px;
+    margin-bottom: 1.25rem;
+  }
+
+  .intro-emblem-wrap {
+    width: 95px;
+    height: 95px;
+  }
+
+  .intro-ring-mid {
+    inset: 12px;
+  }
+
+  .intro-ring-dashed {
+    inset: 24px;
+  }
+
+  .intro-brand-name {
+    font-size: 1.85rem;
+    letter-spacing: 4px;
+    gap: 0.6rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .intro-tagline-pills {
+    font-size: 0.78rem;
+    letter-spacing: 2.2px;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-motto-text {
+    font-size: 0.64rem;
+    letter-spacing: 2px;
+  }
+
+  .intro-console {
+    max-width: 300px;
+    width: 90%;
+  }
+
+  .intro-skip-action {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .intro-enter-action {
+    margin-top: 1.2rem;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-stage {
+    padding: 1rem 0.75rem;
+  }
+
+  .intro-logo-core {
+    width: 148px;
+    height: 148px;
+    margin-bottom: 1rem;
+  }
+
+  .intro-emblem-wrap {
+    width: 80px;
+    height: 80px;
+  }
+
+  .intro-ring-outer {
+    box-shadow: 0 0 15px rgba(0, 180, 255, 0.15);
+  }
+
+  .intro-ring-mid {
+    inset: 10px;
+  }
+
+  .intro-ring-dashed {
+    inset: 20px;
+  }
+
+  .intro-corner-bracket {
+    width: 10px;
+    height: 10px;
+  }
+
+  .intro-brand-name {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    gap: 0.45rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .intro-tagline-pills {
+    font-size: 0.68rem;
+    letter-spacing: 1.6px;
+    gap: 0.4rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .intro-motto-text {
+    font-size: 0.58rem;
+    letter-spacing: 1.5px;
+  }
+
+  .intro-console {
+    max-width: 270px;
+    width: 88%;
+  }
+
+  .intro-progress-track {
+    height: 5px;
+    margin-bottom: 0.65rem;
+  }
+
+  .intro-meta-row {
+    font-size: 0.7rem;
+  }
+
+  .intro-enter-action {
+    margin-top: 1rem;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.76rem;
+  }
+
+  .intro-skip-action {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .intro-logo-core {
+    width: 128px;
+    height: 128px;
+    margin-bottom: 0.85rem;
+  }
+
+  .intro-emblem-wrap {
+    width: 68px;
+    height: 68px;
+  }
+
+  .intro-brand-name {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+  }
+
+  .intro-tagline-pills {
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+  }
+
+  .intro-console {
+    max-width: 235px;
+  }
+}
+
+/* Landscape / short-height mobile screens */
+@media (max-height: 620px) {
+  .intro-stage {
+    padding: 0.4rem;
+  }
+
+  .intro-logo-core {
+    width: 115px;
+    height: 115px;
+    margin-bottom: 0.5rem;
+  }
+
+  .intro-emblem-wrap {
+    width: 62px;
+    height: 62px;
+  }
+
+  .intro-branding {
+    margin-bottom: 0.7rem;
+  }
+
+  .intro-brand-name {
+    font-size: 1.25rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .intro-tagline-pills {
+    margin-bottom: 0.2rem;
+  }
+
+  .intro-motto-text {
+    display: none;
+  }
+
+  .intro-enter-action {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1.2rem;
   }
 }
 

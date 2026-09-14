@@ -17,6 +17,9 @@
   if (prefersReducedMotion) {
     // Ensure all elements are visible even without animations
     document.documentElement.classList.add('no-motion');
+    document.body.classList.remove('intro-active');
+    const loader = document.getElementById('introLoader');
+    if (loader) loader.remove();
     return;
   }
 
@@ -44,7 +47,6 @@
     initInteractiveBackground();
     initLenis();
     initNavbarScroll();
-    initHeroAnimations();
     initSectionReveals();
     initCardStagger();
     initParallax();
@@ -55,6 +57,14 @@
     initQuoteReveal();
     initScrollProgress();
     initBackToTop();
+
+    // Initialize Intro Preloader with Sujit Sahu Logo Animation
+    const loader = document.getElementById('introLoader');
+    if (loader) {
+      initIntroLoader();
+    } else {
+      initHeroAnimations();
+    }
 
     // Refresh ScrollTrigger after all dynamic content is rendered
     // (certificates are rendered dynamically by script.js)
@@ -139,6 +149,186 @@
         lastScrollY = currentScrollY;
       }
     });
+  }
+
+  // =====================================================
+  // 2.5. CYBERNETIC INTRO LOADER & LOGO ENTRANCE
+  // =====================================================
+  function initIntroLoader() {
+    const loader = document.getElementById('introLoader');
+    if (!loader) {
+      initHeroAnimations();
+      return;
+    }
+
+    // Stop Lenis smooth scroll during intro
+    if (lenisInstance) lenisInstance.stop();
+
+    // Spawn ambient cyber particles
+    const particlesContainer = document.getElementById('introParticles');
+    if (particlesContainer) {
+      for (let i = 0; i < 22; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'intro-particle';
+        const size = Math.random() * 3 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 5 + 4) + 's';
+        particle.style.animationDelay = (Math.random() * 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    const progressBar = document.getElementById('introProgressBar');
+    const percentEl = document.getElementById('introPercent');
+    const statusText = document.getElementById('introStatusText');
+    const enterBtn = document.getElementById('introEnterBtn');
+    const skipBtn = document.getElementById('introSkipBtn');
+    const emblem = document.getElementById('introEmblem');
+
+    let hasEntered = false;
+    let autoEnterTimer = null;
+
+    function enterPortfolio() {
+      if (hasEntered) return;
+      hasEntered = true;
+      if (autoEnterTimer) clearTimeout(autoEnterTimer);
+
+      if (introTl) introTl.kill();
+
+      loader.classList.add('is-exiting');
+
+      const exitTl = gsap.timeline({
+        onComplete: () => {
+          document.body.classList.remove('intro-active');
+          if (lenisInstance) lenisInstance.start();
+          initHeroAnimations();
+          setTimeout(() => {
+            loader.style.display = 'none';
+            ScrollTrigger.refresh();
+          }, 450);
+        }
+      });
+
+      exitTl.to('.intro-stage', {
+        scale: 1.06,
+        opacity: 0,
+        filter: 'blur(14px)',
+        duration: 0.6,
+        ease: 'power2.in'
+      }, 0);
+
+      exitTl.to(loader, {
+        opacity: 0,
+        duration: 0.65,
+        ease: 'power2.inOut'
+      }, 0.1);
+    }
+
+    // Interactive Triggers (Click & Touch for Mobile)
+    if (skipBtn) {
+      skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        enterPortfolio();
+      });
+      skipBtn.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        enterPortfolio();
+      }, { passive: true });
+    }
+    if (enterBtn) {
+      enterBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        enterPortfolio();
+      });
+      enterBtn.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        enterPortfolio();
+      }, { passive: true });
+    }
+    if (emblem) {
+      emblem.addEventListener('click', enterPortfolio);
+      emblem.addEventListener('touchstart', enterPortfolio, { passive: true });
+    }
+    window.addEventListener('keydown', (e) => {
+      if (!hasEntered && (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape')) {
+        enterPortfolio();
+      }
+    });
+
+    // Intro Animation Timeline
+    const introTl = gsap.timeline();
+
+    gsap.set('.intro-logo-core', { scale: 0.72, opacity: 0 });
+    gsap.set('.intro-branding', { y: 22, opacity: 0 });
+    gsap.set('.intro-console', { y: 16, opacity: 0 });
+
+    // Step 1: Core Emblem entrance
+    introTl.to('.intro-logo-core', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'back.out(1.5)'
+    }, 0.1);
+
+    // Step 2: Branding fade and slide
+    introTl.to('.intro-branding', {
+      y: 0,
+      opacity: 1,
+      duration: 0.7,
+      ease: 'power3.out'
+    }, 0.35);
+
+    // Step 3: Console fade
+    introTl.to('.intro-console', {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      ease: 'power2.out'
+    }, 0.5);
+
+    // Step 4: Loading progress counter (0% to 100%)
+    const progressObj = { value: 0 };
+    introTl.to(progressObj, {
+      value: 100,
+      duration: 2.2,
+      ease: 'power2.inOut',
+      onUpdate: () => {
+        const val = Math.round(progressObj.value);
+        if (percentEl) percentEl.textContent = val;
+        if (progressBar) progressBar.style.width = val + '%';
+
+        if (statusText) {
+          if (val < 25) {
+            statusText.textContent = 'INITIALIZING SYSTEM...';
+          } else if (val < 55) {
+            statusText.textContent = 'LOADING NEURAL MODULES...';
+          } else if (val < 85) {
+            statusText.textContent = 'SYNCHRONIZING INTERFACE...';
+          } else if (val < 100) {
+            statusText.textContent = 'SECURING ENVIRONMENT...';
+          } else {
+            statusText.textContent = 'SYSTEM READY // ACCESS GRANTED';
+          }
+        }
+      },
+      onComplete: () => {
+        if (statusText) statusText.textContent = 'ACCESS GRANTED // WELCOME';
+        if (enterBtn) {
+          enterBtn.style.display = 'inline-flex';
+          gsap.fromTo(enterBtn, 
+            { opacity: 0, scale: 0.85, y: 8 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'back.out(1.7)' }
+          );
+        }
+
+        // Automatic entrance fallback after brief pause
+        autoEnterTimer = setTimeout(() => {
+          enterPortfolio();
+        }, 950);
+      }
+    }, 0.5);
   }
 
   // =====================================================

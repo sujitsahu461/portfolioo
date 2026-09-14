@@ -16,9 +16,12 @@
   <title>Sujit Sahu | Software Developer</title>
   <meta name="description" content="Portfolio of Sujit Sahu, Software Developer & Security Engineer" />
   
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+  <link rel="apple-touch-icon" href="logo-emblem.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
   <!-- Animation Libraries (GSAP + Lenis) -->
@@ -26,10 +29,90 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
 
-  <link rel="stylesheet" href="style.css?v=3.6.0" />
-  <link rel="stylesheet" href="sujit-ai.css?v=3.6.0" />
+  <link rel="stylesheet" href="style.css?v=3.7.0" />
+  <link rel="stylesheet" href="sujit-ai.css?v=3.7.0" />
 </head>
-<body>
+<body class="intro-active">
+  <!-- ===================================================== -->
+  <!-- CYBERNETIC INTRO / PRELOADER SCREEN                   -->
+  <!-- ===================================================== -->
+  <div id="introLoader" class="intro-loader" aria-label="Loading Sujit Sahu Portfolio" role="dialog" aria-modal="true">
+    <!-- Ambient Cybernetic Backdrop -->
+    <div class="intro-backdrop" aria-hidden="true">
+      <div class="intro-grid-pattern"></div>
+      <div class="intro-radial-halo"></div>
+      <div class="intro-scanlines"></div>
+      <div class="intro-particles-container" id="introParticles"></div>
+    </div>
+
+    <!-- Main Loader Center Stage -->
+    <div class="intro-stage">
+      <!-- HUD Rings & 3D Logo Lockup -->
+      <div class="intro-logo-core">
+        <div class="intro-ring intro-ring-outer"></div>
+        <div class="intro-ring intro-ring-mid"></div>
+        <div class="intro-ring intro-ring-dashed"></div>
+        <div class="intro-corner-bracket tl"></div>
+        <div class="intro-corner-bracket tr"></div>
+        <div class="intro-corner-bracket bl"></div>
+        <div class="intro-corner-bracket br"></div>
+        
+        <div class="intro-emblem-wrap">
+          <img src="logo-emblem.png" alt="Sujit Sahu Logo" class="intro-emblem-img" id="introEmblem" />
+          <div class="intro-emblem-sheen"></div>
+          <div class="intro-emblem-glow"></div>
+        </div>
+      </div>
+
+      <!-- Futuristic Brand Typography -->
+      <div class="intro-branding">
+        <div class="intro-brand-name">
+          <span class="intro-name-part intro-name-first">SUJIT</span>
+          <span class="intro-name-part intro-name-last">SAHU</span>
+        </div>
+        <div class="intro-tagline-pills">
+          <span class="intro-pill">BUILD</span>
+          <span class="intro-pill-sep">•</span>
+          <span class="intro-pill">LEARN</span>
+          <span class="intro-pill-sep">•</span>
+          <span class="intro-pill">IMPACT</span>
+        </div>
+        <div class="intro-motto-text">IDEAS TO A BETTER TOMORROW</div>
+      </div>
+
+      <!-- Cyber Console / Loading Diagnostics -->
+      <div class="intro-console">
+        <div class="intro-progress-track">
+          <div class="intro-progress-bar" id="introProgressBar"></div>
+          <div class="intro-progress-glow" id="introProgressGlow"></div>
+        </div>
+        
+        <div class="intro-meta-row">
+          <div class="intro-status-box">
+            <span class="intro-status-indicator"></span>
+            <span class="intro-status-label" id="introStatusText">INITIALIZING SYSTEM...</span>
+          </div>
+          <div class="intro-percentage-box">
+            <span class="intro-counter-num" id="introPercent">0</span><span class="intro-counter-sym">%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Enter Trigger -->
+      <button class="intro-enter-action" id="introEnterBtn" type="button" aria-label="Enter Portfolio">
+        <span class="intro-enter-text">ENTER PORTFOLIO</span>
+        <i class="fas fa-chevron-right intro-enter-arrow"></i>
+        <div class="intro-btn-shimmer"></div>
+      </button>
+    </div>
+
+    <!-- Quick Skip Action -->
+    <button class="intro-skip-action" id="introSkipBtn" type="button" title="Skip intro animation" aria-label="Skip intro animation">
+      <span>SKIP INTRO</span>
+      <i class="fas fa-forward"></i>
+    </button>
+  </div>
+
   <div id="scrollProgress"></div>
   <div class="framer-scroll-scene" aria-hidden="true">
     <div class="framer-scroll-scene__grid"></div>
@@ -69,7 +152,16 @@
   
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-logo">&lt;Sujit /&gt;</div>
+      <a href="#hero" class="nav-logo" aria-label="Sujit Sahu - Home">
+        <div class="nav-logo-icon">
+          <img src="logo-emblem.png" alt="Sujit Sahu Logo" class="nav-logo-img" />
+          <div class="nav-logo-glow"></div>
+        </div>
+        <div class="nav-logo-brand">
+          <span class="nav-logo-primary">SUJIT</span>
+          <span class="nav-logo-secondary">SAHU</span>
+        </div>
+      </a>
       <div class="nav-menu-wrapper">
         <div class="nav-menu">
           <a href="#hero" class="nav-link active">Home</a>
@@ -1045,6 +1137,11 @@
 
   <footer class="site-footer">
     <div class="container">
+      <div class="footer-brand-wrap">
+        <img src="logo-emblem.png" alt="Sujit Sahu" class="footer-logo-img" />
+        <span class="footer-brand-title">SUJIT SAHU</span>
+        <span class="footer-brand-tagline">BUILD • LEARN • IMPACT</span>
+      </div>
       <div class="footer-links">
         <a href="#" class="footer-link" data-doc="disclaimer">Disclaimer</a>
         <span class="footer-dot">•</span>
@@ -1158,8 +1255,8 @@
     </div>
   </div>
 
-  <script src="script.js?v=3.6.0"></script>
-  <script src="animations.js?v=3.6.0" defer></script>
-  <script src="sujit-ai.js?v=3.6.0" defer></script>
+  <script src="script.js?v=3.7.0"></script>
+  <script src="animations.js?v=3.7.0" defer></script>
+  <script src="sujit-ai.js?v=3.7.0" defer></script>
 </body>
 </html>
