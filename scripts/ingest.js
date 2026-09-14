@@ -33,9 +33,9 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-const { EmbeddingProvider } = require('../api/lib/embeddings');
-const { VectorStore } = require('../api/lib/vectorstore');
-const { parseDocument, chunkDocument } = require('../api/lib/chunker');
+const { EmbeddingProvider } = require('../lib/embeddings');
+const { VectorStore } = require('../lib/vectorstore');
+const { parseDocument, chunkDocument } = require('../lib/chunker');
 
 const KNOWLEDGE_DIR = path.join(__dirname, '..', 'knowledge');
 

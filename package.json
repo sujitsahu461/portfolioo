@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "ingest": "node scripts/ingest.js",
-    "test:rag": "node tests/test-rag.js",
-    "build": "echo 'Static site — no build step required'"
+    "test:rag": "node tests/test-rag.js"
   },
   "dependencies": {
     "@qdrant/js-client-rest": "^1.12.0",

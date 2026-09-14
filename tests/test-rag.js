@@ -28,9 +28,9 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-const { classifyQuery } = require('../api/lib/query-router');
-const { parseDocument, chunkDocument } = require('../api/lib/chunker');
-const { validateMessage } = require('../api/lib/rate-limiter');
+const { classifyQuery } = require('../lib/query-router');
+const { parseDocument, chunkDocument } = require('../lib/chunker');
+const { validateMessage } = require('../lib/rate-limiter');
 
 let passed = 0;
 let failed = 0;
@@ -206,7 +206,7 @@ function testSecurity() {
   // Check no API keys in source code
   const sourceFiles = [
     'api/chat.js', 'api/health.js',
-    'api/lib/embeddings.js', 'api/lib/llm.js', 'api/lib/vectorstore.js',
+    'lib/embeddings.js', 'lib/llm.js', 'lib/vectorstore.js',
     'sujit-ai.js', 'script.js',
   ];
 

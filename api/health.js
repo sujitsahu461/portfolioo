@@ -3,7 +3,7 @@
  * Returns status of vector store connection and configuration.
  */
 
-const { VectorStore } = require('./lib/vectorstore');
+const { VectorStore } = require('../lib/vectorstore');
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');

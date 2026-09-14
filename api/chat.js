@@ -3,12 +3,12 @@
  * Handles: validation → rate limiting → retrieval → LLM streaming → SSE response.
  */
 
-const { EmbeddingProvider } = require('./lib/embeddings');
-const { VectorStore } = require('./lib/vectorstore');
-const { RetrievalPipeline } = require('./lib/retrieval');
-const { LLMProvider } = require('./lib/llm');
-const { checkRateLimit, validateMessage } = require('./lib/rate-limiter');
-const { answerQuery, streamAnswer } = require('./lib/local-responder');
+const { EmbeddingProvider } = require('../lib/embeddings');
+const { VectorStore } = require('../lib/vectorstore');
+const { RetrievalPipeline } = require('../lib/retrieval');
+const { LLMProvider } = require('../lib/llm');
+const { checkRateLimit, validateMessage } = require('../lib/rate-limiter');
+const { answerQuery, streamAnswer } = require('../lib/local-responder');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
