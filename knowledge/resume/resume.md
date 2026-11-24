@@ -48,4 +48,4 @@ Cybersecurity AI Engineer & Developer. B.Tech Computer Science student at GIET U
 10+ verified certifications including Cisco, HP LIFE, EduSkills, PreppRight, CTTC, and more. All verifiable on LinkedIn.
 
 ## Resume PDF
-Available at: B Tech Resume Format SUJIT.pdf (on portfolio website)
+Available at: Sujit-Kumar-Sahu-Resume.pdf (assets/docs) (on portfolio website)

@@ -112,3 +112,10 @@ Artificial Intelligence (AI), Data Visualization, Machine Learning, Model Evalua
 
 ### Certification
 AI/ML Training Certificate issued by CTTC (MSME, Government of India).
+
+## Founder — NivaraNova Technologies Pvt Ltd
+- Role: Founder
+- Location: Gunupur, Odisha, India
+- What it is: an early-stage technology company building practical software for problems in public services. Its first product is CivicSetu, a civic engagement and grievance redressal platform.
+- Website: https://nivaranova-technologies.vercel.app/
+- Dates: not on file.

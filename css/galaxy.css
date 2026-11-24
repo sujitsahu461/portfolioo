@@ -1,0 +1,166 @@
+/* Galaxy fly-through background + flight-path rail */
+#galaxyBg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.galaxy-rail {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.galaxy-rail-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-height: 28px;
+  padding: 0 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font: 500 11px 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.galaxy-rail-label {
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.galaxy-rail-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-secondary);
+  background: transparent;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.galaxy-rail-item:hover .galaxy-rail-label,
+.galaxy-rail-item:focus-visible .galaxy-rail-label,
+.galaxy-rail-item.active .galaxy-rail-label {
+  opacity: 1;
+  transform: none;
+}
+
+.galaxy-rail-item.active { color: var(--accent-cyan); }
+.galaxy-rail-item.active .galaxy-rail-dot {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  transform: scale(1.25);
+}
+.galaxy-rail-item:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+
+@media (max-width: 1100px) {
+  .galaxy-rail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-rail-label, .galaxy-rail-dot { transition: none; }
+}
+
+/* Footer social links */
+.footer-social { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin: 1rem 0; }
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+  color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; transition: color 0.2s, border-color 0.2s;
+}
+.footer-social a:hover, .footer-social a:focus-visible { color: var(--accent-cyan); border-color: rgba(0, 240, 255, 0.5); }
+
+/* ===== Paged layout: one full-screen page at a time ===== */
+html.paged-js main > section[id]:not(.is-active) { display: none !important; }
+html.paged-js main > section.is-active { animation: pageIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; min-height: 100vh; min-height: 100dvh; }
+html.paged-js main > section.figma-section.is-active {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 104px 0 112px;
+}
+html.paged-js main > section.figma-section.is-active > .container { width: 100%; }
+html.paged-js #hero.is-active { padding-bottom: 96px; }
+html.paged-js .section-title-wrap { margin-bottom: 2rem; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+html.paged-reduced main > section.is-active { animation: none; }
+
+/* the quote and footer close the journey on the last page only */
+html.paged-js body:not([data-page="contact"]) .quote-section,
+html.paged-js body:not([data-page="contact"]) .site-footer { display: none; }
+
+/* header never hides */
+.navbar, .navbar.navbar--hidden { transform: none !important; }
+.navbar.navbar--scrolled { background: var(--bg-navbar, rgba(11, 12, 16, 0.85)); }
+
+/* fixed page bar: previous, where you are, next */
+.pager-bar {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 950;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 8px; border-radius: 999px;
+  background: rgba(13, 15, 20, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.pager-step {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  color: var(--text-primary); text-decoration: none; font: 600 0.85rem 'Inter', sans-serif; white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.pager-step b { font-weight: 600; }
+.pager-next { background: var(--accent-red, #ff3366); color: #fff; }
+.pager-step:hover, .pager-step:focus-visible { background: rgba(255, 255, 255, 0.12); }
+.pager-next:hover, .pager-next:focus-visible { background: #ff4d7a; }
+.pager-dots { display: flex; align-items: center; }
+.pager-dot { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 44px; }
+.pager-dot span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.28); transition: transform 0.2s, background 0.2s; }
+.pager-dot:hover span, .pager-dot:focus-visible span { background: rgba(255, 255, 255, 0.7); }
+.pager-dot.active span { background: var(--accent-cyan, #00f0ff); transform: scale(1.5); }
+.pager-count { display: none; font: 500 0.8rem 'JetBrains Mono', monospace; color: var(--text-secondary); min-width: 44px; text-align: center; }
+.pager-bar a:focus-visible { outline: 2px solid var(--accent-cyan, #00f0ff); outline-offset: 2px; }
+
+.page-more { display: block; margin: 1.75rem auto 0; min-height: 44px; }
+[hidden] { display: none !important; }
+html.paged-js .project-img { height: 130px; font-size: 3rem; }
+
+@media (max-width: 900px) {
+  .pager-dots { display: none; }
+  .pager-count { display: inline-block; }
+}
+@media (max-width: 600px) {
+  .pager-bar { bottom: 76px; gap: 2px; }          /* sits above the Sujit AI launcher */
+  .pager-step b { display: none; }
+  .pager-step { padding: 0 18px; }
+  html.paged-js main > section.figma-section.is-active { padding-bottom: 170px; }
+}
+@media (prefers-reduced-motion: reduce) { .pager-step, .pager-dot span { transition: none; } }
+
+/* Home fits one screen: smaller portrait, tighter hero spacing (desktop and tablet landscape) */
+@media (min-width: 901px) {
+  html.paged-js #hero.is-active { padding-top: 96px; align-items: center; }
+  html.paged-js #hero .profile-hero-layout { padding-top: 0; padding-bottom: 0; align-items: center; }
+  html.paged-js #hero .profile-left-col { position: static; gap: 1.1rem; }
+  html.paged-js #hero .profile-portrait-frame { max-width: min(300px, 34vh * 0.75 + 120px); }
+  html.paged-js #hero .profile-portrait-img { aspect-ratio: 4 / 4.6; max-height: 40vh; }
+  html.paged-js #hero .profile-location, html.paged-js #hero .profile-stats-row { margin-top: 1rem; }
+}
+.about-hobbies { margin-top: 2rem; }
+.about-hobbies .profile-hobbies-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+
+/* About: chips and hobbies become one compact strip each so the page stays short */
+html.paged-js .about-highlights { gap: 0.75rem; }
+html.paged-js .about-highlights .highlight-item { padding: 0.7rem 1rem; }
+html.paged-js .about-highlights .highlight-item p { display: none; }
+html.paged-js .about-hobbies { margin-top: 1.25rem; }
+html.paged-js .about-hobbies .profile-section-label { margin-bottom: 0.6rem; }
+html.paged-js .about-hobbies .hobby-desc { display: none; }
+@media (min-width: 1100px) { html.paged-js .about-hobbies .profile-hobbies-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }

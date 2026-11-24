@@ -207,7 +207,7 @@ function testSecurity() {
   const sourceFiles = [
     'api/chat.js', 'api/health.js',
     'lib/embeddings.js', 'lib/llm.js', 'lib/vectorstore.js',
-    'sujit-ai.js', 'script.js',
+    'js/sujit-ai.js', 'js/script.js',
   ];
 
   let noLeakedSecrets = true;

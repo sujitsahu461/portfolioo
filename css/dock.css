@@ -1,0 +1,94 @@
+/* Orbital clock: open type, no box. It floats on the galaxy like the rest of the site. */
+
+.dock { position: relative; z-index: 2; padding: 4rem 0 3rem; text-align: center; }
+
+.oc-kicker {
+  margin: 0 0 3.2rem;
+  font: 600 0.74rem 'JetBrains Mono', monospace;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--accent-cyan, #00f0ff);
+}
+
+.oc-stage {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 3.5rem;
+}
+.oc-orbits {
+  --oc: min(640px, 90vw);
+  position: relative;
+  width: var(--oc);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+/* a soft pool of light behind the orbits */
+.oc-orbits::before {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 170, 255, 0.1), rgba(120, 60, 255, 0.05) 45%, transparent 70%);
+  pointer-events: none;
+}
+.clock-face { position: absolute; inset: 0; }
+.clock-face svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+/* the hub: the time in the middle of the orbits */
+.oc-hub {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--oc) * 0.014);
+  pointer-events: none;
+}
+.clock-digital {
+  font: 800 calc(var(--oc) * 0.062) 'Orbitron', var(--font-heading), sans-serif;
+  letter-spacing: 0.04em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-shadow: 0 0 calc(var(--oc) * 0.05) rgba(0, 240, 255, 0.35);
+}
+.clock-digital span { display: inline-block; min-width: 1.4ch; text-align: center; }
+.clock-digital i { font-style: normal; color: var(--accent-cyan, #00f0ff); padding: 0 0.04em; }
+.clock-phase { display: inline-flex; align-items: center; gap: 0.5em; font-size: calc(var(--oc) * 0.0245); color: #e8c97a; white-space: nowrap; }
+
+/* the two sides */
+.oc-side { display: flex; flex-direction: column; gap: 0.9rem; min-width: 0; }
+.oc-left { align-items: flex-end; text-align: right; }
+.oc-right { align-items: flex-start; text-align: left; }
+.clock-date { display: flex; flex-direction: column; gap: 4px; }
+.clock-date b { font: 800 clamp(1.3rem, 2.2vw, 1.9rem) 'Orbitron', var(--font-heading), sans-serif; letter-spacing: 0.1em; color: #fff; }
+.clock-date span { font: 500 0.82rem 'JetBrains Mono', monospace; letter-spacing: 0.2em; color: var(--text-secondary); }
+.oc-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.88rem; color: var(--text-secondary); }
+.oc-legend li { display: flex; align-items: center; gap: 10px; }
+.oc-left .oc-legend li { justify-content: flex-end; }
+.oc-legend i { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.oc-legend .l-hour { background: radial-gradient(circle at 35% 30%, #fff3cf, #e9b44c 55%, #6b4a12); }
+.oc-legend .l-min { background: radial-gradient(circle at 35% 30%, #bfe3ff, #2f7fe0 55%, #0a2a66); }
+.oc-legend .l-sec { background: radial-gradient(circle at 35% 30%, #ffc8a8, #d4552a 55%, #5a2010); }
+.clock-diff { font-size: 0.95rem; line-height: 1.55; color: #dfe6f7; max-width: 26ch; }
+.oc-zone { font: 500 0.74rem 'JetBrains Mono', monospace; letter-spacing: 0.18em; color: var(--text-secondary); text-transform: uppercase; }
+
+@media (max-width: 1100px) {
+  .oc-stage { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; padding: 0 1rem; }
+  .oc-left, .oc-right { align-items: center; text-align: center; }
+  .oc-left .oc-legend li { justify-content: center; }
+  .oc-orbits { order: -1; }
+  .clock-diff { max-width: 34ch; }
+}
+@media (max-width: 520px) {
+  .dock { padding: 3rem 0 2rem; }
+  .oc-orbits { --oc: 96vw; }
+  .clock-digital { font-size: calc(var(--oc) * 0.07); }
+  .clock-phase { font-size: calc(var(--oc) * 0.03); }
+}

@@ -170,7 +170,7 @@ module.exports = async function handler(req, res) {
 
     // ── Local Knowledge Engine Fallback ──
     const localStart = Date.now();
-    const localResult = answerQuery(sanitized);
+    const localResult = await answerQuery(sanitized, history);
 
     // Send sources event
     const sourcesEvent = JSON.stringify({

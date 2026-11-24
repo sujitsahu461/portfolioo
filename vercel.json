@@ -1,6 +1,10 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/B%20Tech%20Resume%20Format%20SUJIT.pdf", "destination": "/assets/docs/Sujit-Kumar-Sahu-Resume.pdf", "permanent": true },
+    { "source": "/Sujit_Kumar_Sahu_Resume.pdf", "destination": "/assets/docs/Sujit-Kumar-Sahu-Resume.pdf", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*).(jpg|jpeg|png|svg|webp|pdf|css|js)",
@@ -17,6 +21,10 @@
       "includeFiles": "knowledge/**",
       "maxDuration": 30,
       "memory": 256
+    },
+    "api/github.js": {
+      "maxDuration": 15,
+      "memory": 128
     },
     "api/health.js": {
       "maxDuration": 10,

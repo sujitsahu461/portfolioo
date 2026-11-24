@@ -64,6 +64,19 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
+  if (urlPath === '/api/github' || urlPath === '/api/github.js') {
+    try {
+      return await require('./api/github')(req, res);
+    } catch (err) {
+      console.error('[API /api/github Error]:', err);
+      if (!res.headersSent) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message || 'Internal server error' }));
+      }
+      return;
+    }
+  }
+
   if (urlPath === '/api/health' || urlPath === '/api/health.js') {
     try {
       return await require('./api/health')(req, res);

@@ -36,4 +36,4 @@ source: portfolio
 - **Finn-Track-Pro**: Full-stack personal finance tracker with PostgreSQL, REST API, deployed on Vercel + Render.
 - **Weather Dashboard**: Real-time weather app with OpenWeather API and geolocation.
 - **Bandwidth-Agnostic PWA**: Offline-first Progressive Web App with Service Workers.
-- **Portfolio**: Premium developer portfolio built with vanilla HTML/CSS/JS, featuring dark/light themes, GSAP animations, and cinematic design.
+- **Portfolio**: Premium developer portfolio built with vanilla HTML/CSS/JS, featuring a dark-only design, GSAP and Lenis animation, a canvas galaxy fly-through where each section is a planet, and a live GitHub Activity section.

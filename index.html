@@ -16,8 +16,8 @@
   <title>Sujit Sahu | Software Developer</title>
   <meta name="description" content="Portfolio of Sujit Sahu, Software Developer & Security Engineer" />
   
-  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
-  <link rel="apple-touch-icon" href="logo-emblem.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/images/logo-emblem.png" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,8 +29,16 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
 
-  <link rel="stylesheet" href="style.css?v=3.7.0" />
-  <link rel="stylesheet" href="sujit-ai.css?v=3.7.0" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/galaxy.css?v=10" />
+  <link rel="stylesheet" href="css/github.css?v=7" />
+  <script src="js/github.js?v=5" defer></script>
+  <script src="js/galaxy.js?v=7" defer></script>
+  <script src="js/dock.js?v=3" defer></script>
+  <link rel="stylesheet" href="css/loader.css?v=2" />
+  <link rel="stylesheet" href="css/dock.css?v=7" />
+  <link rel="stylesheet" href="css/sujit-ai.css?v=4" />
+  <link rel="stylesheet" href="css/perf.css?v=1" />
 </head>
 <body class="intro-active">
   <!-- ===================================================== -->
@@ -52,13 +60,16 @@
         <div class="intro-ring intro-ring-outer"></div>
         <div class="intro-ring intro-ring-mid"></div>
         <div class="intro-ring intro-ring-dashed"></div>
+        <div class="intro-orbit orbit-1" aria-hidden="true"><span class="intro-planet planet-earth"></span></div>
+        <div class="intro-orbit orbit-2" aria-hidden="true"><span class="intro-planet planet-mars"></span></div>
+        <div class="intro-orbit orbit-3" aria-hidden="true"><span class="intro-planet planet-saturn"></span></div>
         <div class="intro-corner-bracket tl"></div>
         <div class="intro-corner-bracket tr"></div>
         <div class="intro-corner-bracket bl"></div>
         <div class="intro-corner-bracket br"></div>
         
         <div class="intro-emblem-wrap">
-          <img src="logo-emblem.png" alt="Sujit Sahu Logo" class="intro-emblem-img" id="introEmblem" />
+          <img src="assets/images/logo-emblem.png" alt="Sujit Sahu Logo" class="intro-emblem-img" id="introEmblem"  decoding="async"/>
           <div class="intro-emblem-sheen"></div>
           <div class="intro-emblem-glow"></div>
         </div>
@@ -87,10 +98,17 @@
           <div class="intro-progress-glow" id="introProgressGlow"></div>
         </div>
         
+        <ul class="intro-checks" aria-label="Loading steps">
+          <li data-task="profile">Profile</li>
+          <li data-task="interface">Interface</li>
+          <li data-task="galaxy">Galaxy</li>
+          <li data-task="github">GitHub</li>
+        </ul>
+
         <div class="intro-meta-row">
           <div class="intro-status-box">
             <span class="intro-status-indicator"></span>
-            <span class="intro-status-label" id="introStatusText">INITIALIZING SYSTEM...</span>
+            <span class="intro-status-label" id="introStatusText">LOADING PROFILE...</span>
           </div>
           <div class="intro-percentage-box">
             <span class="intro-counter-num" id="introPercent">0</span><span class="intro-counter-sym">%</span>
@@ -154,7 +172,7 @@
     <div class="nav-container">
       <a href="#hero" class="nav-logo" aria-label="Sujit Sahu - Home">
         <div class="nav-logo-icon">
-          <img src="logo-emblem.png" alt="Sujit Sahu Logo" class="nav-logo-img" />
+          <img src="assets/images/logo-emblem.png" alt="Sujit Sahu Logo" class="nav-logo-img"  decoding="async"/>
           <div class="nav-logo-glow"></div>
         </div>
         <div class="nav-logo-brand">
@@ -171,12 +189,10 @@
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#certificates" class="nav-link">Certificates</a>
           <a href="#work" class="nav-link">Work</a>
+          <a href="#github" class="nav-link">GitHub</a>
           <a href="#contact" class="nav-link">Contact</a>
         </div>
         <div class="nav-actions">
-          <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle theme">
-            <i class="fas fa-moon theme-icon"></i>
-          </button>
           <div class="dropdown-3dot">
             <button class="btn-3dot" id="btn3Dot" aria-label="More options" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-v"></i>
@@ -196,6 +212,7 @@
                   <a href="#skills" class="submenu-item">Skills</a>
                   <a href="#certificates" class="submenu-item">Certificates</a>
                   <a href="#work" class="submenu-item">Work</a>
+                  <a href="#github" class="submenu-item">GitHub Activity</a>
                   <a href="#contact" class="submenu-item">Contact</a>
                 </div>
               </div>
@@ -231,11 +248,11 @@
           <div class="profile-portrait-frame">
             <div class="portrait-glow-ring"></div>
             <img
-              src="sujit-new-photo.jpg"
+              src="assets/images/sujit-photo.jpg"
               alt="Sujit Kumar Sahu — B.Tech Computer Science student, Cybersecurity & AI Engineer"
               class="profile-portrait-img"
               id="profilePortraitImg"
-            />
+             decoding="async"/>
             <div class="portrait-accent-dot dot-tl"></div>
             <div class="portrait-accent-dot dot-br"></div>
           </div>
@@ -346,7 +363,7 @@
           <!-- CTA Buttons -->
           <div class="profile-cta-row reveal-item" style="--reveal-delay:500ms">
             <a href="#work" class="btn btn-primary cyber-btn">DEPLOYED WORK <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-            <a href="B Tech Resume Format SUJIT.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">RESUME</a>
+            <a href="assets/docs/Sujit-Kumar-Sahu-Resume.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">RESUME</a>
           </div>
         </div>
 
@@ -364,9 +381,18 @@
               <h2 class="section-title">ABOUT ME</h2>
               <span class="watermark">INFO</span>
             </div>
-            <p>I'm a cybersecurity-focused developer building intentionally secure systems. While most developers add security as an afterthought, I bake it in from day one—because great code isn't just fast or beautiful, it's <strong>bulletproof</strong>.</p>
-            <p>Currently pursuing my B.Tech in Computer Science, I'm constantly exploring the intersection of security and scalability. I've spent time in penetration testing, secure backend architecture, cryptography, and full-stack development.</p>
-            <p>When I'm not coding, I'm reading security research, participating in CTF competitions, and exploring modern development practices.</p>
+            <p class="about-lead">I'm a B.Tech Computer Science student at GIET University Gunupur who builds for the web and thinks like a security engineer. I like software that is fast to use, easy to maintain, and hard to break.</p>
+            <div class="about-pillars">
+              <article class="about-pillar">
+                <h3><i class="fas fa-code" aria-hidden="true"></i> Web development</h3>
+                <p>I build full-stack applications end to end: responsive, accessible frontends in HTML, CSS, JavaScript and React, backed by Node.js, Express, FastAPI and Django, with PostgreSQL, MongoDB and MySQL for data. My projects ship real REST APIs, authentication and live deployments, from Finn-Track-Pro to an offline-first PWA for low-bandwidth networks.</p>
+              </article>
+              <article class="about-pillar">
+                <h3><i class="fas fa-shield-alt" aria-hidden="true"></i> Cybersecurity</h3>
+                <p>Security shapes how I write code. I completed a Cyber Security internship at PreppRight EdTech (New Delhi, 2025) covering network security, ethical hacking fundamentals, vulnerability assessment and basic penetration testing. I design with threat modeling, input validation and the OWASP Top 10 in mind from the first commit, not as a patch at the end.</p>
+              </article>
+            </div>
+            <p class="about-founder"><strong>Founder, NivaraNova Technologies Pvt Ltd.</strong> I started NivaraNova, an early-stage startup from Gunupur, Odisha, to build practical software for problems in public services. Our first product is <a href="https://github.com/sujitsahu461/-CivicSetu-AI-Powered-Civic-Engagement-Platform" target="_blank" rel="noopener noreferrer">CivicSetu</a>, a platform that helps citizens report civic issues and helps municipal teams resolve them transparently. <a href="https://nivaranova-technologies.vercel.app/" target="_blank" rel="noopener noreferrer">Visit NivaraNova</a>.</p>
           </div>
           <!-- Right: highlight cards, flush from the very top -->
           <div class="about-highlights">
@@ -393,7 +419,9 @@
             </div>
           </div>
         </div>
-      </div>
+
+  
+        </div>
     </section>
 
     <!-- EDUCATION -->
@@ -432,6 +460,33 @@
           <span class="watermark">CAREER</span>
         </div>
         <div class="experience-grid">
+          <!-- 0. NivaraNova Technologies - Founder -->
+          <div class="experience-card">
+            <div class="experience-badge"><i class="fas fa-rocket"></i> Founder</div>
+            <div class="experience-header">
+              <div class="company-icon-box"><i class="fas fa-lightbulb"></i></div>
+              <div>
+                <h3 class="role-title">Founder</h3>
+                <h4 class="company-name">NivaraNova Technologies Pvt Ltd</h4>
+              </div>
+            </div>
+            <div class="experience-meta">
+              <span><i class="fas fa-map-marker-alt"></i> Gunupur, Odisha, India</span>
+            </div>
+            <p class="experience-desc">A startup I founded in Gunupur, Odisha, to build practical software for problems in public services. Our first product is CivicSetu, a platform that helps citizens report civic issues and helps municipal teams resolve them transparently.</p>
+            <div class="experience-tags">
+              <span>Civic Tech</span>
+              <span>React</span>
+              <span>TypeScript</span>
+              <span>Django</span>
+            </div>
+            <div class="experience-actions">
+              <a class="btn btn-outline btn-sm exp-btn" href="https://nivaranova-technologies.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Visit NivaraNova
+              </a>
+            </div>
+          </div>
+
           <!-- 1. Mahanadi Coalfields Ltd -->
           <div class="experience-card">
             <div class="experience-badge"><i class="fas fa-building"></i> On-site</div>
@@ -627,19 +682,19 @@
           <h3 class="skill-cat-label"><i class="fas fa-code"></i> Frontend</h3>
           <div class="skill-icons-row">
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"  loading="lazy" decoding="async"/>
               <span>HTML5</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"  loading="lazy" decoding="async"/>
               <span>CSS3</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"  loading="lazy" decoding="async"/>
               <span>JavaScript</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"  loading="lazy" decoding="async"/>
               <span>React</span>
             </div>
           </div>
@@ -650,39 +705,39 @@
           <h3 class="skill-cat-label"><i class="fas fa-server"></i> Backend</h3>
           <div class="skill-icons-row">
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"  loading="lazy" decoding="async"/>
               <span>Python</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"  loading="lazy" decoding="async"/>
               <span>Node.js</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="icon-invert" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="icon-invert"  loading="lazy" decoding="async"/>
               <span>Express</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"  loading="lazy" decoding="async"/>
               <span>FastAPI</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"  loading="lazy" decoding="async"/>
               <span>Java</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"  loading="lazy" decoding="async"/>
               <span>PostgreSQL</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"  loading="lazy" decoding="async"/>
               <span>MongoDB</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"  loading="lazy" decoding="async"/>
               <span>MySQL</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="icon-django" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="icon-django"  loading="lazy" decoding="async"/>
               <span>Django</span>
             </div>
           </div>
@@ -693,19 +748,19 @@
           <h3 class="skill-cat-label"><i class="fas fa-brain"></i> AI / ML</h3>
           <div class="skill-icons-row">
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"  loading="lazy" decoding="async"/>
               <span>NumPy</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"  loading="lazy" decoding="async"/>
               <span>Pandas</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn"  loading="lazy" decoding="async"/>
               <span>Scikit-learn</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib"  loading="lazy" decoding="async"/>
               <span>Matplotlib</span>
             </div>
           </div>
@@ -747,27 +802,27 @@
           <h3 class="skill-cat-label"><i class="fas fa-tools"></i> Tools &amp; DevOps</h3>
           <div class="skill-icons-row">
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"  loading="lazy" decoding="async"/>
               <span>Git</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="icon-invert" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="icon-invert"  loading="lazy" decoding="async"/>
               <span>GitHub</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"  loading="lazy" decoding="async"/>
               <span>Docker</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"  loading="lazy" decoding="async"/>
               <span>Linux</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain.svg" alt="AWS"  loading="lazy" decoding="async"/>
               <span>AWS</span>
             </div>
             <div class="skill-badge">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"  loading="lazy" decoding="async"/>
               <span>VS Code</span>
             </div>
           </div>
@@ -803,6 +858,16 @@
         </div>
         
         <div class="projects-grid">
+          <!-- 0. CivicSetu -->
+          <div class="project-card" data-project="11">
+            <div class="project-img"><i class="fas fa-city"></i></div>
+            <div class="project-info">
+              <span class="project-tag">Django • React • MySQL</span>
+              <h3>CivicSetu</h3>
+              <p>Civic engagement and municipal grievance redressal platform built under NivaraNova Technologies.</p>
+              <button class="btn btn-text">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
           <!-- 1 -->
           <div class="project-card" data-project="6">
             <div class="project-img"><i class="fas fa-chart-line"></i></div>
@@ -908,6 +973,18 @@
     </section>
 
     <!-- CONTACT / CONNECT HUB -->
+    <section id="github" class="figma-section" aria-labelledby="ghTitle">
+      <div class="container">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="ghTitle">GITHUB ACTIVITY</h2>
+          <span class="watermark">CODE</span>
+        </div>
+        <div class="gh" id="ghRoot" aria-live="polite">
+          <p class="gh-state">Loading GitHub activity from github.com/sujitsahu461…</p>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="figma-section contact-section">
       <div class="container">
         <div class="section-title-wrap center-wrap text-center">
@@ -1135,12 +1212,44 @@
     </section>
   </main>
 
+  <section class="dock" id="dock" aria-label="Local time in Odisha, India">
+    <p class="oc-kicker">Local time · Odisha, India</p>
+    <div class="oc-stage">
+      <div class="oc-side oc-left">
+        <div class="clock-date" id="clockDate">&nbsp;</div>
+        <ul class="oc-legend" aria-label="How to read the clock">
+          <li>Saturn is the hour <i class="l-hour" aria-hidden="true"></i></li>
+          <li>Earth is the minute <i class="l-min" aria-hidden="true"></i></li>
+          <li>Mars is the second <i class="l-sec" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+
+      <div class="oc-orbits">
+        <div class="clock-face" id="clockFace" role="img" aria-label="Orbital clock: three planets show the hour, minute and second of Sujit's local time"></div>
+        <div class="oc-hub">
+          <div class="clock-digital" id="clockDigital" role="timer" aria-live="off">--:--:--</div>
+          <div class="clock-phase" id="clockPhase"></div>
+        </div>
+      </div>
+
+      <div class="oc-side oc-right">
+        <div class="oc-zone">IST · UTC+5:30 · no daylight saving</div>
+        <div class="clock-diff" id="clockDiff"></div>
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-brand-wrap">
-        <img src="logo-emblem.png" alt="Sujit Sahu" class="footer-logo-img" />
+        <img src="assets/images/logo-emblem.png" alt="Sujit Sahu" class="footer-logo-img"  loading="lazy" decoding="async"/>
         <span class="footer-brand-title">SUJIT SAHU</span>
         <span class="footer-brand-tagline">BUILD • LEARN • IMPACT</span>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a" target="_blank" rel="noopener noreferrer" aria-label="Sujit on LinkedIn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="https://github.com/sujitsahu461" target="_blank" rel="noopener noreferrer" aria-label="Sujit on GitHub"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://nivaranova-technologies.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="NivaraNova Technologies website"><i class="fas fa-rocket"></i> NivaraNova</a>
       </div>
       <div class="footer-links">
         <a href="#" class="footer-link" data-doc="disclaimer">Disclaimer</a>
@@ -1162,7 +1271,7 @@
         
         <!-- Certificate Image Container -->
         <div id="modalImageContainer" style="display:none; margin: 16px 0; text-align: center;">
-          <img id="modalImage" src="" alt="Internship Certificate" style="max-width: 100%; max-height: 480px; border-radius: 12px; border: 1px solid var(--accent-cyan); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.25); cursor: pointer; transition: transform 0.3s ease;" onclick="window.open(this.src, '_blank')" title="Click to open full high-res image in new tab" />
+          <img id="modalImage" src="" alt="Internship Certificate" style="max-width: 100%; max-height: 480px; border-radius: 12px; border: 1px solid var(--accent-cyan); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.25); cursor: pointer; transition: transform 0.3s ease;" onclick="window.open(this.src, '_blank')" title="Click to open full high-res image in new tab"  loading="lazy" decoding="async"/>
           <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px;"><i class="fas fa-search-plus"></i> Tap / click certificate image to open full resolution</p>
         </div>
 
@@ -1255,8 +1364,8 @@
     </div>
   </div>
 
-  <script src="script.js?v=3.7.0"></script>
-  <script src="animations.js?v=3.7.0" defer></script>
-  <script src="sujit-ai.js?v=3.7.0" defer></script>
+  <script src="js/script.js?v=6"></script>
+  <script src="js/animations.js?v=9" defer></script>
+  <script src="js/sujit-ai.js?v=4" defer></script>
 </body>
 </html>

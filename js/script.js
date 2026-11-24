@@ -4,13 +4,12 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
   setupNavigation();
-  setupScrollProgress();
-  setupFramerScrollScene();
+  // the scroll progress bar is driven by GSAP in animations.js; the hidden framer scene was removed
   // Scroll reveals handled by animations.js (GSAP ScrollTrigger)
   setupProjectCards();
   setupSmoothScroll();
   setupAnalyticsTracking();
-  setupThemeToggle();
+  setupTheme();
   setupDropdown3Dot();
   setupRandomQuotes();
   setupLegalModal();
@@ -24,20 +23,30 @@ function setupNavigation() {
   const navMenu = document.querySelector('.nav-menu');
   let lastActiveId = '';
 
-  // Update active link on scroll
-  window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (window.scrollY >= sectionTop - 220) {
-        current = section.getAttribute('id');
-      }
-    });
+  // Update the active link while scrolling. Section positions are measured once (and again when the
+  // layout changes), and the check runs at most once per animation frame.
+  let tops = [];
+  const measure = () => {
+    const linked = new Set(Array.from(navLinks).map((l) => l.getAttribute('href').slice(1)));
+    tops = Array.from(sections)
+      .filter((section) => linked.has(section.getAttribute('id')))
+      .map((section) => [section.getAttribute('id'), section.getBoundingClientRect().top + window.scrollY]);
+  };
+  measure();
+  window.addEventListener('resize', measure, { passive: true });
+  window.addEventListener('load', measure);
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
 
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    if (document.body.classList.contains('paged')) return;   // the pager sets the active link
+    let current = '';
+    const y = window.scrollY + 220;
+    for (const [id, top] of tops) if (y >= top && id) current = id;
     if (current && current !== lastActiveId) {
       lastActiveId = current;
-      navLinks.forEach(link => {
+      navLinks.forEach((link) => {
         const isTarget = link.getAttribute('href').slice(1) === current;
         link.classList.toggle('active', isTarget);
         if (isTarget && window.innerWidth <= 768 && navMenu) {
@@ -45,48 +54,10 @@ function setupNavigation() {
         }
       });
     }
-  }, { passive: true });
-}
-
-// ===== SCROLL PROGRESS =====
-function setupScrollProgress() {
-  const progressBar = document.getElementById('scrollProgress');
-  
+  };
   window.addEventListener('scroll', () => {
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = (window.scrollY / scrollHeight) * 100;
-    progressBar.style.width = scrolled + '%';
-  });
-}
-
-// ===== FRAMER-STYLE SCROLL SCENE =====
-function setupFramerScrollScene() {
-  const scene = document.querySelector('.framer-scroll-scene');
-  if (!scene) return;
-
-  let rafId = null;
-
-  const updateScene = () => {
-    rafId = null;
-
-    const scrollHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-    const progress = Math.min(window.scrollY / scrollHeight, 1);
-    const offset = window.scrollY * 0.03;
-    const parallax = window.scrollY * 0.08;
-
-    scene.style.setProperty('--scroll-progress', progress.toFixed(4));
-    scene.style.setProperty('--scroll-offset', `${offset.toFixed(2)}px`);
-    scene.style.setProperty('--scroll-parallax', `${parallax.toFixed(2)}px`);
-  };
-
-  const requestUpdate = () => {
-    if (rafId !== null) return;
-    rafId = window.requestAnimationFrame(updateScene);
-  };
-
-  window.addEventListener('scroll', requestUpdate, { passive: true });
-  window.addEventListener('resize', requestUpdate);
-  updateScene();
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
 }
 
 // ===== SCROLL REVEALS (moved to animations.js — GSAP ScrollTrigger) =====
@@ -152,6 +123,12 @@ function setupProjectCards() {
       tech: ['Python', 'Pandas', 'Data Analysis', 'Visualization', 'Modular Package'],
       github: 'https://github.com/sujitsahu461/IPL-CRUNCH-26'
     },
+    11: {
+      title: 'CivicSetu — Civic Engagement Platform',
+      desc: 'Full-stack civic engagement and municipal grievance redressal platform built under NivaraNova Technologies. It digitizes public complaint reporting and gives citizens and municipal authorities role-based workflows with transparent complaint tracking, lifecycle status and auditability.',
+      tech: ['Django', 'Django REST Framework', 'React', 'Vite', 'MySQL', 'Leaflet', 'JWT Auth'],
+      github: 'https://github.com/sujitsahu461/-CivicSetu-AI-Powered-Civic-Engagement-Platform'
+    },
     10: {
       title: 'VoteWise',
       desc: 'A modern voting and polling application system built with a focus on robust functionality, smooth user experience, and secure operations. Designed with a clean frontend to interface with a development server.',
@@ -195,35 +172,35 @@ function setupProjectCards() {
     const expData = {
       'mcl': {
         title: 'Web Developer — Mahanadi Coalfields Ltd',
-        certImage: 'certificates/mcl-internship.jpg',
+        certImage: 'assets/images/certificates/mcl-internship.jpg',
         desc: 'Role: Web Developer Intern (Jun 2026 · 1 mo, Sambalpur, Odisha, India · On-site)\n\nCompleted Internship training in System Dept., MCL HQ (01.06.2026 to 30.06.2026). Constructed responsive web applications, operational data portals, and software tools for industrial workflows. Implemented scalable frontend layouts, secure backend API integrations, and robust database systems tailored for industrial operations.',
         tech: ['Web Development', 'Full-Stack Development', 'Industrial Systems', 'Database Systems', 'Frontend & Backend'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/'
       },
       'eduskills-prompt': {
         title: 'Prompt Engineer — EduSkills Foundation®',
-        certImage: 'certificates/eduskills-prompt.jpg',
+        certImage: 'assets/images/certificates/eduskills-prompt.jpg',
         desc: 'Role: Prompt Engineer Virtual Intern (Apr 2026 - Jun 2026 · 3 mos, Bhubaneswar, Odisha · Remote)\n\nCompleted a 10-week Prompt Engineering for AI Virtual Internship by EduSkills in collaboration with AICTE and the Ministry of Education. Gained hands-on exposure to Generative AI, Large Language Models (LLMs), prompt optimization, context engineering, and AI-driven problem solving.',
         tech: ['Artificial Intelligence (AI)', 'Context Engineering', 'Generative AI', 'Prompt Engineering', 'LLM Optimization'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
       },
       'eduskills-python': {
         title: 'Python Developer — EduSkills Foundation®',
-        certImage: 'certificates/eduskills-python.jpg',
+        certImage: 'assets/images/certificates/eduskills-python.jpg',
         desc: 'Role: Python Full Stack Virtual Intern (Jan 2026 - Mar 2026 · 3 mos, Bhubaneswar, Odisha · Remote)\n\nCompleted a 10-week Python Full Stack Development Virtual Internship under AICTE, EduSkills, and National Internship Portal (Jan–Mar 2026). Gained hands-on experience in FastAPI, REST API development, database integration, authentication, and React basics. Built and deployed full-stack projects, including an in-memory cache with TTL.',
         tech: ['Python', 'FastAPI', 'React.js', 'REST APIs', 'Database Integration', 'Authentication', 'In-Memory Cache (TTL)'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
       },
       'preppright': {
         title: 'Cyber Security Intern — PreppRight EdTech Pvt. Ltd.',
-        certImage: 'certificates/preppright.jpg',
+        certImage: 'assets/images/certificates/preppright.jpg',
         desc: 'Role: Cyber Security Intern (Jun 2025 - Jul 2025 · 2 mos, New Delhi · Remote)\n\nCompleted Cyber Security training at Preppright EdTech Pvt. Ltd., New Delhi (June–July 2025). Gained hands-on knowledge of network security, ethical hacking fundamentals, vulnerability assessment, and basic penetration testing. Worked with tools and techniques for threat analysis, risk mitigation, and securing systems against cyber attacks.',
         tech: ['Network Security', 'Ethical Hacking', 'Vulnerability Assessment', 'Penetration Testing', 'Threat Analysis', 'Risk Mitigation'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
       },
       'cttc': {
         title: 'AI / ML Intern — Central Tool Room & Training Centre (CTTC MSME)',
-        certImage: 'certificates/cttc-aiml.jpg',
+        certImage: 'assets/images/certificates/cttc-aiml.jpg',
         desc: 'Role: AI/ML Intern (May 2025 - Jun 2025 · 2 mos, Bhubaneswar, Odisha, India · On-site)\n\nCompleted an AI/ML internship at Central Tool Room and Training Centre (CTTC, Govt. of India). Gained hands-on experience in data preprocessing, feature engineering, and model building using Python, NumPy, Pandas, Matplotlib, and Scikit-learn. Implemented algorithms like Linear Regression, Decision Trees, and KNN, evaluating models using accuracy and confusion matrix on real-world datasets.',
         tech: ['Artificial Intelligence (AI)', 'Data Visualization', 'Python', 'NumPy & Pandas', 'Scikit-learn', 'KNN & Decision Trees', 'Confusion Matrix'],
         link: 'https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a/details/certifications/'
@@ -354,41 +331,11 @@ function setupAnalyticsTracking() {
   }
 }
 
-// ===== THEME TOGGLE =====
-function setupThemeToggle() {
-  const themeToggleBtn = document.getElementById('themeToggleBtn');
-  if (!themeToggleBtn) return;
-  const themeIcon = themeToggleBtn.querySelector('.theme-icon');
-
-  // Check persisted preference
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeUI(savedTheme);
-
-  themeToggleBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeUI(newTheme);
-
-    // Track Theme Change in Google Analytics
-    if (typeof gtag === 'function') {
-      gtag('event', 'theme_change', {
-        'event_category': 'Preference',
-        'event_label': newTheme
-      });
-    }
-  });
-
-  function updateThemeUI(theme) {
-    if (theme === 'light') {
-      themeIcon.className = 'fas fa-sun theme-icon';
-    } else {
-      themeIcon.className = 'fas fa-moon theme-icon';
-    }
-  }
+// ===== THEME =====
+// The site has a single dark theme. Clear any light-theme preference saved by an earlier version.
+function setupTheme() {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  try { localStorage.removeItem('theme'); } catch (e) { /* storage unavailable */ }
 }
 
 // ===== 3-DOT OPTIONS DROPDOWN =====
@@ -466,6 +413,66 @@ function setupDropdown3Dot() {
 // ===== DYNAMIC QUOTES =====
 function setupRandomQuotes() {
   const quotes = [
+    {
+      text: "Talk is cheap. Show me the code.",
+      author: "Linus Torvalds"
+    },
+    {
+      text: "The best way to predict the future is to invent it.",
+      author: "Alan Kay"
+    },
+    {
+      text: "Simplicity is prerequisite for reliability.",
+      author: "Edsger W. Dijkstra"
+    },
+    {
+      text: "Premature optimization is the root of all evil.",
+      author: "Donald Knuth"
+    },
+    {
+      text: "Make it work, make it right, make it fast.",
+      author: "Kent Beck"
+    },
+    {
+      text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      author: "Martin Fowler"
+    },
+    {
+      text: "Any sufficiently advanced technology is indistinguishable from magic.",
+      author: "Arthur C. Clarke"
+    },
+    {
+      text: "The most dangerous phrase in the language is, 'We have always done it this way.'",
+      author: "Grace Hopper"
+    },
+    {
+      text: "Stay hungry. Stay foolish.",
+      author: "Steve Jobs"
+    },
+    {
+      text: "If you think technology can solve your security problems, then you do not understand the problems and you do not understand the technology.",
+      author: "Bruce Schneier"
+    },
+    {
+      text: "Programs must be written for people to read, and only incidentally for machines to execute.",
+      author: "Harold Abelson"
+    },
+    {
+      text: "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.",
+      author: "Bill Gates"
+    },
+    {
+      text: "The only way to do great work is to love what you do.",
+      author: "Steve Jobs"
+    },
+    {
+      text: "It always seems impossible until it is done.",
+      author: "Nelson Mandela"
+    },
+    {
+      text: "Whether you think you can, or you think you cannot, you are right.",
+      author: "Henry Ford"
+    },
     {
       text: "The search for truth is more precious than its possession.",
       author: "Albert Einstein"
@@ -581,7 +588,7 @@ function setupLegalModal() {
         <br>If you choose to contact me via the email link provided (<a href="mailto:sujitkumarsahu7334@gmail.com" class="legal-email">sujitkumarsahu7334@gmail.com</a>), the information you provide (name, email address, message body) will be used solely to communicate with you regarding your inquiry. This data is never rented, sold, or shared with third parties.</p>
         
         <h4>2. Persistent User Preferences (Local Storage)</h4>
-        <p>To deliver a consistent interface experience, this Site uses browser Local Storage (<code>localStorage</code>) to save and persist your color theme selection (dark mode vs. light mode). This configuration is stored locally on your physical device, is not transmitted to our servers or third-party databases, and can be cleared at any time by clearing your browser's site settings or cache.</p>
+        <p>This Site does not store any preferences in your browser. A color-theme preference saved by an earlier version of the Site is removed automatically on your next visit.</p>
         
         <h4>3. Analytics & Telemetry Disclosures</h4>
         <p>This Site utilizes Google Analytics (<code>gtag.js</code>) to gather high-level, non-personally identifiable telemetry to evaluate traffic flow and optimize our layout. This tool records anonymous technical data such as browser type, operating system, approximate geographic location, referral source, page views, and session duration. Google Analytics may drop standard telemetry cookies in your browser. You can block or clear these tracking cookies at any time via your browser's cookie settings.</p>

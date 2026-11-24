@@ -840,26 +840,4 @@ body.sai-chat-open #sujitAiLauncher {
 }
 
 /* ── Light Theme Adjustments ── */
-[data-theme="light"] #sujitAiLauncher {
-  background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(219, 39, 119, 0.06));
-  border-color: rgba(2, 132, 199, 0.25);
-  box-shadow: 0 4px 24px rgba(2, 132, 199, 0.1), 0 0 0 1px rgba(0,0,0,0.03);
-}
 
-[data-theme="light"] #sujitAiPanel {
-  box-shadow: 0 24px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.06);
-  border-color: rgba(2, 132, 199, 0.15);
-}
-
-[data-theme="light"] .sai-msg-user .sai-msg-content {
-  background: rgba(2, 132, 199, 0.08);
-  border-color: rgba(2, 132, 199, 0.12);
-}
-
-[data-theme="light"] .sai-msg-assistant .sai-msg-content code {
-  background: rgba(0,0,0,0.06);
-}
-
-[data-theme="light"] .sai-msg-assistant .sai-msg-content pre {
-  background: rgba(0,0,0,0.04);
-}

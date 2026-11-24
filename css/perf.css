@@ -1,0 +1,41 @@
+/* Performance layer. Loaded last so it can switch off the costly effects.
+ *
+ * Why: a full-screen canvas (the galaxy) animates behind the whole page. Every element with
+ * `backdrop-filter: blur()` has to re-blur whatever is behind it each time that canvas repaints,
+ * which is the most common cause of scroll lag on phones and integrated GPUs.
+ * Cards already sit on a dark, near-opaque background, so removing the blur costs almost nothing visually.
+ */
+
+/* 1. No backdrop blur anywhere except the fixed header and the chat panel. */
+body :not(.navbar):not(#sujitAiPanel):not(#sujitAiLauncher):not(.modal-content) {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* the cards lose the blur, so make their dark base a little stronger to keep text crisp over stars */
+.timeline-content, .cert-card-page, .skill-card, .project-card, .highlight-item, .experience-card,
+.about-pillar, .gh-card, .gh-block, .profile-punchline-card, .hobby-card {
+  background-color: rgba(10, 13, 22, 0.86);
+}
+
+/* 2. Header: lighter blur on laptops, none on touch screens. */
+.navbar { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+@media (max-width: 900px), (pointer: coarse) {
+  .navbar { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(8, 10, 17, 0.94); }
+}
+
+/* 3. Phones and tablets: keep the page still unless the visitor interacts. */
+@media (max-width: 900px), (pointer: coarse) {
+  .profile-portrait-frame,
+  .hero-glow-sphere,
+  .avatar-wrapper .shape,
+  .portrait-glow-ring { animation: none !important; }
+  .hero-glow-sphere { filter: none; opacity: 0.55; }
+  /* large soft shadows are expensive to repaint while scrolling */
+  .project-card, .cert-card-page, .skill-card, .experience-card, .timeline-content { box-shadow: none !important; }
+}
+
+/* 4. Never run decorative loops for visitors who asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-iteration-count: 1 !important; animation-duration: 0.01ms !important; }
+}

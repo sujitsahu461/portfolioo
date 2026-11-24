@@ -96,46 +96,92 @@ flowchart TD
 
 ---
 
+## 🧠 Teaching Sujit AI new things
+
+The local knowledge engine (used when no cloud keys are set, or the cloud call fails) answers from three verified sources and never invents facts:
+
+| Source | How to update it |
+|---|---|
+| `knowledge/**/*.md` | Add or edit a file. A new file in `knowledge/projects/` is picked up on the next start and gets overview, problem, features, tech, role, architecture and source-code questions automatically. |
+| `lib/qa-bank.js` | Hand-written answers for profile, contact, experience, goals and "not on file" topics. Add an `e('id', 'topic', [phrasings], answer)` entry, or `more('id', [phrasings])` to teach new wordings. |
+| Live GitHub (`lib/github-live.js`) | Nothing to do. Recent commits, repositories, languages and contributions are read from GitHub (cached 10 minutes). |
+
+Anything not covered gets an honest "not on file" reply. Private facts (age, phone, salary, family, grades) are refused on purpose.
+
+```bash
+node tests/test-sujit-ai.js         # ~12,000 generated questions + held-out, refusal, injection and live-GitHub checks
+node scripts/export-qa-md.js        # export the bank to knowledge/faq/qa-bank.md for the cloud index
+node scripts/ingest.js              # re-index knowledge/ into Qdrant (cloud mode only)
+```
+
+Cloud RAG mode answers from the Qdrant index, so run the last two commands after changing the knowledge base. LinkedIn has no public API, so certificates and LinkedIn changes must be added to `knowledge/` by hand.
+
+## ⚡ Performance (phone and laptop)
+
+The galaxy is a full-screen canvas behind the whole page, so the site is built to keep it cheap:
+
+| What | How |
+|---|---|
+| Idle page costs nothing | The canvas repaints only when the camera, pointer or a planet changes. A page that is not moving paints **0 frames** (it used to repaint about 30 per second). |
+| One image for the backdrop | The Milky Way, nebula, far stars and sun glow are composed once per screen size, then copied as a single image per frame. |
+| Lower resolution on phones | Pixel ratio is capped at 1 on phones and 1.5 on laptops, and drops further (down to 0.6) automatically if frames keep running long. |
+| No backdrop blur | `css/perf.css` removes `backdrop-filter` from cards. Blurring over an animating canvas is the most common cause of scroll lag. The header keeps a light blur on laptops only. |
+| Calm on touch screens | No parallax, no floating hero loops and no large card shadows on phones and tablets. |
+| Cheap scrolling | The scroll bar moves with a transform (not `width`), the nav highlight uses cached positions and runs once per frame, and the custom cursor stops updating when it has caught up. |
+| Loading | Images below the fold are lazy-loaded, planet textures are built in idle time, and the intro paints nothing behind it. |
+| Visible only | The clock, galaxy and GitHub loops pause when the tab is hidden or the element is off screen, and honour `prefers-reduced-motion`. |
+
+**How to check it yourself**
+
+1. `node server.js`, open http://localhost:8000.
+2. Chrome DevTools → **Performance** → record while scrolling the whole page, once at laptop size and once with the device toolbar set to a phone (375 px) and **CPU: 4x slowdown**. Frames should stay near 16 ms.
+3. In the console, `__galaxy.state()` shows `drawMs` (cost of one canvas frame, about 0.2–0.5 ms) and `drawn` (frames painted so far); leave the page alone for 10 seconds and `drawn` should barely change.
+
 ## 📁 Repository Structure
 
 ```text
-portfolioo/
-├── api/                          # Vercel Serverless Functions (Backend)
-│   ├── chat.js                   # POST /api/chat — SSE streaming RAG endpoint
-│   ├── health.js                 # GET /api/health — System & vector store health
-│   ├── ingest.js                 # POST /api/ingest — Admin-authenticated ingestion
-│   └── lib/                      # Modular RAG engine
-│       ├── chunker.js            # Semantic markdown chunking & frontmatter parser
-│       ├── embeddings.js         # Embedding provider abstraction (OpenAI)
-│       ├── llm.js                # LLM client with system prompt & streaming
-│       ├── query-router.js       # Query intent classifier
-│       ├── rate-limiter.js       # IP sliding-window rate limiter & sanitization
-│       ├── retrieval.js          # RAG retrieval pipeline & context builder
-│       ├── types.js              # JSDoc type definitions
-│       └── vectorstore.js        # Vector store abstraction (Qdrant Cloud)
-├── knowledge/                    # Structured knowledge base (21 Markdown docs)
-│   ├── about/                    # profile.md, philosophy.md, goals.md
-│   ├── achievements/             # certifications.md
-│   ├── education/                # education.md
-│   ├── experience/               # experience.md
-│   ├── projects/                 # 10 detailed project markdown files
-│   ├── resume/                   # resume.md
-│   └── skills/                   # ai-ml.md, cybersecurity.md, programming.md, web-development.md
-├── scripts/
-│   └── ingest.js                 # CLI knowledge ingestion & embedding generator
-├── tests/
-│   ├── evaluation.json           # 15 RAG evaluation scenarios
-│   └── test-rag.js               # Automated 40-check test suite
-├── index.html                    # Main portfolio markup with integrated Sujit AI UI
-├── sujit-ai.css                  # Sujit AI styling & responsive glassmorphism theme
-├── sujit-ai.js                   # Sujit AI frontend client (SSE stream, state, shortcuts)
-├── style.css                     # Portfolio core stylesheet
-├── script.js                     # Portfolio interactive logic
-├── server.js                     # Local development static server
-├── package.json                  # Dependencies & scripts
-├── vercel.json                   # Vercel deployment & routing configuration
-└── .env.example                  # Environment template
+portfolio/
+├── index.html                    # The whole site as one continuous page, plus the Sujit AI widget
+├── css/
+│   ├── style.css                 # Core design system and section styles
+│   ├── galaxy.css                # Galaxy rail, paged layout, page navigation
+│   ├── github.css                # GitHub Activity section and About layout
+│   ├── dock.css                  # Orbital clock: open layout, no card
+│   ├── loader.css                # Loading screen: orbiting planets and real loading steps
+│   ├── perf.css                  # Performance layer: switches off costly effects (loaded last)
+│   └── sujit-ai.css              # Sujit AI widget styling
+├── js/
+│   ├── script.js                 # Content rendering, project and certificate modals, forms
+│   ├── animations.js             # Intro loader, Lenis smooth scroll, GSAP reveals
+│   ├── pager.js                  # OPTIONAL, switched off: one-page-at-a-time mode (add its <script> tag to index.html to enable)
+│   ├── galaxy.js                 # Canvas galaxy: one planet per section, flies as you scroll
+│   ├── github.js                 # GitHub section: profile card plus contribution graph (live from /api/github)
+│   ├── dock.js                   # Orbital clock: Saturn = hour, Earth = minute, Mars = second (Sujit's local time, IST)
+│   └── sujit-ai.js               # Sujit AI chat client (SSE streaming)
+├── assets/
+│   ├── images/                   # favicon, logo emblem, portrait, certificates/
+│   └── docs/                     # Sujit-Kumar-Sahu-Resume.pdf
+├── api/                          # Vercel serverless functions
+│   ├── chat.js                   # POST /api/chat: cloud RAG, falls back to the local engine
+│   ├── github.js                 # GET /api/github: live GitHub activity
+│   └── health.js                 # GET /api/health
+├── lib/                          # Shared backend code (CommonJS)
+│   ├── local-responder.js        # Sujit AI local engine: intents, live GitHub, refusals
+│   ├── local-search.js           # BM25 retrieval with synonyms and a confidence floor
+│   ├── qa-bank.js                # Hand-written answers plus ones generated from knowledge/
+│   ├── github-live.js            # GitHub data fetch and cache
+│   └── chunker.js, embeddings.js, llm.js, query-router.js, rate-limiter.js,
+│       retrieval.js, types.js, vectorstore.js   # Cloud RAG pipeline
+├── knowledge/                    # Verified facts about Sujit (Markdown, one topic per file)
+├── scripts/                      # ingest.js, export-qa-md.js
+├── tests/                        # test-rag.js (pipeline) and test-sujit-ai.js (answer quality)
+├── server.js                     # Local dev server (static files plus /api)
+├── vercel.json                   # Deployment, redirects, caching
+├── package.json
+└── .env.example
 ```
+
+The site is one continuous page with a fixed header. Anchors such as `#about`, `#work` and `#github` work as deep links. `js/pager.js` and the `paged-js` rules in `css/galaxy.css` are an optional one-section-at-a-time mode that is currently switched off.
 
 ---
 

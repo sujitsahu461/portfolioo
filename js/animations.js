@@ -24,21 +24,40 @@
   }
 
   // Wait for all deferred scripts (GSAP, Lenis) to load
+  // If the animation libraries never arrive (offline, blocked CDN), drop the loader so the
+  // site is still usable instead of sitting on a frozen intro screen.
+  function bypassIntro() {
+    document.body.classList.remove('intro-active');
+    const stuck = document.getElementById('introLoader');
+    if (stuck) stuck.remove();
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure GSAP and Lenis are available
-    requestAnimationFrame(() => {
-      if (typeof gsap === 'undefined' || typeof Lenis === 'undefined') {
-        console.warn('[Animations] GSAP or Lenis not loaded. Retrying...');
-        setTimeout(initAll, 200);
+    let attempts = 0;
+    const tryInit = () => {
+      if (typeof gsap !== 'undefined' && typeof Lenis !== 'undefined') {
+        try {
+          initAll();
+        } catch (err) {
+          console.error('[Animations] init failed, showing the site without the intro:', err);
+          bypassIntro();
+        }
         return;
       }
-      initAll();
-    });
+      if (++attempts > 40) {          // about 8 seconds
+        console.warn('[Animations] GSAP or Lenis did not load. Showing the site without animations.');
+        bypassIntro();
+        return;
+      }
+      setTimeout(tryInit, 200);
+    };
+    requestAnimationFrame(tryInit);
   });
 
   function initAll() {
     if (typeof gsap === 'undefined' || typeof Lenis === 'undefined') {
       console.warn('[Animations] Libraries not available. Animations disabled.');
+      bypassIntro();
       return;
     }
 
@@ -99,6 +118,7 @@
     // Connect Lenis scroll to ScrollTrigger
     lenisInstance.on('scroll', ScrollTrigger.update);
 
+    window.__lenis = lenisInstance;   // the pager resets scroll through this
     document.documentElement.classList.add('lenis', 'lenis-smooth');
 
     // Handle anchor clicks — let Lenis handle smooth scroll
@@ -122,32 +142,12 @@
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
 
-    let lastScrollY = 0;
-    const scrollThreshold = 80; // Only trigger after scrolling past hero top
-
-    // Use ScrollTrigger for performance (runs on rAF)
+    // The header stays visible at all times. It only gains a solid background once the page scrolls.
+    navbar.classList.remove('navbar--hidden');
     ScrollTrigger.create({
-      start: 'top top',
+      start: 'top -20',
       end: 'max',
-      onUpdate: (self) => {
-        const currentScrollY = self.scroll();
-        const direction = self.direction; // 1 = down, -1 = up
-
-        if (currentScrollY > scrollThreshold) {
-          if (direction === 1 && currentScrollY > lastScrollY) {
-            // Scrolling DOWN — hide navbar
-            navbar.classList.add('navbar--hidden');
-          } else if (direction === -1) {
-            // Scrolling UP — show navbar
-            navbar.classList.remove('navbar--hidden');
-          }
-        } else {
-          // Near top — always show
-          navbar.classList.remove('navbar--hidden');
-        }
-
-        lastScrollY = currentScrollY;
-      }
+      onToggle: (self) => navbar.classList.toggle('navbar--scrolled', self.isActive)
     });
   }
 
@@ -189,11 +189,13 @@
 
     let hasEntered = false;
     let autoEnterTimer = null;
+    let driver = null;
 
     function enterPortfolio() {
       if (hasEntered) return;
       hasEntered = true;
       if (autoEnterTimer) clearTimeout(autoEnterTimer);
+      if (driver) clearInterval(driver);
 
       if (introTl) introTl.kill();
 
@@ -257,6 +259,9 @@
       }
     });
 
+    // Failsafe: whatever happens, the intro ends. A normal run finishes in about 4 seconds.
+    setTimeout(enterPortfolio, 8000);
+
     // Intro Animation Timeline
     const introTl = gsap.timeline();
 
@@ -288,47 +293,82 @@
       ease: 'power2.out'
     }, 0.5);
 
-    // Step 4: Loading progress counter (0% to 100%)
-    const progressObj = { value: 0 };
-    introTl.to(progressObj, {
-      value: 100,
-      duration: 2.2,
-      ease: 'power2.inOut',
-      onUpdate: () => {
-        const val = Math.round(progressObj.value);
-        if (percentEl) percentEl.textContent = val;
-        if (progressBar) progressBar.style.width = val + '%';
+    // Step 4: progress follows what the portfolio actually needs, not a fake timer.
+    // Four real steps: portrait loaded, fonts ready, galaxy textures built, GitHub data fetched.
+    // The bar shows the slower of "real progress" and a short minimum time, so it never flashes by.
+    const TASKS = [
+      ['profile', 'LOADING PROFILE...'],
+      ['interface', 'LOADING INTERFACE...'],
+      ['galaxy', 'BUILDING GALAXY...'],
+      ['github', 'FETCHING GITHUB ACTIVITY...']
+    ];
+    const MIN_MS = 2400;
+    const MAX_MS = 5000;
+    const done = {};
+    const items = {};
+    loader.querySelectorAll('[data-task]').forEach((li) => { items[li.getAttribute('data-task')] = li; });
+    const mark = (name) => {
+      if (done[name]) return;
+      done[name] = true;
+      if (items[name]) items[name].classList.add('is-done');
+    };
 
-        if (statusText) {
-          if (val < 25) {
-            statusText.textContent = 'INITIALIZING SYSTEM...';
-          } else if (val < 55) {
-            statusText.textContent = 'LOADING NEURAL MODULES...';
-          } else if (val < 85) {
-            statusText.textContent = 'SYNCHRONIZING INTERFACE...';
-          } else if (val < 100) {
-            statusText.textContent = 'SECURING ENVIRONMENT...';
-          } else {
-            statusText.textContent = 'SYSTEM READY // ACCESS GRANTED';
-          }
-        }
-      },
-      onComplete: () => {
-        if (statusText) statusText.textContent = 'ACCESS GRANTED // WELCOME';
-        if (enterBtn) {
-          enterBtn.style.display = 'inline-flex';
-          gsap.fromTo(enterBtn, 
-            { opacity: 0, scale: 0.85, y: 8 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'back.out(1.7)' }
-          );
-        }
+    const portrait = document.getElementById('profilePortraitImg');
+    if (!portrait || portrait.complete) mark('profile');
+    else {
+      portrait.addEventListener('load', () => mark('profile'));
+      portrait.addEventListener('error', () => mark('profile'));
+    }
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => mark('interface'));
+    window.__ghPrefetch = fetch('/api/github', { headers: { Accept: 'application/json' } })
+      .then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    window.__ghPrefetch.then(() => mark('github'));
 
-        // Automatic entrance fallback after brief pause
-        autoEnterTimer = setTimeout(() => {
-          enterPortfolio();
-        }, 950);
+    const startedAt = performance.now();
+    const shown = { value: 0 };
+    let finished = false;
+
+    const render = () => {
+      const val = Math.round(shown.value);
+      if (percentEl) percentEl.textContent = val;
+      if (progressBar) progressBar.style.width = val + '%';
+      if (statusText && !finished) {
+        const next = TASKS.find(([k]) => !done[k]);
+        statusText.textContent = next ? next[1] : 'ALMOST READY...';
       }
-    }, 0.5);
+    };
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      clearInterval(driver);
+      TASKS.forEach(([k]) => mark(k));
+      shown.value = 100;
+      render();
+      if (statusText) statusText.textContent = 'PORTFOLIO READY';
+      if (enterBtn) {
+        enterBtn.style.display = 'inline-flex';
+        gsap.fromTo(enterBtn,
+          { opacity: 0, scale: 0.85, y: 8 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'back.out(1.7)' }
+        );
+      }
+      autoEnterTimer = setTimeout(enterPortfolio, 950);
+    };
+
+    driver = setInterval(() => {
+      const g = window.__galaxy && window.__galaxy.state ? window.__galaxy.state() : null;
+      if ((g && g.bgReady && g.planets.slice(0, 3).every((p) => p[1])) || (!g && performance.now() - startedAt > 1500)) mark('galaxy');
+
+      const elapsed = performance.now() - startedAt;
+      const taskPct = (TASKS.filter(([k]) => done[k]).length / TASKS.length) * 100;
+      const timePct = Math.min(100, (elapsed / MIN_MS) * 100);
+      const target = elapsed >= MAX_MS ? 100 : Math.min(taskPct, timePct);
+      // ease the displayed number toward the target; a fresh tween every tick would never finish
+      shown.value += (target - shown.value) * 0.4;
+      if (target >= 100 && shown.value > 99) { finish(); return; }
+      render();
+    }, 120);
   }
 
   // =====================================================
@@ -651,6 +691,7 @@
   // 6. PARALLAX EFFECTS (subtle)
   // =====================================================
   function initParallax() {
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 900) return;
     // Hero glow spheres — subtle vertical parallax
     gsap.utils.toArray('.hero-glow-sphere').forEach((sphere, i) => {
       gsap.to(sphere, {
@@ -785,8 +826,10 @@
 
     // Ring follows with smooth lag
     gsap.ticker.add(() => {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
+      const dx = mouseX - ringX, dy = mouseY - ringY;
+      if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) return;   // settled: nothing to update
+      ringX += dx * 0.15;
+      ringY += dy * 0.15;
       gsap.set(ring, { x: ringX, y: ringY });
     });
 
@@ -936,7 +979,8 @@
         end: 'max',
         scrub: 0.3,
       },
-      width: '100%',
+      scaleX: 1,
+      transformOrigin: 'left center',
       ease: 'none',
     });
   }
@@ -975,6 +1019,9 @@
   // Responds to mouse position with magnetic forces, glowing web lines,
   // and theme-tailored colors for Dark & Light modes. No bubbles.
   function initInteractiveBackground() {
+    // The galaxy fly-through (galaxy.js) replaces the flat constellation when present.
+    if (window.__galaxyActive) return;
+
     // Hide old framer-scroll-scene (orbs/bubbles) permanently on all devices
     const oldScene = document.querySelector('.framer-scroll-scene');
     if (oldScene) oldScene.style.display = 'none';

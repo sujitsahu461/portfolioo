@@ -51,3 +51,7 @@ When he's not coding, he's reading security research, participating in CTF compe
 - **LinkedIn**: https://www.linkedin.com/in/sujit-kumar-sahu-60b80531a
 - **Instagram**: https://www.instagram.com/_sujit_.23
 - **Portfolio**: https://portfolioo-sand-sigma.vercel.app
+
+
+## Founder
+Sujit is the founder of NivaraNova Technologies Pvt Ltd, an early-stage startup from Gunupur, Odisha, building practical software for problems in public services. Its first product is CivicSetu, a civic engagement and grievance redressal platform. Website: https://nivaranova-technologies.vercel.app/
