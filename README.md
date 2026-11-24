@@ -9,7 +9,7 @@ Live Production URLs: **[portfolioo-sand-sigma.vercel.app (Vercel)](https://port
 ## ✨ Design Philosophy & Aesthetics
 
 This portfolio is engineered to look like a high-end tech website, startup founder landing page, and premium engineering brand:
-* **Minimalist Widescreen Showcase:** Replaces traditional circular avatars with an interactive, glowing widescreen dashboard mockup (`sujit-photo.jpg`) that showcases physical books, IDE code blocks, system architectures, and neural network charts.
+* **Portrait:** a 3:4 portrait (`assets/images/sujit-portrait.jpg`, about 100 KB) in a glowing frame on the Home page. To change it, replace that file with a 3:4 image (about 640×853 px), keep the eyes near the upper third, and use a new file name so visitors do not get a cached copy.
 * **Cinematic Backdrop Lighting:** Built using a custom deep-space radial gradient (#0c1326 to #06070a) and a faint, barely-visible cybergrid layout (#00f0ff at 0.7% opacity) for a sleek Silicon Valley feel.
 * **Refined Typography & Kerning:** Uses *Montserrat* for strong, uppercase headings with tight modern kerning (`-0.03em`) and *Inter* for highly readable, soft slate-grey description text.
 * **Subtle Interactive Motion:** Smooth CSS hover transitions (`translateY(-4px)`) that brighten card border gradients and trigger soft neon drop-shadows on card elements.
